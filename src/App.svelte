@@ -1111,12 +1111,12 @@ See [<a href="https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa0
 </p>
 
 <p class="center">
-Please DM me feedback <a href="https://twitter.com/gabeeegoooh">here</a> or email me <a href="mailto:izmegabe@gmail.com">here</a>.
+Please DM me feedback <a href="https://twitter.com/gabeeegoooh">here</a> or email me <a href="mailto:izmegabe@gmail.com">here</a>. My <a href="http://gabgoh.github.io/">website</a>.
 </p>
-
+<!-- 
 <p class="center">
 <a href="https://twitter.com/gabeeegoooh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p>
+</p> -->
 
 
 <p class = "center">
