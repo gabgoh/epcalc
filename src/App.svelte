@@ -71,7 +71,8 @@
   $: D_death           = Time_to_death - D_infectious 
   $: CFR               = 0.02  
   $: InterventionTime  = 100  
-  $: InterventionAmt   = 1/3
+  $: OMInterventionAmt = 2/3
+  $: InterventionAmt   = 1 - OMInterventionAmt
   $: Time              = 220
   $: Xmax              = 110000
   $: dt                = 2
@@ -91,6 +92,8 @@
                "InterventionAmt":InterventionAmt,
                "D_hospital_lag":D_hospital_lag,
                "P_SEVERE": P_SEVERE})
+
+// dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration
 
   function get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration) {
 
@@ -143,7 +146,7 @@
       return [dS, dE, dI, dMild, dSevere, dSevere_H, dFatal, dR_Mild, dR_Severe, dR_Fatal]
     }
 
-    var v = [1, 0, I0/(N-I0), 0, 0, 0, 0, 0, 0, 0]
+    var v = [1 - I0/N, 0, I0/N, 0, 0, 0, 0, 0, 0, 0]
     var t = 0
 
     var P  = []
@@ -151,7 +154,7 @@
     var Iters = []
     while (steps--) { 
       if ((steps+1) % (sample_step) == 0) {
-            //    Dead   Hospital          Recovered        Infected   Exposed
+            //    Dead   Hospital          Recovered        Infectious   Exposed
         P.push([ N*v[9], N*(v[5]+v[6]),  N*(v[7] + v[8]), N*v[2],    N*v[1] ])
         Iters.push(v)
         TI.push(N*(1-v[0]))
@@ -300,6 +303,8 @@
       if (!(parsed.InterventionAmt === undefined)) {InterventionAmt = parseFloat(parsed.InterventionAmt)}
       if (!(parsed.D_hospital_lag === undefined)) {D_hospital_lag = parseFloat(parsed.D_hospital_lag)}
       if (!(parsed.P_SEVERE === undefined)) {P_SEVERE = parseFloat(parsed.P_SEVERE)}
+      if (!(parsed.Time_to_death === undefined)) {Time_to_death = parseFloat(parsed.Time_to_death)}
+
     }
   });
 
@@ -372,7 +377,7 @@
       return x.map((x, i) => [x[index], i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
     }
 
-     //    Dead   Hospital          Recovered        Infected   Exposed
+     //    Dead   Hospital          Recovered        Infectious   Exposed
     var milestones = []
     for (var i = 0; i < P.length; i++) {
       if (P[i][0] >= 0.5) {
@@ -637,14 +642,14 @@
 
       </div>
 
-      <!-- Infected -->
+      <!-- Infectious -->
       <div style="position:absolute; left:0px; top:{legendheight*2}px; width: 180px; height: 100px">
 
         <Checkbox color="{colors[3]}" bind:checked={checked[3]}/>
         <Arrow height="41"/>   
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Infected</div>
+          <div class="legendtitle">Infectious</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
                                   ({ (100*Iters[active_][2]).toFixed(2) }%)</div>
@@ -666,8 +671,8 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Removed</div>
           <div style="padding-top: 10px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2])+I0 ))} 
-                                  ({ ((100*(1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]-I0/N))).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]) ))} 
+                                  ({ ((100*(1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]))).toFixed(2) }%)</div>
           <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[3]+get_d(active_)[4]+get_d(active_)[5]+get_d(active_)[6]+get_d(active_)[7]) )) } / day</i>
                                  </div>
           </div>
@@ -837,8 +842,8 @@
               <div class="paneldesc">to decrease transmission by<br></div>
               </div>
               <div style="pointer-events: all">
-              <div class="slidertext" on:mousedown={lock_yaxis}>{(InterventionAmt).toFixed(2)}</div>
-              <input class="range" type=range bind:value={InterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
+              <div class="slidertext" on:mousedown={lock_yaxis}>{(100*(1-InterventionAmt)).toFixed(2)}%</div>
+              <input class="range" type=range bind:value={OMInterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
               </div>
               </div>
             </div>
@@ -1113,6 +1118,7 @@ See [<a href="https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa0
 <p class="center">
 Please DM me feedback <a href="https://twitter.com/gabeeegoooh">here</a> or email me <a href="mailto:izmegabe@gmail.com">here</a>. My <a href="http://gabgoh.github.io/">website</a>.
 </p>
+
 <!-- 
 <p class="center">
 <a href="https://twitter.com/gabeeegoooh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -1128,7 +1134,7 @@ The clinical dynamics in this model are an elaboration on SEIR that simulates th
 <b> Acknowledgements </b><br>
 <a href = "https://enkimute.github.io/">Steven De Keninck</a> for RK4 Integrator. <a href="https://twitter.com/ch402">Chris Olah</a>, <a href="https://twitter.com/shancarter">Shan Carter
 </a> and <a href="https://twitter.com/ludwigschubert">Ludwig Schubert
-</a> wonderful feedback. Charlie Huang for context and discussion.
+</a> wonderful feedback. <a href="https://twitter.com/NikitaJer">Nikita Jerschov</a> for improving clarity of text. Charie Huang for context and discussion.
 </p>
 
 <!-- Input data -->
