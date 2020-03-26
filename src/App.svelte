@@ -77,7 +77,7 @@
   $: Xmax              = 110000
   $: dt                = 2
   $: P_SEVERE          = 0.2
-  $: duration          = 7*12*1e10
+  $: duration          = 15
 
   $: state = location.protocol + '//' + location.host + location.pathname + "?" + queryString.stringify({"Time_to_death":Time_to_death,
                "logN":logN,
@@ -91,6 +91,7 @@
                "InterventionTime":InterventionTime,
                "InterventionAmt":InterventionAmt,
                "D_hospital_lag":D_hospital_lag,
+               "duration":duration,
                "P_SEVERE": P_SEVERE})
 
 // dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration
@@ -302,6 +303,7 @@
       if (!(parsed.InterventionTime === undefined)) {InterventionTime = parseFloat(parsed.InterventionTime)}
       if (!(parsed.InterventionAmt === undefined)) {InterventionAmt = parseFloat(parsed.InterventionAmt)}
       if (!(parsed.D_hospital_lag === undefined)) {D_hospital_lag = parseFloat(parsed.D_hospital_lag)}
+      if (!(parsed.duration === undefined)) {duration = parseFloat(parsed.duration)}
       if (!(parsed.P_SEVERE === undefined)) {P_SEVERE = parseFloat(parsed.P_SEVERE)}
       if (!(parsed.Time_to_death === undefined)) {Time_to_death = parseFloat(parsed.Time_to_death)}
 
@@ -992,6 +994,12 @@
       <div class="paneldesc" style="height:29px; border-top: 1px solid #EEE; padding-top: 10px">Time to hospitalization.<br></div>
       <div class="slidertext">{D_hospital_lag} Days</div>
       <input class="range" type=range bind:value={D_hospital_lag} min={0.5} max=100 step=0.01>
+    </div>
+
+    <div class="column">
+      <div class="paneldesc" style="height:29px; border-top: 1px solid #EEE; padding-top: 10px">Duration of Intervention<br></div>
+      <div class="slidertext">{duration} Days</div>
+      <input class="range" type=range bind:value={duration} min={0.5} max=100 step=0.01>
     </div>
 
   </div>
