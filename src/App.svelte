@@ -950,7 +950,7 @@
       </div>
       <div class="slidertext">{R0}</div>
       <input class="range" type=range bind:value={R0} min=0.01 max=10 step=0.01> 
-    </div>
+    </div> 
 
     <div class="column">
       <div class="paneltitle">Transmission Times</div>
@@ -965,7 +965,7 @@
     <div style="flex: 0 0 20; width:20px"></div>
 
     <div class="column">
-      <div class="paneltitle">Morbidity Statistics</div>
+      <div class="paneltitle">Mortality Statistics</div>
       <div class="paneldesc" style="height:30px">Case fatality rate.<br></div>
       <div class="slidertext">{(CFR*100).toFixed(2)} %</div>
       <input class="range" style="margin-bottom: 8px" type=range bind:value={CFR} min={0} max=1 step=0.0001>
