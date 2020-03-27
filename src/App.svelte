@@ -135,7 +135,7 @@
       var dE        =  beta*I*S - a*E
       var dI        =  a*E - gamma*I
       var dMild     =  p_mild*gamma*I   - (1/D_recovery_mild)*Mild
-      var dSevere   =  p_severe*gamma*I - (1/D_hospital_lag)*Severe
+      var dSevere   =  p_severe*gamma*I - (1/D_recovery_severe)*Severe
       var dSevere_H =  (1/D_hospital_lag)*Severe - (1/D_recovery_severe)*Severe_H
       var dFatal    =  p_fatal*gamma*I  - (1/D_death)*Fatal
       var dR_Mild   =  (1/D_recovery_mild)*Mild
