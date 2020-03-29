@@ -165,7 +165,7 @@
       t+=dt
     }
     return {"P": P, 
-            "deaths": N*v[6], 
+            "deaths": N*v[9], 
             "total": 1-v[0],
             "total_infected": TI,
             "Iters":Iters,
