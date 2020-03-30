@@ -77,6 +77,7 @@
   $: Xmax              = 110000
   $: dt                = 2
   $: P_SEVERE          = 0.2
+  $: P_ICU             = 0.2
   $: duration          = 7*12*1e10
 
   $: state = location.protocol + '//' + location.host + location.pathname + "?" + queryString.stringify({"Time_to_death":Time_to_death,
@@ -91,11 +92,13 @@
                "InterventionTime":InterventionTime,
                "InterventionAmt":InterventionAmt,
                "D_hospital_lag":D_hospital_lag,
-               "P_SEVERE": P_SEVERE})
+               "P_SEVERE": P_SEVERE,
+               "P_ICU": P_ICU
+               })
 
 // dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration
 
-  function get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration) {
+  function get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration, P_ICU) {
 
     var interpolation_steps = 40
     var steps = 110*interpolation_steps
@@ -137,7 +140,7 @@
       var dMild     =  p_mild*gamma*I   - (1/D_recovery_mild)*Mild
       var dSevere   =  p_severe*gamma*I - (1/D_hospital_lag)*Severe
       var dSevere_H =  (1/D_hospital_lag)*Severe - (1/D_recovery_severe)*Severe_H
-      var dFatal    =  p_fatal*gamma*I  - (1/D_death)*Fatal
+      var dFatal    =  p_fatal*gamma*(dSevere_H) * P_ICU  - (1/D_death)*Fatal
       var dR_Mild   =  (1/D_recovery_mild)*Mild
       var dR_Severe =  (1/D_recovery_severe)*Severe_H
       var dR_Fatal  =  (1/D_death)*Fatal
@@ -176,7 +179,7 @@
     return P.reduce((max, b) => Math.max(max, sum(b, checked) ), sum(P[0], checked) )
   }
 
-  $: Sol            = get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration)
+  $: Sol            = get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration, P_ICU)
   $: P              = Sol["P"].slice(0,100)
   $: timestep       = dt
   $: tmax           = dt*100
@@ -188,7 +191,7 @@
   $: Pmax           = max(P, checked)
   $: lock           = false
 
-  var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"]
+  var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086", "red"]
 
   var Plock = 1
 
@@ -336,7 +339,7 @@
 
   window.addEventListener('mouseup', unlock_yaxis);
 
-  $: checked = [true, true, false, true, true]
+  $: checked = [true, true, false, true, true, true]
   $: active  = 0
   $: active_ = active >= 0 ? active : Iters.length - 1
 
@@ -595,7 +598,7 @@
 
 </style>
 
-<h2>Epidemic Calculator</h2>
+<h2>Epidemic Calculator {P_ICU}</h2>
 
 <div class="chart" style="display: flex; max-width: 1120px">
 
@@ -714,7 +717,24 @@
 
       </div>
 
-      <div style="position:absolute; left:0px; top:{legendheight*4 + 120+2}px; width: 180px; height: 100px">
+      <!-- ICUd -->
+      <div style="position:absolute; left:0px; top:{legendheight*5+57}px; width: 180px; height: 100px">
+        <Arrow height="43" arrowhead="" dasharray="3 2"/>
+        <Checkbox color="{colors[5]}" bind:checked={checked[5]}/>
+        <div class="legend" style="position:absolute;">
+          <div class="legendtitle">ICU</div>
+          <div style="padding-top: 3px; padding-bottom: 1px">
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round((N*(Iters[active_][5]+Iters[active_][6]) ) * P_ICU))} 
+                                  ({ (100*(Iters[active_][5]+Iters[active_][6])).toFixed(2) }%)</div>
+          </div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round((N*(get_d(active_)[5]+get_d(active_)[6])) * P_ICU)) } / day</i>
+                                 </div>
+        </div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Intensive care unit.</div>
+
+      </div>
+
+      <div style="position:absolute; left:0px; top:{legendheight*5 + 120+2}px; width: 180px; height: 100px">
         <Arrow height="40" arrowhead="" dasharray="3 2"/>
 
         <Checkbox color="{colors[0]}" bind:checked={checked[0]}/>
@@ -925,7 +945,7 @@
 </div>
 
 
-<div style="height:220px;">
+<div style="height:220px;margin-top:50px">
   <div class="minorTitle">
     <div style="margin: 0px 0px 5px 4px" class="minorTitleColumn">Transmission Dynamics</div>
     <div style="flex: 0 0 20; width:20px"></div>
@@ -989,6 +1009,9 @@
       <div class="paneldesc" style="height:30px">Hospitalization rate.<br></div>
       <div class="slidertext">{(P_SEVERE*100).toFixed(2)} %</div>
       <input class="range" style="margin-bottom: 8px"type=range bind:value={P_SEVERE} min={0} max=1 step=0.0001>      
+      <div class="paneldesc" style="height:30px">ICU rate.<br></div>
+      <div class="slidertext">{(P_ICU*100).toFixed(2)} %</div>
+      <input class="range" style="margin-bottom: 8px"type=range bind:value={P_ICU} min={0} max=1 step=0.0001>      
       <div class="paneldesc" style="height:29px; border-top: 1px solid #EEE; padding-top: 10px">Time to hospitalization.<br></div>
       <div class="slidertext">{D_hospital_lag} Days</div>
       <input class="range" type=range bind:value={D_hospital_lag} min={0.5} max=100 step=0.01>
