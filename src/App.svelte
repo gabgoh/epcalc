@@ -47,13 +47,45 @@
   // f is a func of time t and state y
   // y is the initial state, t is the time, h is the timestep
   // updated y is returned.
-  var integrate=(m,f,y,t,h)=>{
-    for (var k=[],ki=0; ki<m.length; ki++) {
-      var _y=y.slice(), dt=ki?((m[ki-1][0])*h):0;
-      for (var l=0; l<_y.length; l++) for (var j=1; j<=ki; j++) _y[l]=_y[l]+h*(m[ki-1][j])*(k[ki-1][l]);
-      k[ki]=f(t+dt,_y,dt); 
+  // Method = RK4 incurrent case
+  var integrate=(method,f,state,t,h)=>{
+    let order = [
+      'susectable',
+      'exposed',
+      'infectious',
+      'recoveringMild',
+      'recoveringSevereHome',
+      'recoveringSevereHospital',
+      'recoveringFatal',
+      'recoveredMild',
+      'recoveredSevere',
+      'dead',
+    ]
+
+    var k = []
+    for (var ki = 0; ki < method.length; ki++) {
+      var _state = {...state}
+      var dt = ki ? (method[ki - 1][0] * h) : 0;
+      order.forEach(key => {
+        for (var j = 1; j <= ki; j++) {
+          _state[key] = _state[key] + h * method[ki - 1][j] * k[ki - 1][key]
+        }
+        k[ki] = f(t + dt, _state, dt)
+      });
     }
-    for (var r=y.slice(),l=0; l<_y.length; l++) for (var j=0; j<k.length; j++) r[l]=r[l]+h*(k[j][l])*(m[ki-1][j]);
+    var r = {...state}
+    order.forEach(key => {
+      for (var j = 0; j < k.length; j++) {
+        r[key] = r[key] + h * k[j][key] * method[ki - 1][j]
+      }
+    });
+
+    // for (var k=[],ki=0; ki<method.length; ki++) {
+    //   var _y=y.slice(), dt=ki?((method[ki-1][0])*h):0;
+    //   for (var l=0; l<_y.length; l++) for (var j=1; j<=ki; j++) _y[l]=_y[l]+h*(method[ki-1][j])*(k[ki-1][l]);
+    //   k[ki]=f(t+dt,_y,dt); 
+    // }
+    // for (var r=y.slice(),l=0; l<_y.length; l++) for (var j=0; j<k.length; j++) r[l]=r[l]+h*(k[j][l])*(method[ki-1][j]);
     return r;
   }
 
@@ -63,14 +95,14 @@
   $: N                 = Math.exp(logN)
   $: I0                = 1
   $: R0                = 2.2
-  $: D_incbation       = 5.2       
-  $: D_infectious      = 2.9 
-  $: D_recovery_mild   = (14 - 2.9)  
+  $: D_incbation       = 5.2
+  $: D_infectious      = 2.9
+  $: D_recovery_mild   = (14 - 2.9)
   $: D_recovery_severe = (31.5 - 2.9)
   $: D_hospital_lag    = 5
-  $: D_death           = Time_to_death - D_infectious 
-  $: CFR               = 0.02  
-  $: InterventionTime  = 100  
+  $: D_death           = Time_to_death - D_infectious
+  $: CFR               = 0.02
+  $: InterventionTime  = 100
   $: OMInterventionAmt = 2/3
   $: InterventionAmt   = 1 - OMInterventionAmt
   $: Time              = 220
@@ -112,23 +144,24 @@
       if (t > InterventionTime && t < InterventionTime + duration){
         var beta = (InterventionAmt)*R0/(D_infectious)
       } else if (t > InterventionTime + duration) {
-        var beta = 0.5*R0/(D_infectious)        
+        var beta = 0.5*R0/(D_infectious)
       } else {
         var beta = R0/(D_infectious)
       }
       var a     = 1/D_incbation
       var gamma = 1/D_infectious
-      
-      var S        = x[0] // Susectable
-      var E        = x[1] // Exposed
-      var I        = x[2] // Infectious 
-      var Mild     = x[3] // Recovering (Mild)     
-      var Severe   = x[4] // Recovering (Severe at home)
-      var Severe_H = x[5] // Recovering (Severe in hospital)
-      var Fatal    = x[6] // Recovering (Fatal)
-      var R_Mild   = x[7] // Recovered
-      var R_Severe = x[8] // Recovered
-      var R_Fatal  = x[9] // Dead
+
+      var S        = x.susectable // [0]Susectable
+      var E        = x.exposed // [1]Exposed
+      var I        = x.infectious // [2]Infectious 
+      var Mild     = x.recoveringMild // [3]Recovering (Mild)     
+      var Severe   = x.recoveringSevereHome // [4]Recovering (Severe at home)
+      var Severe_H = x.recoveringSevereHospital // [5]Recovering (Severe in hospital)
+      var Fatal    = x.recoveringFatal // [6]Recovering (Fatal)
+      var R_Mild   = x.recoveredMild // [7]Recovered
+      var R_Severe = x.recoveredSevere // [8]Recovered
+      var Icu      = x.recoveringSevereHospital + x.recoveringFatal
+      var R_Fatal  = x.dead // [9]Dead
 
       var p_severe = P_SEVERE
       var p_fatal  = CFR
@@ -140,16 +173,52 @@
       var dMild     =  p_mild*gamma*I   - (1/D_recovery_mild)*Mild
       var dSevere   =  p_severe*gamma*I - (1/D_hospital_lag)*Severe
       var dSevere_H =  (1/D_hospital_lag)*Severe - (1/D_recovery_severe)*Severe_H
+      // % of population hospitalized
       var dFatal    =  p_fatal*gamma*(dSevere_H) * P_ICU  - (1/D_death)*Fatal
+      // % population immune or isolated
       var dR_Mild   =  (1/D_recovery_mild)*Mild
+      // % of population who recover
       var dR_Severe =  (1/D_recovery_severe)*Severe_H
+      // % of population who die
       var dR_Fatal  =  (1/D_death)*Fatal
 
+      if (window.debug) {
+        console.log('ICU', N*Icu);
+        console.log('Fatal', Math.round(N*R_Fatal));
+        console.log('dR_Fatal', N * (1/D_death)*Fatal);
+        // debugger
+      }
+
       //      0   1   2   3      4        5          6       7        8          9
-      return [dS, dE, dI, dMild, dSevere, dSevere_H, dFatal, dR_Mild, dR_Severe, dR_Fatal]
+      return {
+        susectable: dS,
+        exposed: dE,
+        infectious: dI,
+        recoveringMild: dMild,
+        recoveringSevereHome: dSevere,
+        recoveringSevereHospital: dSevere_H,
+        recoveringFatal: dFatal,
+        recoveredMild: dR_Mild,
+        recoveredSevere: dR_Severe,
+        dead: dR_Fatal
+      }
+      // return [dS, dE, dI, dMild, dSevere, dSevere_H, dFatal, dR_Mild, dR_Severe, dR_Fatal]
     }
 
-    var v = [1 - I0/N, 0, I0/N, 0, 0, 0, 0, 0, 0, 0]
+    var v = {
+      susectable: 1 - I0/N,
+      exposed: 0,
+      infectious: I0/N,
+      recoveringMild: 0,
+      recoveringSevereHome: 0,
+      recoveringSevereHospital: 0,
+      recoveringFatal: 0,
+      recoveredMild: 0,
+      recoveredSevere: 0,
+      icu: 0,
+      dead: 0,
+    }
+    // var v = [1 - I0/N, 0, I0/N, 0, 0, 0, 0, 0, 0, 0]
     var t = 0
 
     var P  = []
@@ -157,19 +226,19 @@
     var Iters = []
     while (steps--) { 
       if ((steps+1) % (sample_step) == 0) {
-            //    Dead   Hospital          Recovered        Infectious   Exposed
-        P.push([ N*v[9], N*(v[5]+v[6]),  N*(v[7] + v[8]), N*v[2],    N*v[1] ])
+        //    Dead   Hospital          Recovered        Infectious   Exposed
+        P.push([ N*v.dead, N*(v.recoveringSevereHospital+v.recoveringFatal),  N*(v.recoveredMild + v.recoveredSevere), N*v.infectious,    N*v.exposed ])
         Iters.push(v)
-        TI.push(N*(1-v[0]))
-        // console.log((v[0] + v[1] + v[2] + v[3] + v[4] + v[5] + v[6] + v[7] + v[8] + v[9]))
-        // console.log(v[0] , v[1] , v[2] , v[3] , v[4] , v[5] , v[6] , v[7] , v[8] , v[9])
+        TI.push(N*(1-v.susectable))
+        // console.log((v.susectable + v.exposed + v.infectious + v.recoveringMild + v.recoveringSevereHome + v.recoveringSevereHospital + v.recoveringFatal + v.recoveredMild + v.recoveredSevere + v.dead))
+        // console.log(v.susectable , v.exposed , v.infectious , v.recoveringMild , v.recoveringSevereHome , v.recoveringSevereHospital , v.recoveringFatal , v.recoveredMild , v.recoveredSevere , v.dead)
       }
       v =integrate(method,f,v,t,dt); 
       t+=dt
     }
     return {"P": P, 
-            "deaths": N*v[6], 
-            "total": 1-v[0],
+            "deaths": N*v.recoveringFatal, 
+            "total": 1-v.susectable,
             "total_infected": TI,
             "Iters":Iters,
             "dIters": f}
@@ -598,7 +667,7 @@
 
 </style>
 
-<h2>Epidemic Calculator {P_ICU}</h2>
+<h2>Epidemic Calculator</h2>
 
 <div class="chart" style="display: flex; max-width: 1120px">
 
@@ -615,9 +684,9 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Susceptible</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][0]))} 
-                                  ({ (100*Iters[active_][0]).toFixed(2) }%)</i></div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[0]))} / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_].susectable))} 
+                                  ({ (100*Iters[active_].susectable).toFixed(2) }%)</i></div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_).susectable))} / day</i>
                                  </div>
           </div>
         </div>
@@ -635,9 +704,9 @@
           <div class="legendtitle">Exposed</div>
 
           <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][1]))} 
-                                  ({ (100*Iters[active_][1]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[1])) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_].exposed))} 
+                                  ({ (100*Iters[active_].exposed).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_).exposed)) } / day</i>
                                  </div>
           </div>
         </div>
@@ -654,9 +723,9 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Infectious</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
-                                  ({ (100*Iters[active_][2]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[2])) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_].infectious))} 
+                                  ({ (100*Iters[active_].infectious).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_).infectious)) } / day</i>
                                  </div>
           </div>
         </div>
@@ -674,9 +743,9 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Removed</div>
           <div style="padding-top: 10px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]) ))} 
-                                  ({ ((100*(1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]))).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[3]+get_d(active_)[4]+get_d(active_)[5]+get_d(active_)[6]+get_d(active_)[7]) )) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_].susectable-Iters[active_].exposed-Iters[active_].infectious) ))} 
+                                  ({ ((100*(1-Iters[active_].susectable-Iters[active_].exposed-Iters[active_].infectious))).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_).recoveringMild+get_d(active_).recoveringSevereHome+get_d(active_).recoveringSevereHospital+get_d(active_).recoveringFatal+get_d(active_).recoveredMild) )) } / day</i>
                                  </div>
           </div>
         </div>
@@ -692,8 +761,8 @@
           <div class="legendtitle">Recovered</div>
 
           <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][7]+Iters[active_][8]) ))} 
-                                  ({ (100*(Iters[active_][7]+Iters[active_][8])).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_].recoveredMild+Iters[active_].recoveredSevere) ))} 
+                                  ({ (100*(Iters[active_].recoveredMild+Iters[active_].recoveredSevere)).toFixed(2) }%)</div>
           </div>
         </div>
         <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 8px; position:relative;">Full recoveries.</div>
@@ -707,10 +776,10 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Hospitalized</div>
           <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][5]+Iters[active_][6]) ))} 
-                                  ({ (100*(Iters[active_][5]+Iters[active_][6])).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal) ))} 
+                                  ({ (100*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal)).toFixed(2) }%)</div>
           </div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[5]+get_d(active_)[6]))) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_).recoveringSevereHospital+get_d(active_).recoveringFatal))) } / day</i>
                                  </div>
         </div>
         <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Active hospitalizations.</div>
@@ -724,10 +793,10 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">ICU</div>
           <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round((N*(Iters[active_][5]+Iters[active_][6]) ) * P_ICU))} 
-                                  ({ (100*(Iters[active_][5]+Iters[active_][6])).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round((N*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal))))} 
+                                  ({ (100*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal)).toFixed(2) }%)</div>
           </div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round((N*(get_d(active_)[5]+get_d(active_)[6])) * P_ICU)) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round((N*(get_d(active_).recoveringSevereHospital+get_d(active_).recoveringFatal)) * P_ICU)) } / day</i>
                                  </div>
         </div>
         <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Intensive care unit.</div>
@@ -742,9 +811,9 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">Fatalities</div>
           <div style="padding-top: 3px; padding-bottom: 1px">          
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][9]))} 
-                                  ({ (100*Iters[active_][9]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[9])) } / day</i>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_].dead))} 
+                                  ({ (100*Iters[active_].dead).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_).dead)) } / day</i>
                                  </div>
           </div>
         </div>
@@ -927,9 +996,9 @@
                   height:25px;
                   cursor:col-resize">
             {#each milestones as milestone}
-              <div style="position:absolute; left: {xScaleTime(milestone[0])+8}px; top: -30px;">
+              <div style="position:absolute; left: {xScaleTime(milestone.susectable)+8}px; top: -30px;">
                 <span style="opacity: 0.3"><Arrow height=30 arrowhead="#circle" dasharray = "2 1"/></span>
-                  <div class="tick" style="position: relative; left: 0px; top: 35px; max-width: 130px; color: #BBB; background-color: white; padding-left: 4px; padding-right: 4px">{@html milestone[1]}</div>
+                  <div class="tick" style="position: relative; left: 0px; top: 35px; max-width: 130px; color: #BBB; background-color: white; padding-left: 4px; padding-right: 4px">{@html milestone.exposed}</div>
               </div>
             {/each}
       </div>
@@ -1022,7 +1091,7 @@
 
 <div style="position: relative; height: 12px"></div>
 
-<p class = "center">
+<p class = "center" style="margin-top: 60px">
 At the time of writing, the coronavirus disease of 2019 remains a global health crisis of grave and uncertain magnitude. To the non-expert (such as myself), contextualizing the numbers, forecasts and epidemiological parameters described in the media and literature can be challenging. I created this calculator as an attempt to address this gap in understanding.
 </p>
 
@@ -1033,7 +1102,7 @@ In addition to the transmission dynamics, this model allows the use of supplemen
 </p>
 
 <p class = "center">
-Note that one can use this calculator to measure one's risk exposure to the disease for any given day of the epidemic: the probability of getting infected on day {Math.round(indexToTime(active_))} given <a href="https://www.cdc.gov/coronavirus/2019-ncov/hcp/guidance-risk-assesment-hcp.html">close contact</a> with <input type="text" style="width:{Math.ceil(Math.log10(p_num_ind))*9.5 + 5}px; font-size: 15.5px; color:#777" bind:value={p_num_ind}> individuals is {((1-(Math.pow(1 - (Iters[active_][2])*(0.45/100), p_num_ind)))*100).toFixed(5)}% given an attack rate of 0.45% [<a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm6909e1.htm?s_cid=mm6909e1_w">Burke et. al</a>].
+Note that one can use this calculator to measure one's risk exposure to the disease for any given day of the epidemic: the probability of getting infected on day {Math.round(indexToTime(active_))} given <a href="https://www.cdc.gov/coronavirus/2019-ncov/hcp/guidance-risk-assesment-hcp.html">close contact</a> with <input type="text" style="width:{Math.ceil(Math.log10(p_num_ind))*9.5 + 5}px; font-size: 15.5px; color:#777" bind:value={p_num_ind}> individuals is {((1-(Math.pow(1 - (Iters[active_].infectious)*(0.45/100), p_num_ind)))*100).toFixed(5)}% given an attack rate of 0.45% [<a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm6909e1.htm?s_cid=mm6909e1_w">Burke et. al</a>].
 </p>
 
 
