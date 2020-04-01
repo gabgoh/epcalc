@@ -160,7 +160,7 @@
       var Fatal    = x.recoveringFatal // [6]Recovering (Fatal)
       var R_Mild   = x.recoveredMild // [7]Recovered
       var R_Severe = x.recoveredSevere // [8]Recovered
-      var Icu      = x.recoveringSevereHospital + x.recoveringFatal
+      var Icu      = x.recoveringSevereHospital + x.recoveringFatal * P_ICU
       var R_Fatal  = x.dead // [9]Dead
 
       var p_severe = P_SEVERE
@@ -174,20 +174,13 @@
       var dSevere   =  p_severe*gamma*I - (1/D_hospital_lag)*Severe
       var dSevere_H =  (1/D_hospital_lag)*Severe - (1/D_recovery_severe)*Severe_H
       // % of population hospitalized
-      var dFatal    =  p_fatal*gamma*(dSevere_H) * P_ICU  - (1/D_death)*Fatal
+      var dFatal    =  p_fatal*gamma*I  - (1/D_death)*Fatal
       // % population immune or isolated
       var dR_Mild   =  (1/D_recovery_mild)*Mild
       // % of population who recover
       var dR_Severe =  (1/D_recovery_severe)*Severe_H
       // % of population who die
       var dR_Fatal  =  (1/D_death)*Fatal
-
-      if (window.debug) {
-        console.log('ICU', N*Icu);
-        console.log('Fatal', Math.round(N*R_Fatal));
-        console.log('dR_Fatal', N * (1/D_death)*Fatal);
-        // debugger
-      }
 
       //      0   1   2   3      4        5          6       7        8          9
       return {
@@ -226,8 +219,14 @@
     var Iters = []
     while (steps--) { 
       if ((steps+1) % (sample_step) == 0) {
-        //    Dead   Hospital          Recovered        Infectious   Exposed
-        P.push([ N*v.dead, N*(v.recoveringSevereHospital+v.recoveringFatal),  N*(v.recoveredMild + v.recoveredSevere), N*v.infectious,    N*v.exposed ])
+        P.push([
+          N*v.dead, // Dead
+          N*(v.recoveringSevereHospital+v.recoveringFatal), // Hospital
+          N*(v.recoveredMild + v.recoveredSevere), // Recovered
+          N*v.infectious, // Invectious
+          N*v.exposed, // Exposed
+          N*(v.recoveringSevereHospital+v.recoveringFatal) * P_ICU, // ICU
+        ])
         Iters.push(v)
         TI.push(N*(1-v.susectable))
         // console.log((v.susectable + v.exposed + v.infectious + v.recoveringMild + v.recoveringSevereHome + v.recoveringSevereHospital + v.recoveringFatal + v.recoveredMild + v.recoveredSevere + v.dead))
@@ -452,7 +451,10 @@
      //    Dead   Hospital          Recovered        Infectious   Exposed
     var milestones = []
     for (var i = 0; i < P.length; i++) {
-      if (P[i][0] >= 0.5) {
+      if (window.debug) {
+        console.log(P);
+      }
+      if (P[i].dead >= 0.5) {
         milestones.push([i*dt, "First death"])
         break
       }
@@ -793,8 +795,8 @@
         <div class="legend" style="position:absolute;">
           <div class="legendtitle">ICU</div>
           <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round((N*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal))))} 
-                                  ({ (100*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal)).toFixed(2) }%)</div>
+          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round((N*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal) * P_ICU)))} 
+                                  ({ (100*(Iters[active_].recoveringSevereHospital+Iters[active_].recoveringFatal) * P_ICU).toFixed(2) }%)</div>
           </div>
           <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round((N*(get_d(active_).recoveringSevereHospital+get_d(active_).recoveringFatal)) * P_ICU)) } / day</i>
                                  </div>
@@ -996,9 +998,9 @@
                   height:25px;
                   cursor:col-resize">
             {#each milestones as milestone}
-              <div style="position:absolute; left: {xScaleTime(milestone.susectable)+8}px; top: -30px;">
+              <div style="position:absolute; left: {xScaleTime(milestone[0])+8}px; top: -30px;">
                 <span style="opacity: 0.3"><Arrow height=30 arrowhead="#circle" dasharray = "2 1"/></span>
-                  <div class="tick" style="position: relative; left: 0px; top: 35px; max-width: 130px; color: #BBB; background-color: white; padding-left: 4px; padding-right: 4px">{@html milestone.exposed}</div>
+                  <div class="tick" style="position: relative; left: 0px; top: 35px; max-width: 130px; color: #BBB; background-color: white; padding-left: 4px; padding-right: 4px">{@html milestone[1]}</div>
               </div>
             {/each}
       </div>
