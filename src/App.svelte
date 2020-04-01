@@ -1093,8 +1093,8 @@
 </div>
 
 <!-- Input data -->
-<div style="margin-top: 100px 0px">
-  <div class="center" style="padding: 10px; margin-top: 3px; width: 925px">
+<div style="margin-top: 70px">
+  <div class="center">
     <div class="legendtext">Export parameters:</div>
     <textarea type="textarea" rows="5" style="overflow: auto; width:100%;">{state}</textarea>
   </div>
