@@ -670,7 +670,7 @@
 
 </style>
 
-<h2>Epidemic Calculator</h2>
+<h2>ICU Burden Calculator</h2>
 
 <div class="chart" style="display: flex; max-width: 1120px">
 
@@ -1040,7 +1040,7 @@
       <div class="paneltitle">Basic Reproduction Number {@html math_inline("\\mathcal{R}_0")} </div>
       <div class="paneldesc">Measure of contagiousness: the number of secondary infections each infected individual produces. <br></div>
       </div>
-      <div class="slidertext">{R0}</div>
+      <div class="slidertext" style="margin-top: 6px">{R0}</div>
       <input class="range" type=range bind:value={R0} min=0.01 max=10 step=0.01>
     </div>
 
@@ -1081,7 +1081,7 @@
       <div class="paneldesc" style="height:30px">Hospitalization rate.<br></div>
       <div class="slidertext">{(P_SEVERE*100).toFixed(2)} %</div>
       <input class="range" style="margin-bottom: 8px"type=range bind:value={P_SEVERE} min={0} max=1 step=0.0001>
-      <div class="paneldesc" style="height:30px">ICU rate.<br></div>
+      <div class="paneldesc" style="height:29px; border-top: 1px solid #EEE; padding-top: 10px">ICU rate.<br></div>
       <div class="slidertext">{(P_ICU*100).toFixed(2)} %</div>
       <input class="range" style="margin-bottom: 8px"type=range bind:value={P_ICU} min={0} max=1 step=0.0001>
       <div class="paneldesc" style="height:29px; border-top: 1px solid #EEE; padding-top: 10px">Time to hospitalization.<br></div>
@@ -1092,8 +1092,14 @@
   </div>
 </div>
 
+<div style="margin-top: 90px">
+  <div class="center">
+    The ICU Burden Calculator is an adaptation of the original <a href="https://gabgoh.github.io/COVID/index.html">Epidemic Calculator</a> by Gabe Goh et al. The focus have been on adding functionality that supports straightforward assessment of demand for ICU beds without losing the integrity of the underlying model.
+  </div>
+</div>
+
 <!-- Input data -->
-<div style="margin-top: 70px">
+<div>
   <div class="center">
     <div class="legendtext">Export parameters:</div>
     <textarea type="textarea" rows="5" style="overflow: auto; width:100%;">{state}</textarea>
@@ -1102,12 +1108,9 @@
 
 <div class="center">
   <div>
-    Current src: <a target="_plank" href="https://gitlab.com/McSneaky/epcalc">https://gitlab.com/McSneaky/epcalc</a>
+    Source code: <a target="_plank" href="https://github.com/cavai-research/epcalc">https://github.com/cavai-research/epcalc</a>
   </div>
   <div>
     Extended based on: <a target="_plank" href="https://github.com/gabgoh/epcalc">https://github.com/gabgoh/epcalc</a>
-  </div>
-  <div>
-    Deployed on: <a target="_plank" href="https://epcalc.ap3k.pro/">https://epcalc.ap3k.pro/</a>
   </div>
 </div>
