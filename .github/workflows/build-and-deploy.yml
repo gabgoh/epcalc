@@ -1,0 +1,39 @@
+name: Build and deploy
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Node ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build container
+      run: |
+          RELEASE_TAG=$(echo $GITHUB_REF | cut -d '/' -f3)
+          docker login docker.pkg.github.com --username mcsneaky --password ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          docker build -t docker.pkg.github.com/cavai-research/epcalc/calculator:$RELEASE_TAG .
+          docker push docker.pkg.github.com/cavai-research/epcalc/calculator:$RELEASE_TAG
+
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      env:
+        REGISTRY_ACCESS_TOKEN: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+      with:
+        host: ec2-18-194-208-71.eu-central-1.compute.amazonaws.com
+        username: deployer
+        command_timeout: 5m
+        key: ${{ secrets.SERVER_ACCESS_KEY }}
+        envs: GITHUB_REF,REGISTRY_ACCESS_TOKEN
+        script: |
+          docker login docker.pkg.github.com --username mcsneaky --password $REGISTRY_ACCESS_TOKEN
+          docker pull docker.pkg.github.com/cavai-research/epcalc/calculator:$(echo $GITHUB_REF | cut -d '/' -f3)
+          docker stop epcalc; docker rm epcalc;
+          docker run -d -p 127.0.0.1:8080:80 --name epcalc --restart always \
+            docker.pkg.github.com/cavai-research/epcalc/calculator:$(echo $GITHUB_REF | cut -d '/' -f3)
