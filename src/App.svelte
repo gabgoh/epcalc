@@ -24,6 +24,13 @@
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
   }
 
+  function formatnumber(num) {
+    if (num < 0.001) {
+      return format(",.2r")(0)
+    }
+    return format(",.2r")(num)
+  }  
+
   var sum = function(arr, bools){
     var x = 0
     for (var i = 0; i < arr.length; i++) {
@@ -494,6 +501,15 @@
     text-transform: uppercase;
   }
 
+  .legendblue {
+    color:rgb(71, 129, 255);
+    font-size:13px;
+    margin-bottom: 2px;
+    font-weight: 600;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
+    text-transform: uppercase;
+  }
+
   .title{
     color:white; 
     font-size:16px;
@@ -522,7 +538,7 @@
   .legendtext{
     color:#888; 
     font-size:13px;
-    padding-bottom: 5px;
+    padding-bottom: 6px;
     font-weight: 300;
     font-family: Pangram,Avenir,Helvetica,sans-serif;
     line-height: 15px;
@@ -595,7 +611,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: 47% 38px 35%;
+  grid-template-columns: 45% 38px 37%;
   grid-template-areas:
     'x11   x12   x13'
     'line1 line1 line1'
@@ -671,10 +687,10 @@
       </div>
       <div class="x13" style="position: relative; grid-area: x13">
         <div style="padding-top: 2px; padding-bottom: 1px">
-          <div class="legendtextnum"> <span class="legendtitle"><b>{formatNumber(Math.round(N*Iters[active_][0]/1000))}</b></span>
+          <div class="legendtextnum"> <span class="legendtitle"><b>{formatnumber(N*Iters[active_][0]/1000)}k</b></span>
                                   ({ (100*Iters[active_][0]).toFixed(1) }%)</div>
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[0]))} / day</i> </div>
-          <div style="position: absolute; top: 15px">
+          <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[0]))}</span> / day </div>
+          <div style="position: absolute; top: 19px">
             <Arrow height="36"/>
           </div>
         </div>
@@ -691,11 +707,11 @@
       </div>
       <div class="x23">
         <div style="position: relative; padding-top: 2px; padding-bottom: 1px">
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][1]))} 
+          <div class="legendtextnum"> <i><span class="legendtitle"><b>{formatnumber(N*Iters[active_][1]/1000)}k</b></span>
                                   ({ (100*Iters[active_][1]).toFixed(2) }%)</div>
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[1])) } / day</i>
+          <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[1])) }</span> / day
                                  </div>
-          <div style="position: absolute; top: 15px">
+          <div style="position: absolute; top: 19px">
             <Arrow height="36"/>
           </div>
         </div>
@@ -712,9 +728,9 @@
       </div>
       <div class="x33">
         <div style="position: relative; padding-top: 2px; padding-bottom: 1px">
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
+          <div class="legendtextnum"> <span class="legendtitle"><b>{formatnumber(N*Iters[active_][2]/1000)}K</b></span>
                                   ({ (100*Iters[active_][2]).toFixed(2) }%)</div>
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[2])) } / day</i>
+          <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[2])) }</span> / day
                                  </div>
         </div>
       </div>
@@ -729,9 +745,9 @@
       </div>
       <div class="x33">
         <div style="padding-top: 2px; padding-bottom: 1px">
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][9]))} 
+          <div class="legendtextnum"> <span class="legendtitle"><b><i>{formatnumber(N*Iters[active_][9]/1000)}K </b></span>
                                   ({ (100*Iters[active_][9]).toFixed(2) }%)</div>
-          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[9])) } / day</i>
+          <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[9])) }</span> / day
                                  </div>
         </div>
       </div>
