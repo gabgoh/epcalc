@@ -57,6 +57,21 @@
     return r;
   }
 
+  function presetParameters(event) {
+    const i = event.currentTarget.value
+    const params = 
+    [{R0: 2.2, D_incbation: 5.2, D_infectious: 2.9, CFR: 0.02, Time_to_death: 32},
+     {R0: 1.5, D_incbation: 1.2, D_infectious: 1.9, CFR: 0.01, Time_to_death: 64},
+     {R0: 1.2, D_incbation: 2.2, D_infectious: 4.9, CFR: 0.01, Time_to_death: 30},
+     {R0: 1.1, D_incbation: 3.2, D_infectious: 1.4, CFR: 0.04, Time_to_death: 50},
+     {R0: 1.1, D_incbation: 1.2, D_infectious: 1.2, CFR: 0.1,  Time_to_death: 132}]
+
+    R0 = params[i].R0
+    D_incbation = params[i].D_incbation
+    D_infectious = params[i].D_infectious
+    CFR = params[i].CFR
+    Time_to_death = params[i].Time_to_death
+  }
 
   $: Time_to_death     = 32
   $: logN              = Math.log(7e6)
@@ -319,8 +334,8 @@
 
   const padding = { top: 20, right: 0, bottom: 20, left: 25 };
 
-  let width  = 750;
-  let height = 400;
+  let width  = 680;
+  let height = 490;
 
   $: xScaleTime = scaleLinear()
     .domain([0, tmax])
@@ -336,7 +351,7 @@
 
   window.addEventListener('mouseup', unlock_yaxis);
 
-  $: checked = [true, true, false, true, true]
+  $: checked = [true, false, false, true, true]
   $: active  = 0
   $: active_ = active >= 0 ? active : Iters.length - 1
 
@@ -411,67 +426,14 @@
     padding-top: 20px;
     padding-bottom: 20px;
     font-weight: 300;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     padding-bottom: 30px
   }
 
-  .center {
-    margin: auto;
-    width: 950px;
-    padding-bottom: 20px;
-    font-weight: 300;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    color:#666;
-    font-size: 16.5px;
-    text-align: justify;
-    line-height: 24px
-  }
-
-  .ack {
-    margin: auto;
-    width: 950px;
-    padding-bottom: 20px;
-    font-weight: 300;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    color:#333;
-    font-size: 13px;
-  }
-
-  .row {
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    margin: auto;
-    display: flex;
-    width: 948px;
-    font-size: 13px;
-  }
-
   .caption {
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     font-size: 13px;    
   }
-
-  .column {
-    flex: 158px;
-    padding: 0px 5px 5px 0px;
-    margin: 0px 5px 5px 5px;
-    /*border-top: 2px solid #999*/
-  }
-
-  .minorTitle {
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    margin: auto;
-    display: flex;
-    width: 950px;
-    font-size: 17px;
-    color: #666;
-  }
-
-  .minorTitleColumn{
-    flex: 60px;
-    padding: 3px;
-    border-bottom: 2px solid #999;
-  }
-
 
   .paneltext{
     position:relative;
@@ -483,7 +445,7 @@
     line-height: 17px; 
     padding-bottom: 4px;
     font-weight: 700;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
   }
 
   .paneldesc{
@@ -491,21 +453,12 @@
     text-align: left;
     font-weight: 300;
   }
-
-  .slidertext{
-    color:#555; 
-    line-height: 7px; 
-    padding-bottom: 0px; 
-    padding-top: 7px;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 10px;
-    text-align: right;
-    /*font-weight: bold*/
-  }
     
   .range {
     width: 100%;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 0px;
   }
 
   .chart {
@@ -513,6 +466,12 @@
     margin: 0 auto;
     padding-top:0px;
     padding-bottom:10px;
+    display: grid;
+    grid-template-columns: 27% 1% 72%;
+    grid-template-areas:
+      'left-top    vline right'
+      'left-bottom vline right';
+
   }
 
   .legend {
@@ -527,21 +486,46 @@
   }
 
   .legendtitle {
-    color:#777; 
+    color:rgb(66,66,66); 
     font-size:13px;
-    padding-bottom: 6px;
+    margin-bottom: 2px;
     font-weight: 600;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
+    text-transform: uppercase;
   }
 
+  .title{
+    color:white; 
+    font-size:16px;
+    padding-bottom: 5px;
+    font-weight: 300;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
+    line-height: 13px;
+  }
+
+  .bluetitle {
+    font-weight: 300;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
+    margin-right: 0px;
+    line-height:14px;
+    font-weight: normal;
+    text-align: left;
+    color: rgb(71, 129, 255);
+    border-bottom: 1px solid rgb(200,200,200);
+    margin-bottom: 14px;
+    margin-top: 20px;
+    padding-bottom:5px;
+    text-transform: uppercase;
+    font-size: 14px
+  }
 
   .legendtext{
     color:#888; 
     font-size:13px;
     padding-bottom: 5px;
     font-weight: 300;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
-    line-height: 14px;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
+    line-height: 15px;
   }
 
   .legendtextnum{
@@ -550,13 +534,13 @@
     padding-bottom: 5px;
     font-weight: 300;
     line-height: 12px;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     left: -3px;
     position: relative;
   }
 
   .tick {
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     font-size: .725em;
     font-weight: 200;
     font-size: 13px
@@ -564,11 +548,11 @@
 
   td { 
     text-align: left;
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     border-bottom: 1px solid #DDD;
     border-collapse: collapse;
     padding: 3px;
-    /*font-size: 14px;*/
+    /*font-size: 13px;*/
   }
 
   tr {
@@ -577,7 +561,7 @@
   }
 
   .eqn {
-    font-family: nyt-franklin,helvetica,arial,sans-serif;
+    font-family: Pangram,Avenir,Helvetica,sans-serif;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -588,154 +572,276 @@
     font-size: 16.5px;
   }
 
+  .adjustableslidertext {
+    font-family: Pangram,Avenir,Helvetica,sans-serif;    
+    background-color: rgb(221, 227, 243); 
+    color: rgb(73, 129, 248);
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    width: 85%; 
+    margin-left: 10px; 
+    border-radius: 10px;
+  }
+
+  label {
+    padding-top: 10px;
+  }
+
   th { font-weight: 500; text-align: left; padding-bottom: 5px; vertical-align: text-top;     border-bottom: 1px solid #DDD; }
 
   a:link { color: grey; }
   a:visited { color: grey; }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 47% 38px 35%;
+  grid-template-areas:
+    'x11   x12   x13'
+    'line1 line1 line1'
+    'x21   x22   x23'
+    'line2 line2 line2'
+    'x31   x32   x33'
+    'line3 line3 line3'
+    'x41   x42   x43';
+  grid-gap: 5px;
+  position: relative;
+}
+
+.x11, .x21, .x31, .x41 {
+  text-align: right;
+  padding: 0px;
+}
+.x12, .x22, .x32, .x42{
+  text-align: right;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.x13, .x23, .x33, .x43 {
+  text-align: left;
+  padding: 0px;
+}
+.line {
+  margin-top: 0px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgb(200,200,200);
+}
+
+.draggy:after {
+    content:'';
+    position: absolute;
+    top: 98.5%;
+    left: 50%;
+    margin-left: -3px;
+    width: 0;
+    height: 0;
+    border-top: solid 8px white;
+    border-left: solid 8px transparent;
+    border-right: solid 8px transparent;
+}
+
+.draggy2:after {
+    content:'';
+    position: absolute;
+    top: 83%;
+    left: 50%;
+    margin-left: -3px;
+    width: 0;
+    height: 0;
+    border-top: solid 8px rgb(200,200,200);
+    border-left: solid 8px transparent;
+    border-right: solid 8px transparent;
+}
 </style>
 
-<h2>Epidemic Calculator</h2>
+<div class="chart" style="width: 980px">
 
-<div class="chart" style="display: flex; max-width: 1120px">
+  <div style=" margin-right: 5px; grid-area: left-top">
 
-  <div style="flex: 0 0 270px; width:270px;">
-    <div style="position:relative; top:48px; right:-115px">
-      <div class="legendtext" style="position:absolute; left:-16px; top:-34px; width:50px; height: 100px; font-size: 13px; line-height:16px; font-weight: normal; text-align: center"><b>Day</b><br> {Math.round(indexToTime(active_))}</div>
+    <div class="title" style="margin: auto; width:100%; margin-right: 20px; border-radius: 20px; padding: 4px; padding-top:7px; line-height:14px; font-weight: bold; text-align: center; background-color: rgb(82, 132, 247); margin-bottom: 20px">DAY {Math.round(indexToTime(active_))}</div>
 
-      <!-- Susceptible -->
-      <div style="position:absolute; left:0px; top:0px; width: 180px; height: 100px">
+    <div class="grid-container" style="width:100%;">
 
-        <span style="pointer-events: none"><Checkbox color="#CCC"/></span>
-        <Arrow height="41"/>
-
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Susceptible</div>
-          <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][0]))} 
-                                  ({ (100*Iters[active_][0]).toFixed(2) }%)</i></div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[0]))} / day</i>
-                                 </div>
+      <div class="x11" style="grid-area: x11;">
+        <div class="legendtitle">Susceptible</div>
+        <div class="legendtext">Population not immune to the virus</div>
+      </div>
+      <div class="x12" style="grid-area: x12;">
+        <span style=""><Checkbox color="#CCC"/></span>
+      </div>
+      <div class="x13" style="position: relative; grid-area: x13">
+        <div style="padding-top: 2px; padding-bottom: 1px">
+          <div class="legendtextnum"> <span class="legendtitle"><b>{formatNumber(Math.round(N*Iters[active_][0]/1000))}</b></span>
+                                  ({ (100*Iters[active_][0]).toFixed(1) }%)</div>
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[0]))} / day</i> </div>
+          <div style="position: absolute; top: 15px">
+            <Arrow height="36"/>
           </div>
         </div>
-          <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Population not immune to disease.</div>
-
       </div>
 
-      <!-- Exposed -->
-      <div style="position:absolute; left:0px; top:{legendheight*1}px; width: 180px; height: 100px">
+      <div class="line" style="grid-area: line1;"></div>
 
-        <Checkbox color="{colors[4]}" bind:checked={checked[4]}/>      
-        <Arrow height="41"/>
-
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Exposed</div>
-
-          <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][1]))} 
+      <div class="x21">
+        <div class="legendtitle">Exposed</div>
+        <div class="legendtext">Number of people incubating the virus</div>
+      </div>
+      <div class="x22">
+        <span style=""><Checkbox color="{colors[4]}" bind:checked={checked[4]}/></span>
+      </div>
+      <div class="x23">
+        <div style="position: relative; padding-top: 2px; padding-bottom: 1px">
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][1]))} 
                                   ({ (100*Iters[active_][1]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[1])) } / day</i>
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[1])) } / day</i>
                                  </div>
+          <div style="position: absolute; top: 15px">
+            <Arrow height="36"/>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Population currently in incubation.</div>
-
       </div>
 
-      <!-- Infectious -->
-      <div style="position:absolute; left:0px; top:{legendheight*2}px; width: 180px; height: 100px">
+      <div class="line" style="grid-area: line2;"></div>
 
-        <Checkbox color="{colors[3]}" bind:checked={checked[3]}/>
-        <Arrow height="41"/>   
-
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Infectious</div>
-          <div style="padding-top: 5px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
+      <div class="x31">
+        <div class="legendtitle">Infectious</div>
+        <div class="legendtext">Population that can transmit the virus</div>
+      </div>
+      <div class="x32">
+        <span style=""><Checkbox color="{colors[3]}" bind:checked={checked[3]}/></span>
+      </div>
+      <div class="x33">
+        <div style="position: relative; padding-top: 2px; padding-bottom: 1px">
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
                                   ({ (100*Iters[active_][2]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[2])) } / day</i>
-                                 </div>
-          </div>
-        </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Number of infections <i>actively</i> circulating.</div>
-
-
-      </div>
-
-      <!-- Removed -->
-      <div style="position:absolute; left:0px; top:{legendheight*3}px; width: 180px; height: 100px">
-
-        <Checkbox color="grey" callback={(s) => {checked[1] = s; checked[0] = s; checked[2] = s} }/>
-        <Arrow height="56" arrowhead="" dasharray="3 2"/>
-
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Removed</div>
-          <div style="padding-top: 10px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]) ))} 
-                                  ({ ((100*(1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]))).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[3]+get_d(active_)[4]+get_d(active_)[5]+get_d(active_)[6]+get_d(active_)[7]) )) } / day</i>
-                                 </div>
-          </div>
-        </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4x; position:relative;">Population no longer infectious due to isolation or immunity.</div>
-
-      </div>
-
-      <!-- Recovered -->
-      <div style="position:absolute; left:0px; top:{legendheight*4+14-3}px; width: 180px; height: 100px">
-        <Checkbox color="{colors[2]}" bind:checked={checked[2]}/>
-        <Arrow height="23" arrowhead="" dasharray="3 2"/>
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Recovered</div>
-
-          <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][7]+Iters[active_][8]) ))} 
-                                  ({ (100*(Iters[active_][7]+Iters[active_][8])).toFixed(2) }%)</div>
-          </div>
-        </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 8px; position:relative;">Full recoveries.</div>
-
-      </div>
-
-      <!-- Hospitalized -->
-      <div style="position:absolute; left:0px; top:{legendheight*4+57}px; width: 180px; height: 100px">
-        <Arrow height="43" arrowhead="" dasharray="3 2"/>
-        <Checkbox color="{colors[1]}" bind:checked={checked[1]}/>
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Hospitalized</div>
-          <div style="padding-top: 3px; padding-bottom: 1px">
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][5]+Iters[active_][6]) ))} 
-                                  ({ (100*(Iters[active_][5]+Iters[active_][6])).toFixed(2) }%)</div>
-          </div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[5]+get_d(active_)[6]))) } / day</i>
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[2])) } / day</i>
                                  </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Active hospitalizations.</div>
-
       </div>
 
-      <div style="position:absolute; left:0px; top:{legendheight*4 + 120+2}px; width: 180px; height: 100px">
-        <Arrow height="40" arrowhead="" dasharray="3 2"/>
+      <div class="line" style="grid-area: line3;"></div>
 
-        <Checkbox color="{colors[0]}" bind:checked={checked[0]}/>
-
-        <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Fatalities</div>
-          <div style="padding-top: 3px; padding-bottom: 1px">          
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][9]))} 
+      <div class="x31">
+        <div class="legendtitle">Fatalities</div>
+      </div>
+      <div class="x32">
+        <span style=""><Checkbox color="{colors[0]}" bind:checked={checked[0]}/></span>
+      </div>
+      <div class="x33">
+        <div style="padding-top: 2px; padding-bottom: 1px">
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*Iters[active_][9]))} 
                                   ({ (100*Iters[active_][9]).toFixed(2) }%)</div>
-          <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*get_d(active_)[9])) } / day</i>
+          <div class="legendtextnum"> <i>{formatNumber(Math.round(N*get_d(active_)[9])) } / day</i>
                                  </div>
-          </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Deaths.</div>
       </div>
+
     </div>
   </div>
 
-  <div style="flex: 0 0 890px; width:890px; height: {height+128}px; position:relative;">
+  <div style=" margin-right: 5px; grid-area: left-bottom">
 
-    <div style="position:relative; top:60px; left: 10px">
+    <div class="bluetitle">Transmission Variables </div>
+
+    <div style="width:100%;">
+
+      <div>
+        <div class="legendtext"><b>Basic reproduction</b> - number of people infected given by a given infectious individual</div>
+
+        <div style="display:flex; justify-content: center;">
+          <div style="width:58%;">
+            <input class="range" type=range bind:value={R0} min=0.01 max=10 step=0.01> 
+          </div>
+          <div style="width:42%;">
+            <div class="adjustableslidertext">
+              {R0}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div>
+        <div class="legendtext"><b>Incubation Period</b></div>
+
+        <div style="display:flex; justify-content: center;">
+          <div style="width:58%;">
+            <input class="range" style="margin-bottom: 8px"type=range bind:value={D_incbation} min={0.15} max=24 step=0.0001>
+          </div>
+          <div style="width:42%;">
+            <div class="adjustableslidertext">
+              {(D_incbation).toFixed(2)} days
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="legendtext"><b>How long a patient is infectious</b></div>
+
+        <div style="display:flex; justify-content: center;">
+          <div style="width:58%;">
+            <input class="range" type=range bind:value={D_infectious} min={0} max=24 step=0.01>
+          </div>
+          <div style="width:42%;">
+            <div class="adjustableslidertext">
+              {D_infectious} Days
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="bluetitle">Clinical Variables </div>
+
+    <div style="width:100%;">
+
+      <div>
+        <div class="legendtext"><b>Fatality Rate</b></div>
+
+        <div style="display:flex; justify-content: center;">
+          <div style="width:58%;">
+            <input class="range" style="margin-bottom: 8px" type=range bind:value={CFR} min={0} max=1 step=0.0001>
+          </div>
+          <div style="width:42%;">
+            <div class="adjustableslidertext">
+              {(CFR*100).toFixed(2)} %
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="legendtext"><b>Time from incubation to death</b></div>
+
+        <div style="display:flex; justify-content: center;">
+          <div style="width:58%;">
+            <input class="range" type=range bind:value={Time_to_death} min={(D_infectious)+0.1} max=100 step=0.01>
+          </div>
+          <div style="width:42%;">
+            <div class="adjustableslidertext">
+              {Time_to_death} Days
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div style="border-right:2.5px dotted rgb(200,200,200); grid-area: vline">
+  </div>
+
+
+  <div style="position:relative; grid-area: right">
+    <div style="position:relative; height: {height+105}px; top:122px; left: 25px">
+
       <Chart bind:checked={checked}
              bind:active={active}
              y = {P} 
@@ -749,7 +855,9 @@
              ymax={lock ? Plock: Pmax}
              InterventionTime={InterventionTime}
              colors={colors}
-             log={!log}/>
+             log={!log}
+             width={width}
+             height={height-30}/>
       </div>
 
       <div id="xAxisDrag"
@@ -777,154 +885,105 @@
       </div>
 
       <!-- Intervention Line -->
-      <div style="position: absolute; width:{width+15}px; height: {height}px; position: absolute; top:100px; left:10px; pointer-events: none">
+      <div style="position: absolute; width:{width+15}px; height: {height}px; position: absolute; top:100px; left:25px; pointer-events: none">
         <div id="dottedline"  style="pointer-events: all;
                     position: absolute;
-                    top:-38px;
+                    top:-40px;
                     left:{xScaleTime(InterventionTime)}px;
                     visibility: {(xScaleTime(InterventionTime) < (width - padding.right)) ? 'visible':'hidden'};
                     width:2px;
-                    background-color:#FFF;
-                    border-right: 1px dashed black;
                     pointer-events: all;
                     cursor:col-resize;
                     height:{height+19}px">
 
-        <div style="position:absolute; opacity: 0.5; top:-5px; left:10px; width: 120px">
-        <span style="font-size: 13px">{@html math_inline("\\mathcal{R}_t=" + (R0*InterventionAmt).toFixed(2) )}</span> ⟶ 
+        <div style="width:150px; 
+                    position:relative; 
+                    top:-65px; 
+                    left: -80px; 
+                    height: 140px; 
+                    padding-right: 15px; 
+                    cursor:col-resize; 
+                    position:absolute;" >
         </div>
-
-        {#if xScaleTime(InterventionTime) >= 100}
-          <div style="position:absolute; opacity: 0.5; top:-2px; left:-97px; width: 120px">
-          <span style="font-size: 13px">⟵ {@html math_inline("\\mathcal{R}_0=" + (R0).toFixed(2) )}</span>
-          </div>      
-        {/if}
-
-        <div id="interventionDrag" class="legendtext" style="flex: 0 0 160px; width:120px; position:relative;  top:-70px; height: 60px; padding-right: 15px; left: -125px; pointer-events: all;cursor:col-resize;" >
-          <div class="paneltitle" style="top:9px; position: relative; text-align: right">Intervention on day {format("d")(InterventionTime)}</div>
-          <span></span><div style="top:9px; position: relative; text-align: right">
-          (drag me)</div>
-          <div style="top:43px; left:40px; position: absolute; text-align: right; width: 20px; height:20px; opacity: 0.3">
-            <svg width="20" height="20">
-              <g transform="rotate(90)">
-                <g transform="translate(0,-20)">
-                  <path d="M2 11h16v2H2zm0-4h16v2H2zm8 11l3-3H7l3 3zm0-16L7 5h6l-3-3z"/>
-                 </g>  
-              </g>
-            </svg>
-          </div>
-        </div>
-
-
-        <div style="width:150px; position:relative; top:-85px; height: 80px; padding-right: 15px; left: 0px; ;cursor:col-resize; background-color: white; position:absolute" >
-
-        </div>
-
 
         </div>
       </div>
 
       <!-- Intervention Line slider -->
-      <div style="position: absolute; width:{width+15}px; height: {height}px; position: absolute; top:120px; left:10px; pointer-events: none">
+      <div style="position: absolute; width:{width+15}px; height: {height + 30}px; position: absolute; top:120px; left:25px; pointer-events: none">
         <div style="
             position: absolute;
-            top:-38px;
+            top:30px;
             left:{xScaleTime(InterventionTime)}px;
             visibility: {(xScaleTime(InterventionTime) < (width - padding.right)) ? 'visible':'hidden'};
             width:2px;
-            background-color:#FFF;
-            border-right: 1px dashed black;
+            background-color:rgb(255, 255, 255, 0.5);
+            border-right: 1px dashed rgb(0,0,0, 0.5);
             cursor:col-resize;
-            height:{height}px">
-            <div style="flex: 0 0 160px; width:200px; position:relative; top:-125px; left: 1px" >
-              <div class="caption" style="pointer-events: none; position: absolute; left:0; top:40px; width:150px; border-left: 2px solid #777; padding: 5px 7px 7px 7px; ">      
-              <div class="paneltext"  style="height:20px; text-align: right">
-              <div class="paneldesc">to decrease transmission by<br></div>
-              </div>
-              <div style="pointer-events: all">
-              <div class="slidertext" on:mousedown={lock_yaxis}>{(100*(1-InterventionAmt)).toFixed(2)}%</div>
-              <input class="range" type=range bind:value={OMInterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
-              </div>
+            height:{height-59}px">
+            <div style="position:relative; top:-225px; left: -102px;" >
+              <div class="caption draggy" style="pointer-events: none; 
+                                          width: 180px; 
+                                          position: absolute; 
+                                          left:0; 
+                                          top:90px; 
+                                          height: 105px;
+                                          padding: 5px 7px 7px 7px; 
+                                          box-shadow: 0px 0px 5px rgb(0,0,0,0.1);
+                                          background-color: white;
+                                          border: 1px solid rgb(200,200,200);
+                                          border-radius: 3px;">
+                <div class="paneldesc"  style="position: absolute; text-align: center; width: 100px; left: 47px; top: -20px"> ← Drag Me →</div>  
+                <div class="paneltext draggy2"  style="text-align: center;">
+                  <div class="paneltitle" style="margin-top: 5px; padding-bottom:5px; margin-bottom: 5px; border-bottom: 2px dotted grey">Intervention day: <span style="color:red">{format("d")(InterventionTime)}</span></div>                
+                  <div class="paneldesc" style="text-align:center; margin-bottom: 3px">Intervention effectiveness to decrease transmission by {OMInterventionAmt.toFixed(2)}%<br></div>
+                  <div style="pointer-events: all">
+                    <input class="range" type=range bind:value={OMInterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
       </div>
 
-<!-- 
-      {#if xScaleTime(InterventionTime+duration) < (width - padding.right)}
-        <div id="dottedline2" style="position: absolute; width:{width+15}px; height: {height}px; position: absolute; top:105px; left:10px; pointer-events: none;">
-          <div style="
-              position: absolute;
-              top:-38px;
-              left:{xScaleTime(InterventionTime+duration)}px;
-              visibility: {(xScaleTime(InterventionTime+duration) < (width - padding.right)) ? 'visible':'hidden'};
-              width:3px;
-              background-color:white;
-              border-right: 1px dashed black;
-              cursor:col-resize;
-              opacity: 0.3;
-              pointer-events: all;
-              height:{height+13}px">
-            <div style="position:absolute; opacity: 0.5; top:-10px; left:10px; width: 120px">
-            <span style="font-size: 13px">{@html math_inline("\\mathcal{R}_t=" + (R0*InterventionAmt).toFixed(2) )}</span> ⟶ 
-            </div>
-          </div>
+    <div class="legendtext" style="width: 100%; margin-top: 5px; position:relative; padding: 10px">
+      <div style="color:rgb(66,66,66); margin: 3px"><b>PRESETS</b></div>
+      <div style="margin: 2px; padding: 5px; background-color: rgb(240,240,240); display: flex; text-transform: uppercase;">
+
+        <div style="width: 20%; text-align:center">
+          <label for="covid">COVID 19</label>
+          <input type="radio" id="covid" name="age" value="0" on:change={presetParameters} checked>
         </div>
 
-        <div style="position: absolute; width:{width+15}px; height: {height}px; position: absolute; top:120px; left:10px; pointer-events: none">
-          <div style="
-              opacity: 0.5;
-              position: absolute;
-              top:-38px;
-              left:{xScaleTime(InterventionTime+duration)}px;
-              visibility: {(xScaleTime(InterventionTime+duration) < (width - padding.right)) ? 'visible':'hidden'};
-              width:2px;
-              background-color:#FFF;
-              cursor:col-resize;
-              height:{height}px">
-              <div style="flex: 0 0 160px; width:200px; position:relative; top:-125px; left: 1px" >
-                <div class="caption" style="pointer-events: none; position: absolute; left:0; top:40px; width:150px; border-left: 2px solid #777; padding: 5px 7px 7px 7px; ">      
-                <div class="paneltext"  style="height:20px; text-align: right">
-                <div class="paneldesc">decrease transmission by<br></div>
-                </div>
-                <div style="pointer-events: all">
-                <div class="slidertext" on:mousedown={lock_yaxis}>{(InterventionAmt).toFixed(2)}</div>
-                <input class="range" type=range bind:value={InterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
-                </div>
-                </div>
-              </div>
-            </div>
+        <div style="width: 20%; text-align:center">
+          <label for="h1n1">H1N1 Influenza</label>
+          <input type="radio" id="h1n1" name="age" value="1" on:change={presetParameters}>
         </div>
-      {/if} -->
+  
+        <div style="width: 20%; text-align:center">
+          <label for="flu">Seasonal Flu</label>
+          <input type="radio" id="flu" name="age" value="2" on:change={presetParameters}>
+        </div>
 
+        <div style="width: 20%; text-align:center">
+          <label for="sars">SARS</label>
+          <input type="radio" id="sars" name="age" value="3" on:change={presetParameters}>
+        </div>
 
-      <div style="pointer-events: none;
-                  position: absolute;
-                  top:{height+84}px;
-                  left:{0}px;
-                  width:{780}px;
-                  opacity: 1.0;
-                  height:25px;
-                  cursor:col-resize">
-            {#each milestones as milestone}
-              <div style="position:absolute; left: {xScaleTime(milestone[0])+8}px; top: -30px;">
-                <span style="opacity: 0.3"><Arrow height=30 arrowhead="#circle" dasharray = "2 1"/></span>
-                  <div class="tick" style="position: relative; left: 0px; top: 35px; max-width: 130px; color: #BBB; background-color: white; padding-left: 4px; padding-right: 4px">{@html milestone[1]}</div>
-              </div>
-            {/each}
-      </div>
-    
-    <div style="opacity:{xScaleTime(InterventionTime) >= 192? 1.0 : 0.2}">
-      <div class="tick" style="color: #AAA; position:absolute; pointer-events:all; left:10px; top: 10px">
-        <Checkbox color="#CCC" bind:checked={log}/><div style="position: relative; top: 4px; left:20px">linear scale</div>
+        <div style="width: 20%; text-align:center">
+          <label for="ebola">Ebola</label>
+          <input type="radio" id="ebola" name="age" value="4" on:change={presetParameters}>
+        </div>        
+  
       </div>
     </div>
 
-   </div>
+  </div>
+
 
 </div>
 
-
+<!-- 
 <div style="height:220px;">
   <div class="minorTitle">
     <div style="margin: 0px 0px 5px 4px" class="minorTitleColumn">Transmission Dynamics</div>
@@ -995,155 +1054,5 @@
     </div>
 
   </div>
-</div>
+</div> -->
 
-<div style="position: relative; height: 12px"></div>
-
-<p class = "center">
-At the time of writing, the coronavirus disease of 2019 remains a global health crisis of grave and uncertain magnitude. To the non-expert (such as myself), contextualizing the numbers, forecasts and epidemiological parameters described in the media and literature can be challenging. I created this calculator as an attempt to address this gap in understanding.
-</p>
-
-<p class = "center">
-This calculator implements a classical infectious disease model &mdash <b><a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology#The_SEIR_model">SEIR</a> </b>(<b>S</b>usceptible → <span style="color:{colors[4]}"><b>E</b></span>xposed → <span style="color:{colors[3]}"><b>I</b></span>nfected → <span><b>R</b></span>emoved), an idealized model of spread still used in frontlines of research e.g. [<a href="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30260-9/fulltext">Wu, et. al</a>, <a href = "https://cmmid.github.io/topics/covid19/current-patterns-transmission/wuhan-early-dynamics.html">Kucharski et. al</a>]. The dynamics of this model are characterized by a set of four ordinary differential equations that correspond to the stages of the disease's progression:
-<span style="color:#777">{@html ode_eqn}</span>
-In addition to the transmission dynamics, this model allows the use of supplemental timing information to model the death rate and healthcare burden. 
-</p>
-
-<p class = "center">
-Note that one can use this calculator to measure one's risk exposure to the disease for any given day of the epidemic: the probability of getting infected on day {Math.round(indexToTime(active_))} given <a href="https://www.cdc.gov/coronavirus/2019-ncov/hcp/guidance-risk-assesment-hcp.html">close contact</a> with <input type="text" style="width:{Math.ceil(Math.log10(p_num_ind))*9.5 + 5}px; font-size: 15.5px; color:#777" bind:value={p_num_ind}> individuals is {((1-(Math.pow(1 - (Iters[active_][2])*(0.45/100), p_num_ind)))*100).toFixed(5)}% given an attack rate of 0.45% [<a href="https://www.cdc.gov/mmwr/volumes/69/wr/mm6909e1.htm?s_cid=mm6909e1_w">Burke et. al</a>].
-</p>
-
-
-<p class = "center">
-A sampling of the estimates for epidemic parameters are presented below:
-</p>
-
-<div class="center">
-<table style="width:100%; margin:auto; font-weight: 300; border-spacing: inherit">
-  <tr>
-    <th></th>
-    <th>Location</th>
-    <th>Reproduction Number<br> {@html math_inline("\\mathcal{R}_0")}</th>
-    <th>Incubation Period<br> {@html math_inline("T_{\\text{inc}}")} (in days)</th>
-    <th>Infectious Period<br> {@html math_inline("T_{\\text{inf}}")} (in days)</th>
-  </tr>
-  <tr>
-    <td width="27%"><a href = "https://cmmid.github.io/topics/covid19/current-patterns-transmission/wuhan-early-dynamics.html">Kucharski et. al</a></td>
-    <td>Wuhan </td>    
-    <td>3.0 (1.5 — 4.5)</td>
-    <td>5.2</td>
-    <td>2.9</td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.nejm.org/doi/full/10.1056/NEJMoa2001316">Li, Leung and Leung</a></td>
-    <td>Wuhan </td>    
-    <td>2.2 (1.4 — 3.9)</td>
-    <td>5.2 (4.1 — 7.0)</td>
-    <td>2.3 (0.0 — 14.9)</td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(20)30260-9/fulltext">Wu et. al</a></td>
-    <td>Greater Wuhan </td>    
-    <td>2.68 (2.47 — 2.86)</td>
-    <td>6.1</td>
-    <td>2.3</td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.who.int/news-room/detail/23-01-2020-statement-on-the-meeting-of-the-international-health-regulations-(2005)-emergency-committee-regarding-the-outbreak-of-novel-coronavirus-(2019-ncov)">WHO Initial Estimate</a></td>
-    <td>Hubei </td>    
-    <td>1.95 (1.4 — 2.5)</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf">WHO-China Joint Mission </a></td>
-    <td>Hubei </td>    
-    <td>2.25 (2.0 — 2.5)</td>
-    <td>5.5 (5.0 - 6.0)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.biorxiv.org/content/10.1101/2020.01.25.919787v2">Liu et. al </a></td>
-    <td>Guangdong</td>
-    <td>4.5 (4.4 — 4.6)</td>
-    <td>4.8 (2.2 — 7.4) </td>
-    <td>2.9 (0 — 5.9)</td>
-  </tr>
-  <tr>
-    <td><a href = "https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa030/5766334">Rocklöv, Sjödin and Wilder-Smith</a></td>
-    <td>Princess Diamond</td>
-    <td>14.8</td>
-    <td>5.0</td>
-    <td>10.0</td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.5.2000062">Backer, Klinkenberg, Wallinga</a></td>
-    <td>Wuhan</td>
-    <td></td>
-    <td>6.5 (5.6 — 7.9)</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.medrxiv.org/content/10.1101/2020.01.23.20018549v2.article-info">Read et. al</a></td>
-    <td>Wuhan</td>
-    <td>3.11 (2.39 — 4.13)</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <tr>
-    <td><a href = "https://www.medrxiv.org/content/10.1101/2020.03.03.20028423v1">Bi et. al</a></td>
-    <td>Shenzhen</td>
-    <td></td>
-    <td>4.8 (4.2 — 5.4)</td>
-    <td>1.5 (0 — 3.4)</td>
-    <td></td>
-  </tr>
-
-  <tr>
-    <td><a href = "https://www.mdpi.com/2077-0383/9/2/462">Tang et. al</a></td>
-    <td>China</td>
-    <td>6.47 (5.71 — 7.23)</td>
-    <td></td>
-    <td></td>
-  </tr>
-
-</table>
-</div>
-
-
-<p class="center">
-See [<a href="https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa021/5735319">Liu et. al</a>] detailed survey of current estimates of the reproduction number. Parameters for the diseases' clinical characteristics are taken from the following <a href="https://www.who.int/docs/default-source/coronaviruse/who-china-joint-mission-on-covid-19-final-report.pdf">WHO Report</a>. 
-</p>
-
-<p class="center">
-Please DM me feedback <a href="https://twitter.com/gabeeegoooh">here</a> or email me <a href="mailto:izmegabe@gmail.com">here</a>. My <a href="http://gabgoh.github.io/">website</a>.
-</p>
-
-<!-- 
-<p class="center">
-<a href="https://twitter.com/gabeeegoooh?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false"><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</p> -->
-
-
-<p class = "center">
-<b> Model Details </b><br>
-The clinical dynamics in this model are an elaboration on SEIR that simulates the disease's progression at a higher resolution, subdividing {@html math_inline("I,R")} into <i>mild</i> (patients who recover without the need for hospitalization), <i>moderate</i> (patients who require hospitalization but survive) and <i>fatal</i> (patients who require hospitalization and do not survive). Each of these variables follows its own trajectory to the final outcome, and the sum of these compartments add up to the values predicted by SEIR. Please refer to the source code for details. Note that we assume, for simplicity, that all fatalities come from hospitals, and that all fatal cases are admitted to hospitals immediately after the infectious period.
-</p>
-
-<p class = "center">
-<b> Acknowledgements </b><br>
-<a href = "https://enkimute.github.io/">Steven De Keninck</a> for RK4 Integrator. <a href="https://twitter.com/ch402">Chris Olah</a>, <a href="https://twitter.com/shancarter">Shan Carter
-</a> and <a href="https://twitter.com/ludwigschubert">Ludwig Schubert
-</a> wonderful feedback. <a href="https://twitter.com/NikitaJer">Nikita Jerschov</a> for improving clarity of text. Charie Huang for context and discussion.
-</p>
-
-<!-- Input data -->
-<div style="margin-bottom: 30px">
-
-  <div class="center" style="padding: 10px; margin-top: 3px; width: 925px">
-    <div class="legendtext">Export parameters:</div>
-    <form>
-      <textarea type="textarea" rows="1" cols="5000" style="white-space: nowrap;  overflow: auto; width:100%; text-align: left" id="fname" name="fname">{state}</textarea>
-    </form>
-  </div>
-</div>

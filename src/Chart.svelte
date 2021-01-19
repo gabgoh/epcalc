@@ -43,8 +43,8 @@
 
   const padding = { top: 20, right: 0, bottom: 20, left: 25 };
 
-  let width  = 750;
-  let height = 420;
+  export let width  = 750;
+  export let height = 420;
 
   $: xScale = scaleLinear()
     .domain([0, y.length])
@@ -293,9 +293,10 @@
           <svg style="position:absolute; top:-12px; left:0px" height="10" width="10">
           <path 
             d="M 0 0 L 10 0 L 5 10 z"
-            fill="{lock ? '#555':'#AAA'}" 
+            fill="{lock ? '#222':'#555'}" 
             stroke-width="3" />
           </svg>
+          <div style="background-color: rgb(82, 132, 247); text-align: center; width: 50px; position: absolute; top: -31px; left: -22px; padding: 2px; font-family: Pangram,Avenir,Helvetica,sans-serif; color: white; font-size: 10px; border-radius: 10px">DAY { Math.round(indexToTime(active)) }</div>
       </div>
     {/if}
 

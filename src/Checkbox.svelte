@@ -4,11 +4,9 @@
   export let callback = () => {}
 </script>
 
-<div style="position: absolute;
-            left:-2px;
-            top:3px;
-            width: 13px;
-            height: 13px;
+<div style="position: relative;
+            width: 17px;
+            height: 17px;
             background-color: {checked ? color:'white'};
             border-radius: 3px;
             opacity: 0.8;
@@ -18,6 +16,5 @@
             "
       on:click={()=>{checked = !checked; callback(checked)}}>   
       <div style="cursor: default; font-size: 12px; left:2px; top:-1px; position: absolute; color:white">
-      {checked?"✓":""}
     </div>
 </div>

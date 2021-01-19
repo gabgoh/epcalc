@@ -1,7 +1,7 @@
 <script>
 export let height;
 export let arrowhead = "#arrow"
-export let dasharray = "0 0"
+export let dasharray = "3 2"
 </script>
 
 <svg width="0" height="0">
@@ -15,7 +15,7 @@ export let dasharray = "0 0"
       refX="6"
       refY="6"
       orient="auto">
-      <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: grey;"></path>
+      <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: rgb(71, 129, 255);"></path>
     </marker>
   </defs>
 
@@ -29,14 +29,14 @@ export let dasharray = "0 0"
       refX="6"
       refY="6"
       orient="auto">
-      <circle r="3" cx="3" cy="6" style="fill:grey"></circle>
+      <circle r="3" cx="3" cy="6" style="fill:rgb(71, 129, 255)"></circle>
     </marker>
   </defs>
 
 </svg>
 
-<div style="position: absolute; left:-1px; top:4px; width: 15px; height: {height}px; background-color: none; border-radius: 5px; top: 25px; opacity: 0.8; pointer-events: None">
+<div style="left:-1px; top:4px; width: 15px; height: {height}px; background-color: white; border-radius: 5px; top: 25px; opacity: 1.0; pointer-events: None">
 <svg>
-  <line x1="8" y1="0" x2="8" y2="{height-5}"  stroke="grey" stroke-width="1.5" marker-end="url({arrowhead})" stroke-dasharray="{dasharray}" />
+  <line x1="8" y1="0" x2="8" y2="{height-5}" stroke="rgb(71, 129, 255)" stroke-width="1.25" marker-end="url({arrowhead})" stroke-dasharray="{dasharray}" />
 </svg>
 </div>
