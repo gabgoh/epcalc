@@ -40,6 +40,7 @@
   export let InterventionTime;
   export let colors; 
   export let log = false;
+  export let displayday = true;
 
   const padding = { top: 20, right: 0, bottom: 20, left: 25 };
 
@@ -70,9 +71,9 @@
     .domain([1,  ymax/1])
     .range([0, height - padding.bottom - padding.top]);
 
-
+  export let space = 1.5
   $: innerWidth = width - (padding.left + padding.right);
-  $: barWidth = innerWidth / y.length - 1.5;
+  $: barWidth = innerWidth / y.length - space;
   $: active_hover = -1
   $: lock = false
   var active_lock = 0
@@ -296,7 +297,9 @@
             fill="{lock ? '#222':'#555'}" 
             stroke-width="3" />
           </svg>
+          {#if displayday}
           <div style="background-color: rgb(82, 132, 247); text-align: center; width: 50px; position: absolute; top: -31px; left: -22px; padding: 2px; font-family: Pangram,Avenir,Helvetica,sans-serif; color: white; font-size: 10px; border-radius: 10px">DAY { Math.round(indexToTime(active)) }</div>
+          {/if}
       </div>
     {/if}
 

@@ -155,6 +155,19 @@
     }
     const outroing = new Set();
     let outros;
+    function group_outros() {
+        outros = {
+            r: 0,
+            c: [],
+            p: outros // parent group
+        };
+    }
+    function check_outros() {
+        if (!outros.r) {
+            run_all(outros.c);
+        }
+        outros = outros.p;
+    }
     function transition_in(block, local) {
         if (block && block.i) {
             outroing.delete(block);
@@ -2993,7 +3006,7 @@
     	return child_ctx;
     }
 
-    // (189:6) {#each yScale.ticks(5) as tick}
+    // (190:6) {#each yScale.ticks(5) as tick}
     function create_each_block_4(ctx) {
     	var g, line, text_1, t0_value = Number.isInteger(ctx.Math.log10(ctx.tick)) ? formatNumber(ctx.tick) : (ctx.log ? "": formatNumber(ctx.tick)) + "", t0, t1_value = (ctx.tick == ctx.yScale.ticks(5)[0]) ? " ": "" + "", t1, g_class_value, g_transform_value;
 
@@ -3006,13 +3019,13 @@
     			t1 = text(t1_value);
     			attr_dev(line, "x2", "100%");
     			attr_dev(line, "class", "svelte-1hzt5y0");
-    			add_location(line, file, 190, 10, 4006);
+    			add_location(line, file, 191, 10, 4064);
     			attr_dev(text_1, "y", "-4");
     			attr_dev(text_1, "class", "svelte-1hzt5y0");
-    			add_location(text_1, file, 191, 10, 4040);
+    			add_location(text_1, file, 192, 10, 4098);
     			attr_dev(g, "class", g_class_value = "tick tick-" + ctx.tick + " svelte-1hzt5y0");
     			attr_dev(g, "transform", g_transform_value = "translate(0, " + (ctx.yScale(ctx.tick) - ctx.padding.bottom) + ")");
-    			add_location(g, file, 189, 8, 3909);
+    			add_location(g, file, 190, 8, 3967);
     		},
 
     		m: function mount(target, anchor) {
@@ -3047,11 +3060,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_4.name, type: "each", source: "(189:6) {#each yScale.ticks(5) as tick}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_4.name, type: "each", source: "(190:6) {#each yScale.ticks(5) as tick}", ctx });
     	return block;
     }
 
-    // (199:6) {#each xScaleTime.ticks() as i}
+    // (200:6) {#each xScaleTime.ticks() as i}
     function create_each_block_3(ctx) {
     	var g, text_1, t0_value = ctx.i == 0 ? "Day ":"" + "", t0, t1_value = ctx.i + "", t1, g_transform_value;
 
@@ -3064,10 +3077,10 @@
     			attr_dev(text_1, "x", "0");
     			attr_dev(text_1, "y", "-4");
     			attr_dev(text_1, "class", "svelte-1hzt5y0");
-    			add_location(text_1, file, 200, 10, 4398);
+    			add_location(text_1, file, 201, 10, 4456);
     			attr_dev(g, "class", "tick svelte-1hzt5y0");
     			attr_dev(g, "transform", g_transform_value = "translate(" + ctx.xScaleTime(ctx.i) + "," + ctx.height + ")");
-    			add_location(g, file, 199, 8, 4323);
+    			add_location(g, file, 200, 8, 4381);
     		},
 
     		m: function mount(target, anchor) {
@@ -3097,11 +3110,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_3.name, type: "each", source: "(199:6) {#each xScaleTime.ticks() as i}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_3.name, type: "each", source: "(200:6) {#each xScaleTime.ticks() as i}", ctx });
     	return block;
     }
 
-    // (234:10) {:else}
+    // (235:10) {:else}
     function create_else_block(ctx) {
     	var rect, rect_x_value, rect_y_value, rect_height_value, dispose;
 
@@ -3131,7 +3144,7 @@
     			attr_dev(rect, "height", rect_height_value = (func_1)());
     			set_style(rect, "fill", ctx.colors[ctx.j]);
     			set_style(rect, "opacity", (ctx.active == ctx.i ? 0.9: 0.6));
-    			add_location(rect, file, 234, 14, 5578);
+    			add_location(rect, file, 235, 14, 5636);
 
     			dispose = [
     				listen_dev(rect, "mouseover", mouseover_handler_2),
@@ -3179,12 +3192,12 @@
     			run_all(dispose);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block.name, type: "else", source: "(234:10) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block.name, type: "else", source: "(235:10) {:else}", ctx });
     	return block;
     }
 
-    // (221:10) {#if !log}
-    function create_if_block_1(ctx) {
+    // (222:10) {#if !log}
+    function create_if_block_2(ctx) {
     	var rect, rect_x_value, rect_y_value, rect_height_value, dispose;
 
     	function mouseover_handler_1() {
@@ -3205,7 +3218,7 @@
     			attr_dev(rect, "height", rect_height_value = ctx.Math.max(ctx.height - ctx.padding.bottom - ctx.yScale(ctx.y[ctx.i][ctx.j]*ctx.checked[ctx.j] ),0));
     			set_style(rect, "fill", ctx.colors[ctx.j]);
     			set_style(rect, "opacity", (ctx.active == ctx.i ? 0.9: 0.6));
-    			add_location(rect, file, 221, 14, 4982);
+    			add_location(rect, file, 222, 14, 5040);
 
     			dispose = [
     				listen_dev(rect, "mouseover", mouseover_handler_1),
@@ -3253,16 +3266,16 @@
     			run_all(dispose);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1.name, type: "if", source: "(221:10) {#if !log}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2.name, type: "if", source: "(222:10) {#if !log}", ctx });
     	return block;
     }
 
-    // (220:8) {#each range(colors.length) as j}
+    // (221:8) {#each range(colors.length) as j}
     function create_each_block_2(ctx) {
     	var if_block_anchor;
 
     	function select_block_type(changed, ctx) {
-    		if (!ctx.log) return create_if_block_1;
+    		if (!ctx.log) return create_if_block_2;
     		return create_else_block;
     	}
 
@@ -3301,11 +3314,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_2.name, type: "each", source: "(220:8) {#each range(colors.length) as j}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_2.name, type: "each", source: "(221:8) {#each range(colors.length) as j}", ctx });
     	return block;
     }
 
-    // (207:6) {#each range(y.length) as i}
+    // (208:6) {#each range(y.length) as i}
     function create_each_block_1(ctx) {
     	var rect, rect_x_value, rect_width_value, each_1_anchor, dispose;
 
@@ -3341,7 +3354,7 @@
     			attr_dev(rect, "height", ctx.height);
     			set_style(rect, "fill", "white");
     			set_style(rect, "opacity", "0");
-    			add_location(rect, file, 207, 8, 4549);
+    			add_location(rect, file, 208, 8, 4607);
 
     			dispose = [
     				listen_dev(rect, "mouseover", mouseover_handler),
@@ -3411,11 +3424,11 @@
     			run_all(dispose);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_1.name, type: "each", source: "(207:6) {#each range(y.length) as i}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_1.name, type: "each", source: "(208:6) {#each range(y.length) as i}", ctx });
     	return block;
     }
 
-    // (268:6) {#each range(data.length) as i}
+    // (269:6) {#each range(data.length) as i}
     function create_each_block(ctx) {
     	var rect, rect_x_value, rect_y_value, rect_height_value;
 
@@ -3430,7 +3443,7 @@
     			set_style(rect, "fill", "black");
     			set_style(rect, "opacity", "0.5");
     			set_style(rect, "box-shadow", "4px 10px 5px 2px rgba(0,0,0,0.75)");
-    			add_location(rect, file, 268, 8, 6906);
+    			add_location(rect, file, 269, 8, 6964);
     		},
 
     		m: function mount(target, anchor) {
@@ -3461,63 +3474,49 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block.name, type: "each", source: "(268:6) {#each range(data.length) as i}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block.name, type: "each", source: "(269:6) {#each range(data.length) as i}", ctx });
     	return block;
     }
 
-    // (286:4) {#if active >= 0}
+    // (287:4) {#if active >= 0}
     function create_if_block(ctx) {
-    	var div1, svg, path, path_fill_value, t0, div0, t1, t2_value = ctx.Math.round(ctx.indexToTime(ctx.active)) + "", t2;
+    	var div, svg, path, path_fill_value, t;
+
+    	var if_block = (ctx.displayday) && create_if_block_1(ctx);
 
     	const block = {
     		c: function create() {
-    			div1 = element("div");
+    			div = element("div");
     			svg = svg_element("svg");
     			path = svg_element("path");
-    			t0 = space();
-    			div0 = element("div");
-    			t1 = text("DAY ");
-    			t2 = text(t2_value);
+    			t = space();
+    			if (if_block) if_block.c();
     			attr_dev(path, "d", "M 0 0 L 10 0 L 5 10 z");
     			attr_dev(path, "fill", path_fill_value = ctx.lock ? '#222':'#555');
     			attr_dev(path, "stroke-width", "3");
-    			add_location(path, file, 293, 10, 7912);
+    			add_location(path, file, 294, 10, 7970);
     			set_style(svg, "position", "absolute");
     			set_style(svg, "top", "-12px");
     			set_style(svg, "left", "0px");
     			attr_dev(svg, "height", "10");
     			attr_dev(svg, "width", "10");
     			attr_dev(svg, "class", "svelte-1hzt5y0");
-    			add_location(svg, file, 292, 10, 7826);
-    			set_style(div0, "background-color", "rgb(82, 132, 247)");
-    			set_style(div0, "text-align", "center");
-    			set_style(div0, "width", "50px");
-    			set_style(div0, "position", "absolute");
-    			set_style(div0, "top", "-31px");
-    			set_style(div0, "left", "-22px");
-    			set_style(div0, "padding", "2px");
-    			set_style(div0, "font-family", "Pangram,Avenir,Helvetica,sans-serif");
-    			set_style(div0, "color", "white");
-    			set_style(div0, "font-size", "10px");
-    			set_style(div0, "border-radius", "10px");
-    			add_location(div0, file, 298, 10, 8059);
-    			set_style(div1, "position", "absolute");
-    			set_style(div1, "pointer-events", "none");
-    			set_style(div1, "width", "100px");
-    			set_style(div1, "left", "" + ctx.xScale(ctx.active) + "px");
-    			set_style(div1, "top", "" + ctx.Math.max(ctx.yScale(ctx.sum(ctx.y[ctx.active], ctx.checked)),0) + "px");
-    			attr_dev(div1, "class", "tip");
-    			add_location(div1, file, 286, 6, 7454);
+    			add_location(svg, file, 293, 10, 7884);
+    			set_style(div, "position", "absolute");
+    			set_style(div, "pointer-events", "none");
+    			set_style(div, "width", "100px");
+    			set_style(div, "left", "" + ctx.xScale(ctx.active) + "px");
+    			set_style(div, "top", "" + ctx.Math.max(ctx.yScale(ctx.sum(ctx.y[ctx.active], ctx.checked)),0) + "px");
+    			attr_dev(div, "class", "tip");
+    			add_location(div, file, 287, 6, 7512);
     		},
 
     		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, svg);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, svg);
     			append_dev(svg, path);
-    			append_dev(div1, t0);
-    			append_dev(div1, div0);
-    			append_dev(div0, t1);
-    			append_dev(div0, t2);
+    			append_dev(div, t);
+    			if (if_block) if_block.m(div, null);
     		},
 
     		p: function update(changed, ctx) {
@@ -3525,26 +3524,82 @@
     				attr_dev(path, "fill", path_fill_value);
     			}
 
-    			if ((changed.indexToTime || changed.active) && t2_value !== (t2_value = ctx.Math.round(ctx.indexToTime(ctx.active)) + "")) {
-    				set_data_dev(t2, t2_value);
+    			if (ctx.displayday) {
+    				if (if_block) {
+    					if_block.p(changed, ctx);
+    				} else {
+    					if_block = create_if_block_1(ctx);
+    					if_block.c();
+    					if_block.m(div, null);
+    				}
+    			} else if (if_block) {
+    				if_block.d(1);
+    				if_block = null;
     			}
 
     			if (changed.xScale || changed.active) {
-    				set_style(div1, "left", "" + ctx.xScale(ctx.active) + "px");
+    				set_style(div, "left", "" + ctx.xScale(ctx.active) + "px");
     			}
 
     			if (changed.yScale || changed.y || changed.active || changed.checked) {
-    				set_style(div1, "top", "" + ctx.Math.max(ctx.yScale(ctx.sum(ctx.y[ctx.active], ctx.checked)),0) + "px");
+    				set_style(div, "top", "" + ctx.Math.max(ctx.yScale(ctx.sum(ctx.y[ctx.active], ctx.checked)),0) + "px");
     			}
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach_dev(div1);
+    				detach_dev(div);
+    			}
+
+    			if (if_block) if_block.d();
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(287:4) {#if active >= 0}", ctx });
+    	return block;
+    }
+
+    // (300:10) {#if displayday}
+    function create_if_block_1(ctx) {
+    	var div, t0, t1_value = ctx.Math.round(ctx.indexToTime(ctx.active)) + "", t1;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text("DAY ");
+    			t1 = text(t1_value);
+    			set_style(div, "background-color", "rgb(82, 132, 247)");
+    			set_style(div, "text-align", "center");
+    			set_style(div, "width", "50px");
+    			set_style(div, "position", "absolute");
+    			set_style(div, "top", "-31px");
+    			set_style(div, "left", "-22px");
+    			set_style(div, "padding", "2px");
+    			set_style(div, "font-family", "Pangram,Avenir,Helvetica,sans-serif");
+    			set_style(div, "color", "white");
+    			set_style(div, "font-size", "10px");
+    			set_style(div, "border-radius", "10px");
+    			add_location(div, file, 300, 10, 8144);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.indexToTime || changed.active) && t1_value !== (t1_value = ctx.Math.round(ctx.indexToTime(ctx.active)) + "")) {
+    				set_data_dev(t1, t1_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block.name, type: "if", source: "(286:4) {#if active >= 0}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1.name, type: "if", source: "(300:10) {#if displayday}", ctx });
     	return block;
     }
 
@@ -3618,17 +3673,17 @@
     			if (if_block) if_block.c();
     			attr_dev(g0, "class", "axis y-axis");
     			attr_dev(g0, "transform", "translate(0," + ctx.padding.top + ")");
-    			add_location(g0, file, 187, 4, 3800);
+    			add_location(g0, file, 188, 4, 3858);
     			attr_dev(g1, "class", "axis x-axis svelte-1hzt5y0");
-    			add_location(g1, file, 197, 4, 4253);
+    			add_location(g1, file, 198, 4, 4311);
     			attr_dev(g2, "class", "bars");
-    			add_location(g2, file, 205, 4, 4489);
+    			add_location(g2, file, 206, 4, 4547);
     			attr_dev(g3, "class", "bars");
-    			add_location(g3, file, 266, 4, 6843);
+    			add_location(g3, file, 267, 4, 6901);
     			set_style(svg, "position", "absolute");
     			set_style(svg, "height", "" + ctx.height + "px");
     			attr_dev(svg, "class", "svelte-1hzt5y0");
-    			add_location(svg, file, 184, 2, 3723);
+    			add_location(svg, file, 185, 2, 3781);
     			set_style(div0, "position", "absolute");
     			set_style(div0, "width", "" + (ctx.width+15) + "px");
     			set_style(div0, "height", "" + ctx.height + "px");
@@ -3636,12 +3691,12 @@
     			set_style(div0, "top", "0px");
     			set_style(div0, "left", "0px");
     			set_style(div0, "pointer-events", "none");
-    			add_location(div0, file, 283, 2, 7288);
+    			add_location(div0, file, 284, 2, 7346);
     			set_style(div1, "width", "" + (ctx.width+15) + "px");
     			set_style(div1, "height", "" + ctx.height + "px");
     			set_style(div1, "position", "relative");
     			set_style(div1, "top", "20px");
-    			add_location(div1, file, 183, 0, 3638);
+    			add_location(div1, file, 184, 0, 3696);
     		},
 
     		l: function claim(nodes) {
@@ -3844,18 +3899,20 @@
         return x
       };
 
-      let { y, tmax, xmax, deaths, total, vline, timestep, total_infected, N, ymax, InterventionTime, colors, log: log$1 = false } = $$props;
+      let { y, tmax, xmax, deaths, total, vline, timestep, total_infected, N, ymax, InterventionTime, colors, log: log$1 = false, displayday = true } = $$props;
 
       const padding = { top: 20, right: 0, bottom: 20, left: 25 };
 
       let { width  = 750, height = 420 } = $$props;
+
+      let { space = 1.5 } = $$props;
       var active_lock = 0;
       let { active, checked } = $$props;
 
       // var data = [[2   , 2  ], [5   , 2  ], [18  , 4  ], [28  , 6  ], [43  , 8  ], [61  , 12 ], [95  , 16 ], [139 , 19 ], [245 , 26 ], [388 , 34 ], [593 , 43 ], [978 , 54 ], [1501, 66 ], [2336, 77 ], [2922, 92 ], [3513, 107], [4747, 124]]
       var data = [];
 
-    	const writable_props = ['y', 'tmax', 'xmax', 'deaths', 'total', 'vline', 'timestep', 'total_infected', 'N', 'ymax', 'InterventionTime', 'colors', 'log', 'width', 'height', 'active', 'checked'];
+    	const writable_props = ['y', 'tmax', 'xmax', 'deaths', 'total', 'vline', 'timestep', 'total_infected', 'N', 'ymax', 'InterventionTime', 'colors', 'log', 'displayday', 'width', 'height', 'space', 'active', 'checked'];
     	Object.keys($$props).forEach(key => {
     		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Chart> was created with unknown prop '${key}'`);
     	});
@@ -3907,14 +3964,16 @@
     		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
     		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
     		if ('log' in $$props) $$invalidate('log', log$1 = $$props.log);
+    		if ('displayday' in $$props) $$invalidate('displayday', displayday = $$props.displayday);
     		if ('width' in $$props) $$invalidate('width', width = $$props.width);
     		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('space' in $$props) $$invalidate('space', space = $$props.space);
     		if ('active' in $$props) $$invalidate('active', active = $$props.active);
     		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
     	};
 
     	$$self.$capture_state = () => {
-    		return { sum, y, tmax, xmax, deaths, total, vline, timestep, total_infected, N, ymax, InterventionTime, colors, log: log$1, width, height, active_lock, active, checked, data, showTip, active_hover, xScale, xScaleTime, indexToTime, timeToIndex, yScale, yScaleL, innerWidth, barWidth, lock };
+    		return { sum, y, tmax, xmax, deaths, total, vline, timestep, total_infected, N, ymax, InterventionTime, colors, log: log$1, displayday, width, height, space, active_lock, active, checked, data, showTip, active_hover, xScale, xScaleTime, indexToTime, timeToIndex, yScale, yScaleL, innerWidth, barWidth, lock };
     	};
 
     	$$self.$inject_state = $$props => {
@@ -3932,8 +3991,10 @@
     		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
     		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
     		if ('log' in $$props) $$invalidate('log', log$1 = $$props.log);
+    		if ('displayday' in $$props) $$invalidate('displayday', displayday = $$props.displayday);
     		if ('width' in $$props) $$invalidate('width', width = $$props.width);
     		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('space' in $$props) $$invalidate('space', space = $$props.space);
     		if ('active_lock' in $$props) $$invalidate('active_lock', active_lock = $$props.active_lock);
     		if ('active' in $$props) $$invalidate('active', active = $$props.active);
     		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
@@ -3953,7 +4014,7 @@
 
     	let showTip, xScale, xScaleTime, indexToTime, timeToIndex, yScale, yScaleL, innerWidth, barWidth, active_hover, lock;
 
-    	$$self.$$.update = ($$dirty = { y: 1, width: 1, tmax: 1, log: 1, ymax: 1, height: 1, innerWidth: 1, lock: 1, timeToIndex: 1, active_lock: 1, active_hover: 1 }) => {
+    	$$self.$$.update = ($$dirty = { y: 1, width: 1, tmax: 1, log: 1, ymax: 1, height: 1, innerWidth: 1, space: 1, lock: 1, timeToIndex: 1, active_lock: 1, active_hover: 1 }) => {
     		if ($$dirty.y || $$dirty.width) { $$invalidate('xScale', xScale = linear$1()
             .domain([0, y.length])
             .range([padding.left, width - padding.right])); }
@@ -3973,7 +4034,7 @@
             .domain([1,  ymax/1])
             .range([0, height - padding.bottom - padding.top])); }
     		if ($$dirty.width) { $$invalidate('innerWidth', innerWidth = width - (padding.left + padding.right)); }
-    		if ($$dirty.innerWidth || $$dirty.y) { $$invalidate('barWidth', barWidth = innerWidth / y.length - 1.5); }
+    		if ($$dirty.innerWidth || $$dirty.y || $$dirty.space) { $$invalidate('barWidth', barWidth = innerWidth / y.length - space); }
     		if ($$dirty.lock || $$dirty.timeToIndex || $$dirty.active_lock || $$dirty.active_hover) { $$invalidate('active', active = (function () {
             if (lock){
               var i = Math.round(timeToIndex(active_lock));
@@ -4010,9 +4071,11 @@
     		InterventionTime,
     		colors,
     		log: log$1,
+    		displayday,
     		padding,
     		width,
     		height,
+    		space,
     		active_lock,
     		active,
     		checked,
@@ -4043,7 +4106,7 @@
     class Chart extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, ["y", "tmax", "xmax", "deaths", "total", "vline", "timestep", "total_infected", "N", "ymax", "InterventionTime", "colors", "log", "width", "height", "active", "checked"]);
+    		init(this, options, instance, create_fragment, safe_not_equal, ["y", "tmax", "xmax", "deaths", "total", "vline", "timestep", "total_infected", "N", "ymax", "InterventionTime", "colors", "log", "displayday", "width", "height", "space", "active", "checked"]);
     		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Chart", options, id: create_fragment.name });
 
     		const { ctx } = this.$$;
@@ -4196,6 +4259,14 @@
     		throw new Error("<Chart>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
+    	get displayday() {
+    		throw new Error("<Chart>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set displayday(value) {
+    		throw new Error("<Chart>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
     	get width() {
     		throw new Error("<Chart>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
@@ -4209,6 +4280,14 @@
     	}
 
     	set height(value) {
+    		throw new Error("<Chart>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get space() {
+    		throw new Error("<Chart>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set space(value) {
     		throw new Error("<Chart>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
@@ -4226,6 +4305,2245 @@
 
     	set checked(value) {
     		throw new Error("<Chart>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/Control.svelte generated by Svelte v3.12.1 */
+
+    const file$1 = "src/Control.svelte";
+
+    function create_fragment$1(ctx) {
+    	var div0, t1, div19, div6, div1, b0, t3, t4, div5, div2, input0, t5, div4, div3, t6, t7, div12, div7, b1, t9, t10, div11, div8, input1, t11, div10, div9, t12_value = (ctx.D_incbation).toFixed(2) + "", t12, t13, t14, div18, div13, b2, t16, t17, div17, div14, input2, t18, div16, div15, t19, t20, t21, div20, t23, div33, div26, div21, b3, t25, t26, div25, div22, input3, t27, div24, div23, t28_value = (ctx.CFR*100).toFixed(2) + "", t28, t29, t30, div32, div27, b4, t32, div31, div28, input4, input4_min_value, t33, div30, div29, t34, t35, dispose;
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			div0.textContent = "Transmission Variables";
+    			t1 = space();
+    			div19 = element("div");
+    			div6 = element("div");
+    			div1 = element("div");
+    			b0 = element("b");
+    			b0.textContent = "Basic reproduction number";
+    			t3 = text(" - Average number of infections generated by one individual on day 0");
+    			t4 = space();
+    			div5 = element("div");
+    			div2 = element("div");
+    			input0 = element("input");
+    			t5 = space();
+    			div4 = element("div");
+    			div3 = element("div");
+    			t6 = text(ctx.R0);
+    			t7 = space();
+    			div12 = element("div");
+    			div7 = element("div");
+    			b1 = element("b");
+    			b1.textContent = "Incubation period";
+    			t9 = text(" - Time between infection and symptom onset");
+    			t10 = space();
+    			div11 = element("div");
+    			div8 = element("div");
+    			input1 = element("input");
+    			t11 = space();
+    			div10 = element("div");
+    			div9 = element("div");
+    			t12 = text(t12_value);
+    			t13 = text(" days");
+    			t14 = space();
+    			div18 = element("div");
+    			div13 = element("div");
+    			b2 = element("b");
+    			b2.textContent = "Infectious period";
+    			t16 = text(" - How long someone can spread the virus");
+    			t17 = space();
+    			div17 = element("div");
+    			div14 = element("div");
+    			input2 = element("input");
+    			t18 = space();
+    			div16 = element("div");
+    			div15 = element("div");
+    			t19 = text(ctx.D_infectious);
+    			t20 = text(" Days");
+    			t21 = space();
+    			div20 = element("div");
+    			div20.textContent = "Clinical Variables";
+    			t23 = space();
+    			div33 = element("div");
+    			div26 = element("div");
+    			div21 = element("div");
+    			b3 = element("b");
+    			b3.textContent = "Infection fatality rate";
+    			t25 = text(" - Number of deaths per infection");
+    			t26 = space();
+    			div25 = element("div");
+    			div22 = element("div");
+    			input3 = element("input");
+    			t27 = space();
+    			div24 = element("div");
+    			div23 = element("div");
+    			t28 = text(t28_value);
+    			t29 = text(" %");
+    			t30 = space();
+    			div32 = element("div");
+    			div27 = element("div");
+    			b4 = element("b");
+    			b4.textContent = "Time from symptom onset to death";
+    			t32 = space();
+    			div31 = element("div");
+    			div28 = element("div");
+    			input4 = element("input");
+    			t33 = space();
+    			div30 = element("div");
+    			div29 = element("div");
+    			t34 = text(ctx.Time_to_death);
+    			t35 = text(" Days");
+    			attr_dev(div0, "class", "bluetitle svelte-vq5044");
+    			add_location(div0, file$1, 56, 0, 1123);
+    			add_location(b0, file$1, 61, 28, 1240);
+    			attr_dev(div1, "class", "legendtext svelte-vq5044");
+    			add_location(div1, file$1, 61, 4, 1216);
+    			attr_dev(input0, "class", "range svelte-vq5044");
+    			attr_dev(input0, "type", "range");
+    			attr_dev(input0, "min", "0.01");
+    			attr_dev(input0, "max", "10");
+    			attr_dev(input0, "step", "0.01");
+    			add_location(input0, file$1, 65, 8, 1444);
+    			set_style(div2, "width", "58%");
+    			add_location(div2, file$1, 64, 6, 1411);
+    			attr_dev(div3, "class", "adjustableslidertext svelte-vq5044");
+    			add_location(div3, file$1, 68, 8, 1572);
+    			set_style(div4, "width", "42%");
+    			add_location(div4, file$1, 67, 6, 1539);
+    			set_style(div5, "display", "flex");
+    			set_style(div5, "justify-content", "center");
+    			add_location(div5, file$1, 63, 4, 1352);
+    			add_location(div6, file$1, 60, 2, 1206);
+    			add_location(b1, file$1, 78, 28, 1709);
+    			attr_dev(div7, "class", "legendtext svelte-vq5044");
+    			add_location(div7, file$1, 78, 4, 1685);
+    			attr_dev(input1, "class", "range svelte-vq5044");
+    			set_style(input1, "margin-bottom", "8px");
+    			attr_dev(input1, "type", "range");
+    			attr_dev(input1, "min", 0.15);
+    			attr_dev(input1, "max", "24");
+    			attr_dev(input1, "step", "0.0001");
+    			add_location(input1, file$1, 82, 8, 1880);
+    			set_style(div8, "width", "58%");
+    			add_location(div8, file$1, 81, 6, 1847);
+    			attr_dev(div9, "class", "adjustableslidertext svelte-vq5044");
+    			add_location(div9, file$1, 85, 8, 2046);
+    			set_style(div10, "width", "42%");
+    			add_location(div10, file$1, 84, 6, 2013);
+    			set_style(div11, "display", "flex");
+    			set_style(div11, "justify-content", "center");
+    			add_location(div11, file$1, 80, 4, 1788);
+    			add_location(div12, file$1, 77, 2, 1675);
+    			add_location(b2, file$1, 94, 28, 2209);
+    			attr_dev(div13, "class", "legendtext svelte-vq5044");
+    			add_location(div13, file$1, 94, 4, 2185);
+    			attr_dev(input2, "class", "range svelte-vq5044");
+    			attr_dev(input2, "type", "range");
+    			attr_dev(input2, "min", 0);
+    			attr_dev(input2, "max", "24");
+    			attr_dev(input2, "step", "0.01");
+    			add_location(input2, file$1, 98, 8, 2377);
+    			set_style(div14, "width", "58%");
+    			add_location(div14, file$1, 97, 6, 2344);
+    			attr_dev(div15, "class", "adjustableslidertext svelte-vq5044");
+    			add_location(div15, file$1, 101, 8, 2513);
+    			set_style(div16, "width", "42%");
+    			add_location(div16, file$1, 100, 6, 2480);
+    			set_style(div17, "display", "flex");
+    			set_style(div17, "justify-content", "center");
+    			add_location(div17, file$1, 96, 4, 2285);
+    			add_location(div18, file$1, 93, 2, 2175);
+    			set_style(div19, "width", "100%");
+    			add_location(div19, file$1, 58, 0, 1177);
+    			attr_dev(div20, "class", "bluetitle svelte-vq5044");
+    			add_location(div20, file$1, 111, 0, 2636);
+    			add_location(b3, file$1, 116, 28, 2749);
+    			attr_dev(div21, "class", "legendtext svelte-vq5044");
+    			add_location(div21, file$1, 116, 4, 2725);
+    			attr_dev(input3, "class", "range svelte-vq5044");
+    			set_style(input3, "margin-bottom", "8px");
+    			attr_dev(input3, "type", "range");
+    			attr_dev(input3, "min", 0);
+    			attr_dev(input3, "max", "1");
+    			attr_dev(input3, "step", "0.0001");
+    			add_location(input3, file$1, 120, 8, 2916);
+    			set_style(div22, "width", "58%");
+    			add_location(div22, file$1, 119, 6, 2883);
+    			attr_dev(div23, "class", "adjustableslidertext svelte-vq5044");
+    			add_location(div23, file$1, 123, 8, 3071);
+    			set_style(div24, "width", "42%");
+    			add_location(div24, file$1, 122, 6, 3038);
+    			set_style(div25, "display", "flex");
+    			set_style(div25, "justify-content", "center");
+    			add_location(div25, file$1, 118, 4, 2824);
+    			add_location(div26, file$1, 115, 2, 2715);
+    			add_location(b4, file$1, 132, 28, 3227);
+    			attr_dev(div27, "class", "legendtext svelte-vq5044");
+    			add_location(div27, file$1, 132, 4, 3203);
+    			attr_dev(input4, "class", "range svelte-vq5044");
+    			attr_dev(input4, "type", "range");
+    			attr_dev(input4, "min", input4_min_value = (ctx.D_infectious)+0.1);
+    			attr_dev(input4, "max", "100");
+    			attr_dev(input4, "step", "0.01");
+    			add_location(input4, file$1, 136, 8, 3370);
+    			set_style(div28, "width", "58%");
+    			add_location(div28, file$1, 135, 6, 3337);
+    			attr_dev(div29, "class", "adjustableslidertext svelte-vq5044");
+    			add_location(div29, file$1, 139, 8, 3525);
+    			set_style(div30, "width", "42%");
+    			add_location(div30, file$1, 138, 6, 3492);
+    			set_style(div31, "display", "flex");
+    			set_style(div31, "justify-content", "center");
+    			add_location(div31, file$1, 134, 4, 3278);
+    			add_location(div32, file$1, 131, 2, 3193);
+    			set_style(div33, "width", "100%");
+    			add_location(div33, file$1, 113, 0, 2686);
+
+    			dispose = [
+    				listen_dev(input0, "change", ctx.input0_change_input_handler),
+    				listen_dev(input0, "input", ctx.input0_change_input_handler),
+    				listen_dev(input1, "change", ctx.input1_change_input_handler),
+    				listen_dev(input1, "input", ctx.input1_change_input_handler),
+    				listen_dev(input2, "change", ctx.input2_change_input_handler),
+    				listen_dev(input2, "input", ctx.input2_change_input_handler),
+    				listen_dev(input3, "change", ctx.input3_change_input_handler),
+    				listen_dev(input3, "input", ctx.input3_change_input_handler),
+    				listen_dev(input4, "change", ctx.input4_change_input_handler),
+    				listen_dev(input4, "input", ctx.input4_change_input_handler)
+    			];
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div19, anchor);
+    			append_dev(div19, div6);
+    			append_dev(div6, div1);
+    			append_dev(div1, b0);
+    			append_dev(div1, t3);
+    			append_dev(div6, t4);
+    			append_dev(div6, div5);
+    			append_dev(div5, div2);
+    			append_dev(div2, input0);
+
+    			set_input_value(input0, ctx.R0);
+
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
+    			append_dev(div4, div3);
+    			append_dev(div3, t6);
+    			append_dev(div19, t7);
+    			append_dev(div19, div12);
+    			append_dev(div12, div7);
+    			append_dev(div7, b1);
+    			append_dev(div7, t9);
+    			append_dev(div12, t10);
+    			append_dev(div12, div11);
+    			append_dev(div11, div8);
+    			append_dev(div8, input1);
+
+    			set_input_value(input1, ctx.D_incbation);
+
+    			append_dev(div11, t11);
+    			append_dev(div11, div10);
+    			append_dev(div10, div9);
+    			append_dev(div9, t12);
+    			append_dev(div9, t13);
+    			append_dev(div19, t14);
+    			append_dev(div19, div18);
+    			append_dev(div18, div13);
+    			append_dev(div13, b2);
+    			append_dev(div13, t16);
+    			append_dev(div18, t17);
+    			append_dev(div18, div17);
+    			append_dev(div17, div14);
+    			append_dev(div14, input2);
+
+    			set_input_value(input2, ctx.D_infectious);
+
+    			append_dev(div17, t18);
+    			append_dev(div17, div16);
+    			append_dev(div16, div15);
+    			append_dev(div15, t19);
+    			append_dev(div15, t20);
+    			insert_dev(target, t21, anchor);
+    			insert_dev(target, div20, anchor);
+    			insert_dev(target, t23, anchor);
+    			insert_dev(target, div33, anchor);
+    			append_dev(div33, div26);
+    			append_dev(div26, div21);
+    			append_dev(div21, b3);
+    			append_dev(div21, t25);
+    			append_dev(div26, t26);
+    			append_dev(div26, div25);
+    			append_dev(div25, div22);
+    			append_dev(div22, input3);
+
+    			set_input_value(input3, ctx.CFR);
+
+    			append_dev(div25, t27);
+    			append_dev(div25, div24);
+    			append_dev(div24, div23);
+    			append_dev(div23, t28);
+    			append_dev(div23, t29);
+    			append_dev(div33, t30);
+    			append_dev(div33, div32);
+    			append_dev(div32, div27);
+    			append_dev(div27, b4);
+    			append_dev(div32, t32);
+    			append_dev(div32, div31);
+    			append_dev(div31, div28);
+    			append_dev(div28, input4);
+
+    			set_input_value(input4, ctx.Time_to_death);
+
+    			append_dev(div31, t33);
+    			append_dev(div31, div30);
+    			append_dev(div30, div29);
+    			append_dev(div29, t34);
+    			append_dev(div29, t35);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.R0) set_input_value(input0, ctx.R0);
+
+    			if (changed.R0) {
+    				set_data_dev(t6, ctx.R0);
+    			}
+
+    			if (changed.D_incbation) set_input_value(input1, ctx.D_incbation);
+
+    			if ((changed.D_incbation) && t12_value !== (t12_value = (ctx.D_incbation).toFixed(2) + "")) {
+    				set_data_dev(t12, t12_value);
+    			}
+
+    			if (changed.D_infectious) set_input_value(input2, ctx.D_infectious);
+
+    			if (changed.D_infectious) {
+    				set_data_dev(t19, ctx.D_infectious);
+    			}
+
+    			if (changed.CFR) set_input_value(input3, ctx.CFR);
+
+    			if ((changed.CFR) && t28_value !== (t28_value = (ctx.CFR*100).toFixed(2) + "")) {
+    				set_data_dev(t28, t28_value);
+    			}
+
+    			if (changed.Time_to_death) set_input_value(input4, ctx.Time_to_death);
+
+    			if ((changed.D_infectious) && input4_min_value !== (input4_min_value = (ctx.D_infectious)+0.1)) {
+    				attr_dev(input4, "min", input4_min_value);
+    			}
+
+    			if (changed.Time_to_death) {
+    				set_data_dev(t34, ctx.Time_to_death);
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div0);
+    				detach_dev(t1);
+    				detach_dev(div19);
+    				detach_dev(t21);
+    				detach_dev(div20);
+    				detach_dev(t23);
+    				detach_dev(div33);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$1.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function instance$1($$self, $$props, $$invalidate) {
+    	let { R0 = 0, D_incbation = 0, D_infectious = 0, CFR = 0, Time_to_death = 0 } = $$props;
+
+    	const writable_props = ['R0', 'D_incbation', 'D_infectious', 'CFR', 'Time_to_death'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Control> was created with unknown prop '${key}'`);
+    	});
+
+    	function input0_change_input_handler() {
+    		R0 = to_number(this.value);
+    		$$invalidate('R0', R0);
+    	}
+
+    	function input1_change_input_handler() {
+    		D_incbation = to_number(this.value);
+    		$$invalidate('D_incbation', D_incbation);
+    	}
+
+    	function input2_change_input_handler() {
+    		D_infectious = to_number(this.value);
+    		$$invalidate('D_infectious', D_infectious);
+    	}
+
+    	function input3_change_input_handler() {
+    		CFR = to_number(this.value);
+    		$$invalidate('CFR', CFR);
+    	}
+
+    	function input4_change_input_handler() {
+    		Time_to_death = to_number(this.value);
+    		$$invalidate('Time_to_death', Time_to_death);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('R0' in $$props) $$invalidate('R0', R0 = $$props.R0);
+    		if ('D_incbation' in $$props) $$invalidate('D_incbation', D_incbation = $$props.D_incbation);
+    		if ('D_infectious' in $$props) $$invalidate('D_infectious', D_infectious = $$props.D_infectious);
+    		if ('CFR' in $$props) $$invalidate('CFR', CFR = $$props.CFR);
+    		if ('Time_to_death' in $$props) $$invalidate('Time_to_death', Time_to_death = $$props.Time_to_death);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { R0, D_incbation, D_infectious, CFR, Time_to_death };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('R0' in $$props) $$invalidate('R0', R0 = $$props.R0);
+    		if ('D_incbation' in $$props) $$invalidate('D_incbation', D_incbation = $$props.D_incbation);
+    		if ('D_infectious' in $$props) $$invalidate('D_infectious', D_infectious = $$props.D_infectious);
+    		if ('CFR' in $$props) $$invalidate('CFR', CFR = $$props.CFR);
+    		if ('Time_to_death' in $$props) $$invalidate('Time_to_death', Time_to_death = $$props.Time_to_death);
+    	};
+
+    	return {
+    		R0,
+    		D_incbation,
+    		D_infectious,
+    		CFR,
+    		Time_to_death,
+    		input0_change_input_handler,
+    		input1_change_input_handler,
+    		input2_change_input_handler,
+    		input3_change_input_handler,
+    		input4_change_input_handler
+    	};
+    }
+
+    class Control extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$1, create_fragment$1, safe_not_equal, ["R0", "D_incbation", "D_infectious", "CFR", "Time_to_death"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Control", options, id: create_fragment$1.name });
+    	}
+
+    	get R0() {
+    		throw new Error("<Control>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set R0(value) {
+    		throw new Error("<Control>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get D_incbation() {
+    		throw new Error("<Control>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set D_incbation(value) {
+    		throw new Error("<Control>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get D_infectious() {
+    		throw new Error("<Control>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set D_infectious(value) {
+    		throw new Error("<Control>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get CFR() {
+    		throw new Error("<Control>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set CFR(value) {
+    		throw new Error("<Control>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get Time_to_death() {
+    		throw new Error("<Control>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set Time_to_death(value) {
+    		throw new Error("<Control>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/Checkbox.svelte generated by Svelte v3.12.1 */
+
+    const file$2 = "src/Checkbox.svelte";
+
+    function create_fragment$2(ctx) {
+    	var div1, div0, dispose;
+
+    	const block = {
+    		c: function create() {
+    			div1 = element("div");
+    			div0 = element("div");
+    			set_style(div0, "cursor", "default");
+    			set_style(div0, "font-size", "12px");
+    			set_style(div0, "left", "2px");
+    			set_style(div0, "top", "-1px");
+    			set_style(div0, "position", "absolute");
+    			set_style(div0, "color", "white");
+    			add_location(div0, file$2, 17, 6, 549);
+    			set_style(div1, "position", "relative");
+    			set_style(div1, "width", "17px");
+    			set_style(div1, "height", "17px");
+    			set_style(div1, "background-color", (ctx.checked ? ctx.color:'white'));
+    			set_style(div1, "border-radius", "3px");
+    			set_style(div1, "opacity", "0.8");
+    			set_style(div1, "border", "2px solid " + (ctx.checked ? 'rgba(255,255,255,0)':ctx.color));
+    			set_style(div1, "box-shadow", "inset 1px 1px 3px rgba(0, 0, 0, 0.1)");
+    			set_style(div1, "user-select", "none");
+    			add_location(div1, file$2, 6, 0, 101);
+    			dispose = listen_dev(div1, "click", ctx.click_handler);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, div0);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.checked || changed.color) {
+    				set_style(div1, "background-color", (ctx.checked ? ctx.color:'white'));
+    				set_style(div1, "border", "2px solid " + (ctx.checked ? 'rgba(255,255,255,0)':ctx.color));
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div1);
+    			}
+
+    			dispose();
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$2.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function instance$2($$self, $$props, $$invalidate) {
+    	let { color, checked = false, callback = () => {} } = $$props;
+
+    	const writable_props = ['color', 'checked', 'callback'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Checkbox> was created with unknown prop '${key}'`);
+    	});
+
+    	const click_handler = () => {$$invalidate('checked', checked = !checked); callback(checked);};
+
+    	$$self.$set = $$props => {
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('callback' in $$props) $$invalidate('callback', callback = $$props.callback);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { color, checked, callback };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('callback' in $$props) $$invalidate('callback', callback = $$props.callback);
+    	};
+
+    	return { color, checked, callback, click_handler };
+    }
+
+    class Checkbox extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["color", "checked", "callback"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Checkbox", options, id: create_fragment$2.name });
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.color === undefined && !('color' in props)) {
+    			console.warn("<Checkbox> was created without expected prop 'color'");
+    		}
+    	}
+
+    	get color() {
+    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set color(value) {
+    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checked() {
+    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checked(value) {
+    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get callback() {
+    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set callback(value) {
+    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/Arrow.svelte generated by Svelte v3.12.1 */
+
+    const file$3 = "src/Arrow.svelte";
+
+    function create_fragment$3(ctx) {
+    	var svg0, defs0, marker0, path, defs1, marker1, circle, t, div, svg1, line, line_y__value, line_marker_end_value;
+
+    	const block = {
+    		c: function create() {
+    			svg0 = svg_element("svg");
+    			defs0 = svg_element("defs");
+    			marker0 = svg_element("marker");
+    			path = svg_element("path");
+    			defs1 = svg_element("defs");
+    			marker1 = svg_element("marker");
+    			circle = svg_element("circle");
+    			t = space();
+    			div = element("div");
+    			svg1 = svg_element("svg");
+    			line = svg_element("line");
+    			attr_dev(path, "d", "M2,2 L10,6 L2,10 L6,6 L2,2");
+    			set_style(path, "fill", "rgb(71, 129, 255)");
+    			add_location(path, file$3, 17, 6, 327);
+    			attr_dev(marker0, "id", "arrow");
+    			attr_dev(marker0, "markerUnits", "strokeWidth");
+    			attr_dev(marker0, "markerWidth", "10");
+    			attr_dev(marker0, "markerHeight", "10");
+    			attr_dev(marker0, "viewBox", "0 0 12 12");
+    			attr_dev(marker0, "refX", "6");
+    			attr_dev(marker0, "refY", "6");
+    			attr_dev(marker0, "orient", "auto");
+    			add_location(marker0, file$3, 8, 4, 140);
+    			add_location(defs0, file$3, 7, 2, 129);
+    			attr_dev(circle, "r", "3");
+    			attr_dev(circle, "cx", "3");
+    			attr_dev(circle, "cy", "6");
+    			set_style(circle, "fill", "rgb(71, 129, 255)");
+    			add_location(circle, file$3, 31, 6, 631);
+    			attr_dev(marker1, "id", "circle");
+    			attr_dev(marker1, "markerUnits", "strokeWidth");
+    			attr_dev(marker1, "markerWidth", "10");
+    			attr_dev(marker1, "markerHeight", "10");
+    			attr_dev(marker1, "viewBox", "0 0 12 12");
+    			attr_dev(marker1, "refX", "6");
+    			attr_dev(marker1, "refY", "6");
+    			attr_dev(marker1, "orient", "auto");
+    			add_location(marker1, file$3, 22, 4, 443);
+    			add_location(defs1, file$3, 21, 2, 432);
+    			attr_dev(svg0, "width", "0");
+    			attr_dev(svg0, "height", "0");
+    			add_location(svg0, file$3, 6, 0, 100);
+    			attr_dev(line, "x1", "8");
+    			attr_dev(line, "y1", "0");
+    			attr_dev(line, "x2", "8");
+    			attr_dev(line, "y2", line_y__value = ctx.height-5);
+    			attr_dev(line, "stroke", "rgb(71, 129, 255)");
+    			attr_dev(line, "stroke-width", "1.25");
+    			attr_dev(line, "marker-end", line_marker_end_value = "url(" + ctx.arrowhead + ")");
+    			attr_dev(line, "stroke-dasharray", ctx.dasharray);
+    			add_location(line, file$3, 39, 2, 899);
+    			add_location(svg1, file$3, 38, 0, 891);
+    			set_style(div, "left", "-1px");
+    			set_style(div, "top", "4px");
+    			set_style(div, "width", "15px");
+    			set_style(div, "height", "" + ctx.height + "px");
+    			set_style(div, "background-color", "white");
+    			set_style(div, "border-radius", "5px");
+    			set_style(div, "top", "25px");
+    			set_style(div, "opacity", "1.0");
+    			set_style(div, "pointer-events", "None");
+    			add_location(div, file$3, 37, 0, 733);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, svg0, anchor);
+    			append_dev(svg0, defs0);
+    			append_dev(defs0, marker0);
+    			append_dev(marker0, path);
+    			append_dev(svg0, defs1);
+    			append_dev(defs1, marker1);
+    			append_dev(marker1, circle);
+    			insert_dev(target, t, anchor);
+    			insert_dev(target, div, anchor);
+    			append_dev(div, svg1);
+    			append_dev(svg1, line);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.height) && line_y__value !== (line_y__value = ctx.height-5)) {
+    				attr_dev(line, "y2", line_y__value);
+    			}
+
+    			if ((changed.arrowhead) && line_marker_end_value !== (line_marker_end_value = "url(" + ctx.arrowhead + ")")) {
+    				attr_dev(line, "marker-end", line_marker_end_value);
+    			}
+
+    			if (changed.dasharray) {
+    				attr_dev(line, "stroke-dasharray", ctx.dasharray);
+    			}
+
+    			if (changed.height) {
+    				set_style(div, "height", "" + ctx.height + "px");
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(svg0);
+    				detach_dev(t);
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$3.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function instance$3($$self, $$props, $$invalidate) {
+    	let { height, arrowhead = "#arrow", dasharray = "3 2" } = $$props;
+
+    	const writable_props = ['height', 'arrowhead', 'dasharray'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Arrow> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('arrowhead' in $$props) $$invalidate('arrowhead', arrowhead = $$props.arrowhead);
+    		if ('dasharray' in $$props) $$invalidate('dasharray', dasharray = $$props.dasharray);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { height, arrowhead, dasharray };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('arrowhead' in $$props) $$invalidate('arrowhead', arrowhead = $$props.arrowhead);
+    		if ('dasharray' in $$props) $$invalidate('dasharray', dasharray = $$props.dasharray);
+    	};
+
+    	return { height, arrowhead, dasharray };
+    }
+
+    class Arrow extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$3, create_fragment$3, safe_not_equal, ["height", "arrowhead", "dasharray"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Arrow", options, id: create_fragment$3.name });
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.height === undefined && !('height' in props)) {
+    			console.warn("<Arrow> was created without expected prop 'height'");
+    		}
+    	}
+
+    	get height() {
+    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set height(value) {
+    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get arrowhead() {
+    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set arrowhead(value) {
+    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get dasharray() {
+    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set dasharray(value) {
+    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/SEIRPanel.svelte generated by Svelte v3.12.1 */
+
+    const file$4 = "src/SEIRPanel.svelte";
+
+    // (129:0) {#if !mobile}
+    function create_if_block_3(ctx) {
+    	var div, t0, t1_value = Math.round(ctx.indexToTime(ctx.active_)) + "", t1;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			t0 = text("DAY ");
+    			t1 = text(t1_value);
+    			attr_dev(div, "class", "title svelte-14hix3k");
+    			set_style(div, "margin", "auto");
+    			set_style(div, "width", "100%");
+    			set_style(div, "margin-right", "20px");
+    			set_style(div, "border-radius", "20px");
+    			set_style(div, "padding", "4px");
+    			set_style(div, "padding-top", "7px");
+    			set_style(div, "line-height", "14px");
+    			set_style(div, "font-weight", "bold");
+    			set_style(div, "text-align", "center");
+    			set_style(div, "background-color", "rgb(82, 132, 247)");
+    			set_style(div, "margin-bottom", "20px");
+    			add_location(div, file$4, 129, 0, 2279);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if ((changed.indexToTime || changed.active_) && t1_value !== (t1_value = Math.round(ctx.indexToTime(ctx.active_)) + "")) {
+    				set_data_dev(t1, t1_value);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_3.name, type: "if", source: "(129:0) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    // (139:4) {:else}
+    function create_else_block_1(ctx) {
+    	var div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "Population not immune";
+    			attr_dev(div, "class", "legendtext svelte-14hix3k");
+    			add_location(div, file$4, 139, 6, 2818);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block_1.name, type: "else", source: "(139:4) {:else}", ctx });
+    	return block;
+    }
+
+    // (137:4) {#if !mobile}
+    function create_if_block_2$1(ctx) {
+    	var div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "Population not immune to the virus";
+    			attr_dev(div, "class", "legendtext svelte-14hix3k");
+    			add_location(div, file$4, 137, 6, 2735);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2$1.name, type: "if", source: "(137:4) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    // (163:4) {:else}
+    function create_else_block$1(ctx) {
+    	var div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "Incubating the virus";
+    			attr_dev(div, "class", "legendtext svelte-14hix3k");
+    			add_location(div, file$4, 163, 6, 3769);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$1.name, type: "else", source: "(163:4) {:else}", ctx });
+    	return block;
+    }
+
+    // (161:4) {#if !mobile}
+    function create_if_block_1$1(ctx) {
+    	var div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "Population incubating the virus";
+    			attr_dev(div, "class", "legendtext svelte-14hix3k");
+    			add_location(div, file$4, 161, 6, 3689);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1$1.name, type: "if", source: "(161:4) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    // (186:4) {#if !mobile}
+    function create_if_block$1(ctx) {
+    	var div;
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			div.textContent = "Population that can transmit the virus";
+    			attr_dev(div, "class", "legendtext svelte-14hix3k");
+    			add_location(div, file$4, 186, 6, 4656);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$1.name, type: "if", source: "(186:4) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    function create_fragment$4(ctx) {
+    	var t0, div33, div1, div0, t2, t3, div2, span0, t4, div7, div6, div3, span1, b0, t5_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "", t5, t6, t7, t8_value = format(".3r")(100*ctx.Iters[ctx.active_][0]) + "", t8, t9, t10, div4, span2, t11_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t11, t12, t13, div5, t14, div8, t15, div10, div9, t17, t18, div11, span3, updating_checked, t19, div16, div15, div12, i0, span4, b1, t20_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "", t20, t21, t22, t23_value = format(".1%")(ctx.Iters[ctx.active_][1]) + "", t23, t24, t25, div13, span5, t26_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t26, t27, t28, div14, t29, div17, t30, div19, div18, t32, t33, div20, span6, updating_checked_1, t34, div24, div23, div21, span7, b2, t35_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "", t35, t36, t37, t38_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t38, t39, t40, div22, span8, t41_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t41, t42, t43, div25, t44, div27, div26, t46, div28, span9, updating_checked_2, t47, div32, div31, div29, span10, b3, i1, t48_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "", t48, t49, t50, t51_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t51, t52, t53, div30, span11, t54_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t54, t55, current;
+
+    	var if_block0 = (!ctx.mobile) && create_if_block_3(ctx);
+
+    	function select_block_type(changed, ctx) {
+    		if (!ctx.mobile) return create_if_block_2$1;
+    		return create_else_block_1;
+    	}
+
+    	var current_block_type = select_block_type(null, ctx);
+    	var if_block1 = current_block_type(ctx);
+
+    	var checkbox0 = new Checkbox({
+    		props: { color: "#CCC" },
+    		$$inline: true
+    	});
+
+    	var arrow0 = new Arrow({ props: { height: "25" }, $$inline: true });
+
+    	function select_block_type_1(changed, ctx) {
+    		if (!ctx.mobile) return create_if_block_1$1;
+    		return create_else_block$1;
+    	}
+
+    	var current_block_type_1 = select_block_type_1(null, ctx);
+    	var if_block2 = current_block_type_1(ctx);
+
+    	function checkbox1_checked_binding(value) {
+    		ctx.checkbox1_checked_binding.call(null, value);
+    		updating_checked = true;
+    		add_flush_callback(() => updating_checked = false);
+    	}
+
+    	let checkbox1_props = { color: ctx.colors[4] };
+    	if (ctx.checked[4] !== void 0) {
+    		checkbox1_props.checked = ctx.checked[4];
+    	}
+    	var checkbox1 = new Checkbox({ props: checkbox1_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(checkbox1, 'checked', checkbox1_checked_binding));
+
+    	var arrow1 = new Arrow({ props: { height: "25" }, $$inline: true });
+
+    	var if_block3 = (!ctx.mobile) && create_if_block$1(ctx);
+
+    	function checkbox2_checked_binding(value_1) {
+    		ctx.checkbox2_checked_binding.call(null, value_1);
+    		updating_checked_1 = true;
+    		add_flush_callback(() => updating_checked_1 = false);
+    	}
+
+    	let checkbox2_props = { color: ctx.colors[3] };
+    	if (ctx.checked[3] !== void 0) {
+    		checkbox2_props.checked = ctx.checked[3];
+    	}
+    	var checkbox2 = new Checkbox({ props: checkbox2_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(checkbox2, 'checked', checkbox2_checked_binding));
+
+    	function checkbox3_checked_binding(value_2) {
+    		ctx.checkbox3_checked_binding.call(null, value_2);
+    		updating_checked_2 = true;
+    		add_flush_callback(() => updating_checked_2 = false);
+    	}
+
+    	let checkbox3_props = { color: ctx.colors[0] };
+    	if (ctx.checked[0] !== void 0) {
+    		checkbox3_props.checked = ctx.checked[0];
+    	}
+    	var checkbox3 = new Checkbox({ props: checkbox3_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(checkbox3, 'checked', checkbox3_checked_binding));
+
+    	const block = {
+    		c: function create() {
+    			if (if_block0) if_block0.c();
+    			t0 = space();
+    			div33 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			div0.textContent = "Susceptible";
+    			t2 = space();
+    			if_block1.c();
+    			t3 = space();
+    			div2 = element("div");
+    			span0 = element("span");
+    			checkbox0.$$.fragment.c();
+    			t4 = space();
+    			div7 = element("div");
+    			div6 = element("div");
+    			div3 = element("div");
+    			span1 = element("span");
+    			b0 = element("b");
+    			t5 = text(t5_value);
+    			t6 = text("k");
+    			t7 = text("\n                              (");
+    			t8 = text(t8_value);
+    			t9 = text("%)");
+    			t10 = space();
+    			div4 = element("div");
+    			span2 = element("span");
+    			t11 = text(t11_value);
+    			t12 = text(" / day");
+    			t13 = space();
+    			div5 = element("div");
+    			arrow0.$$.fragment.c();
+    			t14 = space();
+    			div8 = element("div");
+    			t15 = space();
+    			div10 = element("div");
+    			div9 = element("div");
+    			div9.textContent = "Exposed";
+    			t17 = space();
+    			if_block2.c();
+    			t18 = space();
+    			div11 = element("div");
+    			span3 = element("span");
+    			checkbox1.$$.fragment.c();
+    			t19 = space();
+    			div16 = element("div");
+    			div15 = element("div");
+    			div12 = element("div");
+    			i0 = element("i");
+    			span4 = element("span");
+    			b1 = element("b");
+    			t20 = text(t20_value);
+    			t21 = text("k");
+    			t22 = text("\n                              (");
+    			t23 = text(t23_value);
+    			t24 = text(")");
+    			t25 = space();
+    			div13 = element("div");
+    			span5 = element("span");
+    			t26 = text(t26_value);
+    			t27 = text(" / day");
+    			t28 = space();
+    			div14 = element("div");
+    			arrow1.$$.fragment.c();
+    			t29 = space();
+    			div17 = element("div");
+    			t30 = space();
+    			div19 = element("div");
+    			div18 = element("div");
+    			div18.textContent = "Infectious";
+    			t32 = space();
+    			if (if_block3) if_block3.c();
+    			t33 = space();
+    			div20 = element("div");
+    			span6 = element("span");
+    			checkbox2.$$.fragment.c();
+    			t34 = space();
+    			div24 = element("div");
+    			div23 = element("div");
+    			div21 = element("div");
+    			span7 = element("span");
+    			b2 = element("b");
+    			t35 = text(t35_value);
+    			t36 = text("K");
+    			t37 = text("\n                              (");
+    			t38 = text(t38_value);
+    			t39 = text("%)");
+    			t40 = space();
+    			div22 = element("div");
+    			span8 = element("span");
+    			t41 = text(t41_value);
+    			t42 = text(" / day");
+    			t43 = space();
+    			div25 = element("div");
+    			t44 = space();
+    			div27 = element("div");
+    			div26 = element("div");
+    			div26.textContent = "Fatalities";
+    			t46 = space();
+    			div28 = element("div");
+    			span9 = element("span");
+    			checkbox3.$$.fragment.c();
+    			t47 = space();
+    			div32 = element("div");
+    			div31 = element("div");
+    			div29 = element("div");
+    			span10 = element("span");
+    			b3 = element("b");
+    			i1 = element("i");
+    			t48 = text(t48_value);
+    			t49 = text("K");
+    			t50 = text("\n                              (");
+    			t51 = text(t51_value);
+    			t52 = text("%)");
+    			t53 = space();
+    			div30 = element("div");
+    			span11 = element("span");
+    			t54 = text(t54_value);
+    			t55 = text(" / day");
+    			attr_dev(div0, "class", "legendtitle svelte-14hix3k");
+    			add_location(div0, file$4, 135, 4, 2668);
+    			attr_dev(div1, "class", "x11 svelte-14hix3k");
+    			set_style(div1, "grid-area", "x11");
+    			add_location(div1, file$4, 134, 2, 2622);
+    			add_location(span0, file$4, 143, 4, 2937);
+    			attr_dev(div2, "class", "x12 svelte-14hix3k");
+    			set_style(div2, "grid-area", "x12");
+    			add_location(div2, file$4, 142, 2, 2891);
+    			add_location(b0, file$4, 147, 60, 3172);
+    			attr_dev(span1, "class", "legendtitle svelte-14hix3k");
+    			add_location(span1, file$4, 147, 34, 3146);
+    			attr_dev(div3, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div3, file$4, 147, 6, 3118);
+    			attr_dev(span2, "class", "legendblue svelte-14hix3k");
+    			add_location(span2, file$4, 149, 34, 3342);
+    			attr_dev(div4, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div4, file$4, 149, 6, 3314);
+    			set_style(div5, "position", "absolute");
+    			set_style(div5, "top", "19px");
+    			add_location(div5, file$4, 150, 6, 3441);
+    			set_style(div6, "padding-top", "2px");
+    			set_style(div6, "padding-bottom", "1px");
+    			add_location(div6, file$4, 146, 4, 3060);
+    			attr_dev(div7, "class", "x13 svelte-14hix3k");
+    			set_style(div7, "position", "relative");
+    			set_style(div7, "grid-area", "x13");
+    			add_location(div7, file$4, 145, 2, 2995);
+    			attr_dev(div8, "class", "line svelte-14hix3k");
+    			set_style(div8, "grid-area", "line1");
+    			add_location(div8, file$4, 156, 2, 3550);
+    			attr_dev(div9, "class", "legendtitle svelte-14hix3k");
+    			add_location(div9, file$4, 159, 4, 3626);
+    			attr_dev(div10, "class", "x21 svelte-14hix3k");
+    			add_location(div10, file$4, 158, 2, 3604);
+    			add_location(span3, file$4, 167, 4, 3863);
+    			attr_dev(div11, "class", "x22 svelte-14hix3k");
+    			add_location(div11, file$4, 166, 2, 3841);
+    			add_location(b1, file$4, 171, 63, 4111);
+    			attr_dev(span4, "class", "legendtitle svelte-14hix3k");
+    			add_location(span4, file$4, 171, 37, 4085);
+    			add_location(i0, file$4, 171, 34, 4082);
+    			attr_dev(div12, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div12, file$4, 171, 6, 4054);
+    			attr_dev(span5, "class", "legendblue svelte-14hix3k");
+    			add_location(span5, file$4, 173, 34, 4276);
+    			attr_dev(div13, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div13, file$4, 173, 6, 4248);
+    			set_style(div14, "position", "absolute");
+    			set_style(div14, "top", "19px");
+    			add_location(div14, file$4, 175, 6, 4405);
+    			set_style(div15, "position", "relative");
+    			set_style(div15, "padding-top", "2px");
+    			set_style(div15, "padding-bottom", "1px");
+    			add_location(div15, file$4, 170, 4, 3976);
+    			attr_dev(div16, "class", "x23 svelte-14hix3k");
+    			add_location(div16, file$4, 169, 2, 3954);
+    			attr_dev(div17, "class", "line svelte-14hix3k");
+    			set_style(div17, "grid-area", "line2");
+    			add_location(div17, file$4, 181, 2, 4514);
+    			attr_dev(div18, "class", "legendtitle svelte-14hix3k");
+    			add_location(div18, file$4, 184, 4, 4590);
+    			attr_dev(div19, "class", "x31 svelte-14hix3k");
+    			add_location(div19, file$4, 183, 2, 4568);
+    			add_location(span6, file$4, 191, 4, 4769);
+    			attr_dev(div20, "class", "x32 svelte-14hix3k");
+    			add_location(div20, file$4, 190, 2, 4747);
+    			add_location(b2, file$4, 195, 60, 5014);
+    			attr_dev(span7, "class", "legendtitle svelte-14hix3k");
+    			add_location(span7, file$4, 195, 34, 4988);
+    			attr_dev(div21, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div21, file$4, 195, 6, 4960);
+    			attr_dev(span8, "class", "legendblue svelte-14hix3k");
+    			add_location(span8, file$4, 197, 34, 5182);
+    			attr_dev(div22, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div22, file$4, 197, 6, 5154);
+    			set_style(div23, "position", "relative");
+    			set_style(div23, "padding-top", "2px");
+    			set_style(div23, "padding-bottom", "1px");
+    			add_location(div23, file$4, 194, 4, 4882);
+    			attr_dev(div24, "class", "x33 svelte-14hix3k");
+    			add_location(div24, file$4, 193, 2, 4860);
+    			attr_dev(div25, "class", "line svelte-14hix3k");
+    			set_style(div25, "grid-area", "line3");
+    			add_location(div25, file$4, 202, 2, 5328);
+    			attr_dev(div26, "class", "legendtitle svelte-14hix3k");
+    			add_location(div26, file$4, 205, 4, 5404);
+    			attr_dev(div27, "class", "x31 svelte-14hix3k");
+    			add_location(div27, file$4, 204, 2, 5382);
+    			add_location(span9, file$4, 208, 4, 5479);
+    			attr_dev(div28, "class", "x32 svelte-14hix3k");
+    			add_location(div28, file$4, 207, 2, 5457);
+    			add_location(i1, file$4, 212, 63, 5707);
+    			add_location(b3, file$4, 212, 60, 5704);
+    			attr_dev(span10, "class", "legendtitle svelte-14hix3k");
+    			add_location(span10, file$4, 212, 34, 5678);
+    			attr_dev(div29, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div29, file$4, 212, 6, 5650);
+    			attr_dev(span11, "class", "legendblue svelte-14hix3k");
+    			add_location(span11, file$4, 214, 34, 5876);
+    			attr_dev(div30, "class", "legendtextnum svelte-14hix3k");
+    			add_location(div30, file$4, 214, 6, 5848);
+    			set_style(div31, "padding-top", "2px");
+    			set_style(div31, "padding-bottom", "1px");
+    			add_location(div31, file$4, 211, 4, 5592);
+    			attr_dev(div32, "class", "x33 svelte-14hix3k");
+    			add_location(div32, file$4, 210, 2, 5570);
+    			attr_dev(div33, "class", "grid-container svelte-14hix3k");
+    			set_style(div33, "width", "100%");
+    			add_location(div33, file$4, 132, 0, 2570);
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			if (if_block0) if_block0.m(target, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div33, anchor);
+    			append_dev(div33, div1);
+    			append_dev(div1, div0);
+    			append_dev(div1, t2);
+    			if_block1.m(div1, null);
+    			append_dev(div33, t3);
+    			append_dev(div33, div2);
+    			append_dev(div2, span0);
+    			mount_component(checkbox0, span0, null);
+    			append_dev(div33, t4);
+    			append_dev(div33, div7);
+    			append_dev(div7, div6);
+    			append_dev(div6, div3);
+    			append_dev(div3, span1);
+    			append_dev(span1, b0);
+    			append_dev(b0, t5);
+    			append_dev(b0, t6);
+    			append_dev(div3, t7);
+    			append_dev(div3, t8);
+    			append_dev(div3, t9);
+    			append_dev(div6, t10);
+    			append_dev(div6, div4);
+    			append_dev(div4, span2);
+    			append_dev(span2, t11);
+    			append_dev(div4, t12);
+    			append_dev(div6, t13);
+    			append_dev(div6, div5);
+    			mount_component(arrow0, div5, null);
+    			append_dev(div33, t14);
+    			append_dev(div33, div8);
+    			append_dev(div33, t15);
+    			append_dev(div33, div10);
+    			append_dev(div10, div9);
+    			append_dev(div10, t17);
+    			if_block2.m(div10, null);
+    			append_dev(div33, t18);
+    			append_dev(div33, div11);
+    			append_dev(div11, span3);
+    			mount_component(checkbox1, span3, null);
+    			append_dev(div33, t19);
+    			append_dev(div33, div16);
+    			append_dev(div16, div15);
+    			append_dev(div15, div12);
+    			append_dev(div12, i0);
+    			append_dev(i0, span4);
+    			append_dev(span4, b1);
+    			append_dev(b1, t20);
+    			append_dev(b1, t21);
+    			append_dev(i0, t22);
+    			append_dev(i0, t23);
+    			append_dev(i0, t24);
+    			append_dev(div15, t25);
+    			append_dev(div15, div13);
+    			append_dev(div13, span5);
+    			append_dev(span5, t26);
+    			append_dev(div13, t27);
+    			append_dev(div15, t28);
+    			append_dev(div15, div14);
+    			mount_component(arrow1, div14, null);
+    			append_dev(div33, t29);
+    			append_dev(div33, div17);
+    			append_dev(div33, t30);
+    			append_dev(div33, div19);
+    			append_dev(div19, div18);
+    			append_dev(div19, t32);
+    			if (if_block3) if_block3.m(div19, null);
+    			append_dev(div33, t33);
+    			append_dev(div33, div20);
+    			append_dev(div20, span6);
+    			mount_component(checkbox2, span6, null);
+    			append_dev(div33, t34);
+    			append_dev(div33, div24);
+    			append_dev(div24, div23);
+    			append_dev(div23, div21);
+    			append_dev(div21, span7);
+    			append_dev(span7, b2);
+    			append_dev(b2, t35);
+    			append_dev(b2, t36);
+    			append_dev(div21, t37);
+    			append_dev(div21, t38);
+    			append_dev(div21, t39);
+    			append_dev(div23, t40);
+    			append_dev(div23, div22);
+    			append_dev(div22, span8);
+    			append_dev(span8, t41);
+    			append_dev(div22, t42);
+    			append_dev(div33, t43);
+    			append_dev(div33, div25);
+    			append_dev(div33, t44);
+    			append_dev(div33, div27);
+    			append_dev(div27, div26);
+    			append_dev(div33, t46);
+    			append_dev(div33, div28);
+    			append_dev(div28, span9);
+    			mount_component(checkbox3, span9, null);
+    			append_dev(div33, t47);
+    			append_dev(div33, div32);
+    			append_dev(div32, div31);
+    			append_dev(div31, div29);
+    			append_dev(div29, span10);
+    			append_dev(span10, b3);
+    			append_dev(b3, i1);
+    			append_dev(i1, t48);
+    			append_dev(i1, t49);
+    			append_dev(div29, t50);
+    			append_dev(div29, t51);
+    			append_dev(div29, t52);
+    			append_dev(div31, t53);
+    			append_dev(div31, div30);
+    			append_dev(div30, span11);
+    			append_dev(span11, t54);
+    			append_dev(div30, t55);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (!ctx.mobile) {
+    				if (if_block0) {
+    					if_block0.p(changed, ctx);
+    				} else {
+    					if_block0 = create_if_block_3(ctx);
+    					if_block0.c();
+    					if_block0.m(t0.parentNode, t0);
+    				}
+    			} else if (if_block0) {
+    				if_block0.d(1);
+    				if_block0 = null;
+    			}
+
+    			if (current_block_type !== (current_block_type = select_block_type(changed, ctx))) {
+    				if_block1.d(1);
+    				if_block1 = current_block_type(ctx);
+    				if (if_block1) {
+    					if_block1.c();
+    					if_block1.m(div1, null);
+    				}
+    			}
+
+    			if ((!current || changed.N || changed.Iters || changed.active_) && t5_value !== (t5_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "")) {
+    				set_data_dev(t5, t5_value);
+    			}
+
+    			if ((!current || changed.Iters || changed.active_) && t8_value !== (t8_value = format(".3r")(100*ctx.Iters[ctx.active_][0]) + "")) {
+    				set_data_dev(t8, t8_value);
+    			}
+
+    			if ((!current || changed.N || changed.get_d || changed.active_) && t11_value !== (t11_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "")) {
+    				set_data_dev(t11, t11_value);
+    			}
+
+    			if (current_block_type_1 !== (current_block_type_1 = select_block_type_1(changed, ctx))) {
+    				if_block2.d(1);
+    				if_block2 = current_block_type_1(ctx);
+    				if (if_block2) {
+    					if_block2.c();
+    					if_block2.m(div10, null);
+    				}
+    			}
+
+    			var checkbox1_changes = {};
+    			if (changed.colors) checkbox1_changes.color = ctx.colors[4];
+    			if (!updating_checked && changed.checked) {
+    				checkbox1_changes.checked = ctx.checked[4];
+    			}
+    			checkbox1.$set(checkbox1_changes);
+
+    			if ((!current || changed.N || changed.Iters || changed.active_) && t20_value !== (t20_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "")) {
+    				set_data_dev(t20, t20_value);
+    			}
+
+    			if ((!current || changed.Iters || changed.active_) && t23_value !== (t23_value = format(".1%")(ctx.Iters[ctx.active_][1]) + "")) {
+    				set_data_dev(t23, t23_value);
+    			}
+
+    			if ((!current || changed.N || changed.get_d || changed.active_) && t26_value !== (t26_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "")) {
+    				set_data_dev(t26, t26_value);
+    			}
+
+    			if (!ctx.mobile) {
+    				if (!if_block3) {
+    					if_block3 = create_if_block$1(ctx);
+    					if_block3.c();
+    					if_block3.m(div19, null);
+    				}
+    			} else if (if_block3) {
+    				if_block3.d(1);
+    				if_block3 = null;
+    			}
+
+    			var checkbox2_changes = {};
+    			if (changed.colors) checkbox2_changes.color = ctx.colors[3];
+    			if (!updating_checked_1 && changed.checked) {
+    				checkbox2_changes.checked = ctx.checked[3];
+    			}
+    			checkbox2.$set(checkbox2_changes);
+
+    			if ((!current || changed.N || changed.Iters || changed.active_) && t35_value !== (t35_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "")) {
+    				set_data_dev(t35, t35_value);
+    			}
+
+    			if ((!current || changed.Iters || changed.active_) && t38_value !== (t38_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "")) {
+    				set_data_dev(t38, t38_value);
+    			}
+
+    			if ((!current || changed.N || changed.get_d || changed.active_) && t41_value !== (t41_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "")) {
+    				set_data_dev(t41, t41_value);
+    			}
+
+    			var checkbox3_changes = {};
+    			if (changed.colors) checkbox3_changes.color = ctx.colors[0];
+    			if (!updating_checked_2 && changed.checked) {
+    				checkbox3_changes.checked = ctx.checked[0];
+    			}
+    			checkbox3.$set(checkbox3_changes);
+
+    			if ((!current || changed.N || changed.Iters || changed.active_) && t48_value !== (t48_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "")) {
+    				set_data_dev(t48, t48_value);
+    			}
+
+    			if ((!current || changed.Iters || changed.active_) && t51_value !== (t51_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "")) {
+    				set_data_dev(t51, t51_value);
+    			}
+
+    			if ((!current || changed.N || changed.get_d || changed.active_) && t54_value !== (t54_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "")) {
+    				set_data_dev(t54, t54_value);
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(checkbox0.$$.fragment, local);
+
+    			transition_in(arrow0.$$.fragment, local);
+
+    			transition_in(checkbox1.$$.fragment, local);
+
+    			transition_in(arrow1.$$.fragment, local);
+
+    			transition_in(checkbox2.$$.fragment, local);
+
+    			transition_in(checkbox3.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(checkbox0.$$.fragment, local);
+    			transition_out(arrow0.$$.fragment, local);
+    			transition_out(checkbox1.$$.fragment, local);
+    			transition_out(arrow1.$$.fragment, local);
+    			transition_out(checkbox2.$$.fragment, local);
+    			transition_out(checkbox3.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (if_block0) if_block0.d(detaching);
+
+    			if (detaching) {
+    				detach_dev(t0);
+    				detach_dev(div33);
+    			}
+
+    			if_block1.d();
+
+    			destroy_component(checkbox0);
+
+    			destroy_component(arrow0);
+
+    			if_block2.d();
+
+    			destroy_component(checkbox1);
+
+    			destroy_component(arrow1);
+
+    			if (if_block3) if_block3.d();
+
+    			destroy_component(checkbox2);
+
+    			destroy_component(checkbox3);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$4.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function formatnumber(num) {
+      if (num < 0.1) {
+        return format(",")(0)
+      }
+      return format(",.2r")(num)
+    }
+
+    function formatNumber$1(num) {
+      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
+
+    function instance$4($$self, $$props, $$invalidate) {
+    	
+
+      let { Iters, N, colors, active_, checked, indexToTime, get_d, mobile = false } = $$props;
+
+    	const writable_props = ['Iters', 'N', 'colors', 'active_', 'checked', 'indexToTime', 'get_d', 'mobile'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<SEIRPanel> was created with unknown prop '${key}'`);
+    	});
+
+    	function checkbox1_checked_binding(value) {
+    		checked[4] = value;
+    		$$invalidate('checked', checked);
+    	}
+
+    	function checkbox2_checked_binding(value_1) {
+    		checked[3] = value_1;
+    		$$invalidate('checked', checked);
+    	}
+
+    	function checkbox3_checked_binding(value_2) {
+    		checked[0] = value_2;
+    		$$invalidate('checked', checked);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('Iters' in $$props) $$invalidate('Iters', Iters = $$props.Iters);
+    		if ('N' in $$props) $$invalidate('N', N = $$props.N);
+    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
+    		if ('active_' in $$props) $$invalidate('active_', active_ = $$props.active_);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('indexToTime' in $$props) $$invalidate('indexToTime', indexToTime = $$props.indexToTime);
+    		if ('get_d' in $$props) $$invalidate('get_d', get_d = $$props.get_d);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { Iters, N, colors, active_, checked, indexToTime, get_d, mobile };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('Iters' in $$props) $$invalidate('Iters', Iters = $$props.Iters);
+    		if ('N' in $$props) $$invalidate('N', N = $$props.N);
+    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
+    		if ('active_' in $$props) $$invalidate('active_', active_ = $$props.active_);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('indexToTime' in $$props) $$invalidate('indexToTime', indexToTime = $$props.indexToTime);
+    		if ('get_d' in $$props) $$invalidate('get_d', get_d = $$props.get_d);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    	};
+
+    	return {
+    		Iters,
+    		N,
+    		colors,
+    		active_,
+    		checked,
+    		indexToTime,
+    		get_d,
+    		mobile,
+    		checkbox1_checked_binding,
+    		checkbox2_checked_binding,
+    		checkbox3_checked_binding
+    	};
+    }
+
+    class SEIRPanel extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, ["Iters", "N", "colors", "active_", "checked", "indexToTime", "get_d", "mobile"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "SEIRPanel", options, id: create_fragment$4.name });
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.Iters === undefined && !('Iters' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'Iters'");
+    		}
+    		if (ctx.N === undefined && !('N' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'N'");
+    		}
+    		if (ctx.colors === undefined && !('colors' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'colors'");
+    		}
+    		if (ctx.active_ === undefined && !('active_' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'active_'");
+    		}
+    		if (ctx.checked === undefined && !('checked' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'checked'");
+    		}
+    		if (ctx.indexToTime === undefined && !('indexToTime' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'indexToTime'");
+    		}
+    		if (ctx.get_d === undefined && !('get_d' in props)) {
+    			console.warn("<SEIRPanel> was created without expected prop 'get_d'");
+    		}
+    	}
+
+    	get Iters() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set Iters(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get N() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set N(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get colors() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set colors(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get active_() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set active_(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checked() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checked(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get indexToTime() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set indexToTime(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get get_d() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set get_d(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get mobile() {
+    		throw new Error("<SEIRPanel>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set mobile(value) {
+    		throw new Error("<SEIRPanel>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/Selector.svelte generated by Svelte v3.12.1 */
+
+    const file$5 = "src/Selector.svelte";
+
+    // (39:0) {:else}
+    function create_else_block$2(ctx) {
+    	var div12, div0, b, t1, div3, div1, input0, t2, div2, label0, t4, div5, input1, t5, div4, label1, t7, div7, input2, t8, div6, label2, t10, div9, input3, t11, div8, label3, t13, div11, input4, t14, div10, label4, dispose;
+
+    	const block = {
+    		c: function create() {
+    			div12 = element("div");
+    			div0 = element("div");
+    			b = element("b");
+    			b.textContent = "PRESETS";
+    			t1 = space();
+    			div3 = element("div");
+    			div1 = element("div");
+    			input0 = element("input");
+    			t2 = space();
+    			div2 = element("div");
+    			label0 = element("label");
+    			label0.textContent = "COVID 19";
+    			t4 = space();
+    			div5 = element("div");
+    			input1 = element("input");
+    			t5 = space();
+    			div4 = element("div");
+    			label1 = element("label");
+    			label1.textContent = "H1N1 Influenza";
+    			t7 = space();
+    			div7 = element("div");
+    			input2 = element("input");
+    			t8 = space();
+    			div6 = element("div");
+    			label2 = element("label");
+    			label2.textContent = "Seasonal Flu";
+    			t10 = space();
+    			div9 = element("div");
+    			input3 = element("input");
+    			t11 = space();
+    			div8 = element("div");
+    			label3 = element("label");
+    			label3.textContent = "SARS";
+    			t13 = space();
+    			div11 = element("div");
+    			input4 = element("input");
+    			t14 = space();
+    			div10 = element("div");
+    			label4 = element("label");
+    			label4.textContent = "Ebola";
+    			add_location(b, file$5, 42, 118, 1634);
+    			set_style(div0, "color", "rgb(66,66,66)");
+    			set_style(div0, "margin", "3px 3px 6px 3px");
+    			set_style(div0, "border-bottom", "1px solid rgb(180,180,180)");
+    			set_style(div0, "width", "100%");
+    			add_location(div0, file$5, 42, 4, 1520);
+    			attr_dev(input0, "type", "radio");
+    			attr_dev(input0, "id", "covid");
+    			attr_dev(input0, "name", "age");
+    			input0.value = "0";
+    			input0.checked = true;
+    			add_location(input0, file$5, 45, 11, 1733);
+    			add_location(div1, file$5, 45, 6, 1728);
+    			attr_dev(label0, "for", "covid");
+    			add_location(label0, file$5, 46, 59, 1888);
+    			set_style(div2, "width", "80px");
+    			set_style(div2, "padding", "3.5px 4px 4px 4px");
+    			add_location(div2, file$5, 46, 6, 1835);
+    			set_style(div3, "width", "138px");
+    			set_style(div3, "text-align", ctx.align);
+    			set_style(div3, "display", "flex");
+    			add_location(div3, file$5, 44, 4, 1660);
+    			attr_dev(input1, "type", "radio");
+    			attr_dev(input1, "id", "h1n1");
+    			attr_dev(input1, "name", "age");
+    			input1.value = "1";
+    			add_location(input1, file$5, 50, 6, 2014);
+    			attr_dev(label1, "for", "h1n1");
+    			add_location(label1, file$5, 51, 59, 2154);
+    			set_style(div4, "width", "80px");
+    			set_style(div4, "padding", "3.5px 4px 4px 4px");
+    			add_location(div4, file$5, 51, 6, 2101);
+    			set_style(div5, "width", "138px");
+    			set_style(div5, "text-align", ctx.align);
+    			set_style(div5, "display", "flex");
+    			add_location(div5, file$5, 49, 4, 1946);
+    			attr_dev(input2, "type", "radio");
+    			attr_dev(input2, "id", "flu");
+    			attr_dev(input2, "name", "age");
+    			input2.value = "2";
+    			add_location(input2, file$5, 55, 6, 2285);
+    			attr_dev(label2, "for", "flu");
+    			add_location(label2, file$5, 56, 59, 2424);
+    			set_style(div6, "width", "80px");
+    			set_style(div6, "padding", "3.5px 4px 4px 4px");
+    			add_location(div6, file$5, 56, 6, 2371);
+    			set_style(div7, "width", "138px");
+    			set_style(div7, "text-align", ctx.align);
+    			set_style(div7, "display", "flex");
+    			add_location(div7, file$5, 54, 4, 2217);
+    			attr_dev(input3, "type", "radio");
+    			attr_dev(input3, "id", "sars");
+    			attr_dev(input3, "name", "age");
+    			input3.value = "3";
+    			add_location(input3, file$5, 60, 6, 2552);
+    			attr_dev(label3, "for", "sars");
+    			add_location(label3, file$5, 61, 59, 2692);
+    			set_style(div8, "width", "80px");
+    			set_style(div8, "padding", "3.5px 4px 4px 4px");
+    			add_location(div8, file$5, 61, 6, 2639);
+    			set_style(div9, "width", "138px");
+    			set_style(div9, "text-align", ctx.align);
+    			set_style(div9, "display", "flex");
+    			add_location(div9, file$5, 59, 4, 2484);
+    			attr_dev(input4, "type", "radio");
+    			attr_dev(input4, "id", "ebola");
+    			attr_dev(input4, "name", "age");
+    			input4.value = "4";
+    			add_location(input4, file$5, 65, 6, 2814);
+    			attr_dev(label4, "for", "ebola");
+    			add_location(label4, file$5, 66, 59, 2955);
+    			set_style(div10, "width", "80px");
+    			set_style(div10, "padding", "3.5px 4px 4px 4px");
+    			add_location(div10, file$5, 66, 6, 2902);
+    			set_style(div11, "width", "138px");
+    			set_style(div11, "text-align", ctx.align);
+    			set_style(div11, "display", "flex");
+    			add_location(div11, file$5, 64, 4, 2746);
+    			set_style(div12, "margin", "2px");
+    			set_style(div12, "padding", "5px");
+    			set_style(div12, "border-radius", "3px");
+    			set_style(div12, "background-color", "rgb(235,235,235)");
+    			set_style(div12, "display", "flex");
+    			set_style(div12, "flex-wrap", "wrap");
+    			set_style(div12, "text-transform", "uppercase");
+    			set_style(div12, "height", "200px");
+    			add_location(div12, file$5, 40, 2, 1343);
+
+    			dispose = [
+    				listen_dev(input0, "change", ctx.presetParameters),
+    				listen_dev(input1, "change", ctx.presetParameters),
+    				listen_dev(input2, "change", ctx.presetParameters),
+    				listen_dev(input3, "change", ctx.presetParameters),
+    				listen_dev(input4, "change", ctx.presetParameters)
+    			];
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div12, anchor);
+    			append_dev(div12, div0);
+    			append_dev(div0, b);
+    			append_dev(div12, t1);
+    			append_dev(div12, div3);
+    			append_dev(div3, div1);
+    			append_dev(div1, input0);
+    			append_dev(div3, t2);
+    			append_dev(div3, div2);
+    			append_dev(div2, label0);
+    			append_dev(div12, t4);
+    			append_dev(div12, div5);
+    			append_dev(div5, input1);
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
+    			append_dev(div4, label1);
+    			append_dev(div12, t7);
+    			append_dev(div12, div7);
+    			append_dev(div7, input2);
+    			append_dev(div7, t8);
+    			append_dev(div7, div6);
+    			append_dev(div6, label2);
+    			append_dev(div12, t10);
+    			append_dev(div12, div9);
+    			append_dev(div9, input3);
+    			append_dev(div9, t11);
+    			append_dev(div9, div8);
+    			append_dev(div8, label3);
+    			append_dev(div12, t13);
+    			append_dev(div12, div11);
+    			append_dev(div11, input4);
+    			append_dev(div11, t14);
+    			append_dev(div11, div10);
+    			append_dev(div10, label4);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.align) {
+    				set_style(div3, "text-align", ctx.align);
+    				set_style(div5, "text-align", ctx.align);
+    				set_style(div7, "text-align", ctx.align);
+    				set_style(div9, "text-align", ctx.align);
+    				set_style(div11, "text-align", ctx.align);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div12);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$2.name, type: "else", source: "(39:0) {:else}", ctx });
+    	return block;
+    }
+
+    // (9:0) {#if !mobile}
+    function create_if_block$2(ctx) {
+    	var div0, b, t1, div6, div1, input0, t2, label0, t4, div2, input1, t5, label1, t7, div3, input2, t8, label2, t10, div4, input3, t11, label3, t13, div5, input4, t14, label4, dispose;
+
+    	const block = {
+    		c: function create() {
+    			div0 = element("div");
+    			b = element("b");
+    			b.textContent = "PRESETS";
+    			t1 = space();
+    			div6 = element("div");
+    			div1 = element("div");
+    			input0 = element("input");
+    			t2 = space();
+    			label0 = element("label");
+    			label0.textContent = "COVID 19";
+    			t4 = space();
+    			div2 = element("div");
+    			input1 = element("input");
+    			t5 = space();
+    			label1 = element("label");
+    			label1.textContent = "H1N1 Influenza";
+    			t7 = space();
+    			div3 = element("div");
+    			input2 = element("input");
+    			t8 = space();
+    			label2 = element("label");
+    			label2.textContent = "Seasonal Flu";
+    			t10 = space();
+    			div4 = element("div");
+    			input3 = element("input");
+    			t11 = space();
+    			label3 = element("label");
+    			label3.textContent = "SARS";
+    			t13 = space();
+    			div5 = element("div");
+    			input4 = element("input");
+    			t14 = space();
+    			label4 = element("label");
+    			label4.textContent = "Ebola";
+    			add_location(b, file$5, 9, 48, 167);
+    			set_style(div0, "color", "rgb(66,66,66)");
+    			set_style(div0, "margin", "3px");
+    			add_location(div0, file$5, 9, 2, 121);
+    			attr_dev(input0, "type", "radio");
+    			attr_dev(input0, "id", "covid");
+    			attr_dev(input0, "name", "age");
+    			input0.value = "0";
+    			input0.checked = true;
+    			add_location(input0, file$5, 13, 6, 404);
+    			attr_dev(label0, "for", "covid");
+    			add_location(label0, file$5, 14, 6, 500);
+    			set_style(div1, "width", "138px");
+    			set_style(div1, "text-align", ctx.align);
+    			add_location(div1, file$5, 12, 4, 351);
+    			attr_dev(input1, "type", "radio");
+    			attr_dev(input1, "id", "h1n1");
+    			attr_dev(input1, "name", "age");
+    			input1.value = "1";
+    			add_location(input1, file$5, 18, 6, 605);
+    			attr_dev(label1, "for", "h1n1");
+    			add_location(label1, file$5, 19, 6, 692);
+    			set_style(div2, "width", "138px");
+    			set_style(div2, "text-align", ctx.align);
+    			add_location(div2, file$5, 17, 4, 552);
+    			attr_dev(input2, "type", "radio");
+    			attr_dev(input2, "id", "flu");
+    			attr_dev(input2, "name", "age");
+    			input2.value = "2";
+    			add_location(input2, file$5, 23, 6, 802);
+    			attr_dev(label2, "for", "flu");
+    			add_location(label2, file$5, 24, 6, 888);
+    			set_style(div3, "width", "138px");
+    			set_style(div3, "text-align", ctx.align);
+    			add_location(div3, file$5, 22, 4, 749);
+    			attr_dev(input3, "type", "radio");
+    			attr_dev(input3, "id", "sars");
+    			attr_dev(input3, "name", "age");
+    			input3.value = "3";
+    			add_location(input3, file$5, 28, 6, 995);
+    			attr_dev(label3, "for", "sars");
+    			add_location(label3, file$5, 29, 6, 1082);
+    			set_style(div4, "width", "138px");
+    			set_style(div4, "text-align", ctx.align);
+    			add_location(div4, file$5, 27, 4, 942);
+    			attr_dev(input4, "type", "radio");
+    			attr_dev(input4, "id", "ebola");
+    			attr_dev(input4, "name", "age");
+    			input4.value = "4";
+    			add_location(input4, file$5, 33, 6, 1182);
+    			attr_dev(label4, "for", "ebola");
+    			add_location(label4, file$5, 34, 6, 1270);
+    			set_style(div5, "width", "138px");
+    			set_style(div5, "text-align", ctx.align);
+    			add_location(div5, file$5, 32, 4, 1129);
+    			set_style(div6, "margin", "2px");
+    			set_style(div6, "padding", "5px");
+    			set_style(div6, "border-radius", "3px");
+    			set_style(div6, "background-color", "rgb(240,240,240)");
+    			set_style(div6, "display", "flex");
+    			set_style(div6, "flex-wrap", "wrap");
+    			set_style(div6, "text-transform", "uppercase");
+    			add_location(div6, file$5, 10, 2, 190);
+
+    			dispose = [
+    				listen_dev(input0, "change", ctx.presetParameters),
+    				listen_dev(input1, "change", ctx.presetParameters),
+    				listen_dev(input2, "change", ctx.presetParameters),
+    				listen_dev(input3, "change", ctx.presetParameters),
+    				listen_dev(input4, "change", ctx.presetParameters)
+    			];
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div0, anchor);
+    			append_dev(div0, b);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div6, anchor);
+    			append_dev(div6, div1);
+    			append_dev(div1, input0);
+    			append_dev(div1, t2);
+    			append_dev(div1, label0);
+    			append_dev(div6, t4);
+    			append_dev(div6, div2);
+    			append_dev(div2, input1);
+    			append_dev(div2, t5);
+    			append_dev(div2, label1);
+    			append_dev(div6, t7);
+    			append_dev(div6, div3);
+    			append_dev(div3, input2);
+    			append_dev(div3, t8);
+    			append_dev(div3, label2);
+    			append_dev(div6, t10);
+    			append_dev(div6, div4);
+    			append_dev(div4, input3);
+    			append_dev(div4, t11);
+    			append_dev(div4, label3);
+    			append_dev(div6, t13);
+    			append_dev(div6, div5);
+    			append_dev(div5, input4);
+    			append_dev(div5, t14);
+    			append_dev(div5, label4);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.align) {
+    				set_style(div1, "text-align", ctx.align);
+    				set_style(div2, "text-align", ctx.align);
+    				set_style(div3, "text-align", ctx.align);
+    				set_style(div4, "text-align", ctx.align);
+    				set_style(div5, "text-align", ctx.align);
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div0);
+    				detach_dev(t1);
+    				detach_dev(div6);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$2.name, type: "if", source: "(9:0) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    function create_fragment$5(ctx) {
+    	var if_block_anchor;
+
+    	function select_block_type(changed, ctx) {
+    		if (!ctx.mobile) return create_if_block$2;
+    		return create_else_block$2;
+    	}
+
+    	var current_block_type = select_block_type(null, ctx);
+    	var if_block = current_block_type(ctx);
+
+    	const block = {
+    		c: function create() {
+    			if_block.c();
+    			if_block_anchor = empty();
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (current_block_type === (current_block_type = select_block_type(changed, ctx)) && if_block) {
+    				if_block.p(changed, ctx);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
+    			}
+    		},
+
+    		i: noop,
+    		o: noop,
+
+    		d: function destroy(detaching) {
+    			if_block.d(detaching);
+
+    			if (detaching) {
+    				detach_dev(if_block_anchor);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$5.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function instance$5($$self, $$props, $$invalidate) {
+    	let { presetParameters, align = "center", mobile = false } = $$props;
+
+    	const writable_props = ['presetParameters', 'align', 'mobile'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Selector> was created with unknown prop '${key}'`);
+    	});
+
+    	$$self.$set = $$props => {
+    		if ('presetParameters' in $$props) $$invalidate('presetParameters', presetParameters = $$props.presetParameters);
+    		if ('align' in $$props) $$invalidate('align', align = $$props.align);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { presetParameters, align, mobile };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('presetParameters' in $$props) $$invalidate('presetParameters', presetParameters = $$props.presetParameters);
+    		if ('align' in $$props) $$invalidate('align', align = $$props.align);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    	};
+
+    	return { presetParameters, align, mobile };
+    }
+
+    class Selector extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, ["presetParameters", "align", "mobile"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Selector", options, id: create_fragment$5.name });
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.presetParameters === undefined && !('presetParameters' in props)) {
+    			console.warn("<Selector> was created without expected prop 'presetParameters'");
+    		}
+    	}
+
+    	get presetParameters() {
+    		throw new Error("<Selector>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set presetParameters(value) {
+    		throw new Error("<Selector>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get align() {
+    		throw new Error("<Selector>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set align(value) {
+    		throw new Error("<Selector>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get mobile() {
+    		throw new Error("<Selector>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set mobile(value) {
+    		throw new Error("<Selector>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
@@ -4702,324 +7020,6 @@
     var queryString_3 = queryString.stringify;
     var queryString_4 = queryString.parseUrl;
     var queryString_5 = queryString.stringifyUrl;
-
-    /* src/Checkbox.svelte generated by Svelte v3.12.1 */
-
-    const file$1 = "src/Checkbox.svelte";
-
-    function create_fragment$1(ctx) {
-    	var div1, div0, dispose;
-
-    	const block = {
-    		c: function create() {
-    			div1 = element("div");
-    			div0 = element("div");
-    			set_style(div0, "cursor", "default");
-    			set_style(div0, "font-size", "12px");
-    			set_style(div0, "left", "2px");
-    			set_style(div0, "top", "-1px");
-    			set_style(div0, "position", "absolute");
-    			set_style(div0, "color", "white");
-    			add_location(div0, file$1, 17, 6, 549);
-    			set_style(div1, "position", "relative");
-    			set_style(div1, "width", "17px");
-    			set_style(div1, "height", "17px");
-    			set_style(div1, "background-color", (ctx.checked ? ctx.color:'white'));
-    			set_style(div1, "border-radius", "3px");
-    			set_style(div1, "opacity", "0.8");
-    			set_style(div1, "border", "2px solid " + (ctx.checked ? 'rgba(255,255,255,0)':ctx.color));
-    			set_style(div1, "box-shadow", "inset 1px 1px 3px rgba(0, 0, 0, 0.1)");
-    			set_style(div1, "user-select", "none");
-    			add_location(div1, file$1, 6, 0, 101);
-    			dispose = listen_dev(div1, "click", ctx.click_handler);
-    		},
-
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert_dev(target, div1, anchor);
-    			append_dev(div1, div0);
-    		},
-
-    		p: function update(changed, ctx) {
-    			if (changed.checked || changed.color) {
-    				set_style(div1, "background-color", (ctx.checked ? ctx.color:'white'));
-    				set_style(div1, "border", "2px solid " + (ctx.checked ? 'rgba(255,255,255,0)':ctx.color));
-    			}
-    		},
-
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach_dev(div1);
-    			}
-
-    			dispose();
-    		}
-    	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$1.name, type: "component", source: "", ctx });
-    	return block;
-    }
-
-    function instance$1($$self, $$props, $$invalidate) {
-    	let { color, checked = false, callback = () => {} } = $$props;
-
-    	const writable_props = ['color', 'checked', 'callback'];
-    	Object.keys($$props).forEach(key => {
-    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Checkbox> was created with unknown prop '${key}'`);
-    	});
-
-    	const click_handler = () => {$$invalidate('checked', checked = !checked); callback(checked);};
-
-    	$$self.$set = $$props => {
-    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
-    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
-    		if ('callback' in $$props) $$invalidate('callback', callback = $$props.callback);
-    	};
-
-    	$$self.$capture_state = () => {
-    		return { color, checked, callback };
-    	};
-
-    	$$self.$inject_state = $$props => {
-    		if ('color' in $$props) $$invalidate('color', color = $$props.color);
-    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
-    		if ('callback' in $$props) $$invalidate('callback', callback = $$props.callback);
-    	};
-
-    	return { color, checked, callback, click_handler };
-    }
-
-    class Checkbox extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, instance$1, create_fragment$1, safe_not_equal, ["color", "checked", "callback"]);
-    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Checkbox", options, id: create_fragment$1.name });
-
-    		const { ctx } = this.$$;
-    		const props = options.props || {};
-    		if (ctx.color === undefined && !('color' in props)) {
-    			console.warn("<Checkbox> was created without expected prop 'color'");
-    		}
-    	}
-
-    	get color() {
-    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set color(value) {
-    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get checked() {
-    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set checked(value) {
-    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get callback() {
-    		throw new Error("<Checkbox>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set callback(value) {
-    		throw new Error("<Checkbox>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
-
-    /* src/Arrow.svelte generated by Svelte v3.12.1 */
-
-    const file$2 = "src/Arrow.svelte";
-
-    function create_fragment$2(ctx) {
-    	var svg0, defs0, marker0, path, defs1, marker1, circle, t, div, svg1, line, line_y__value, line_marker_end_value;
-
-    	const block = {
-    		c: function create() {
-    			svg0 = svg_element("svg");
-    			defs0 = svg_element("defs");
-    			marker0 = svg_element("marker");
-    			path = svg_element("path");
-    			defs1 = svg_element("defs");
-    			marker1 = svg_element("marker");
-    			circle = svg_element("circle");
-    			t = space();
-    			div = element("div");
-    			svg1 = svg_element("svg");
-    			line = svg_element("line");
-    			attr_dev(path, "d", "M2,2 L10,6 L2,10 L6,6 L2,2");
-    			set_style(path, "fill", "rgb(71, 129, 255)");
-    			add_location(path, file$2, 17, 6, 327);
-    			attr_dev(marker0, "id", "arrow");
-    			attr_dev(marker0, "markerUnits", "strokeWidth");
-    			attr_dev(marker0, "markerWidth", "10");
-    			attr_dev(marker0, "markerHeight", "10");
-    			attr_dev(marker0, "viewBox", "0 0 12 12");
-    			attr_dev(marker0, "refX", "6");
-    			attr_dev(marker0, "refY", "6");
-    			attr_dev(marker0, "orient", "auto");
-    			add_location(marker0, file$2, 8, 4, 140);
-    			add_location(defs0, file$2, 7, 2, 129);
-    			attr_dev(circle, "r", "3");
-    			attr_dev(circle, "cx", "3");
-    			attr_dev(circle, "cy", "6");
-    			set_style(circle, "fill", "rgb(71, 129, 255)");
-    			add_location(circle, file$2, 31, 6, 631);
-    			attr_dev(marker1, "id", "circle");
-    			attr_dev(marker1, "markerUnits", "strokeWidth");
-    			attr_dev(marker1, "markerWidth", "10");
-    			attr_dev(marker1, "markerHeight", "10");
-    			attr_dev(marker1, "viewBox", "0 0 12 12");
-    			attr_dev(marker1, "refX", "6");
-    			attr_dev(marker1, "refY", "6");
-    			attr_dev(marker1, "orient", "auto");
-    			add_location(marker1, file$2, 22, 4, 443);
-    			add_location(defs1, file$2, 21, 2, 432);
-    			attr_dev(svg0, "width", "0");
-    			attr_dev(svg0, "height", "0");
-    			add_location(svg0, file$2, 6, 0, 100);
-    			attr_dev(line, "x1", "8");
-    			attr_dev(line, "y1", "0");
-    			attr_dev(line, "x2", "8");
-    			attr_dev(line, "y2", line_y__value = ctx.height-5);
-    			attr_dev(line, "stroke", "rgb(71, 129, 255)");
-    			attr_dev(line, "stroke-width", "1.25");
-    			attr_dev(line, "marker-end", line_marker_end_value = "url(" + ctx.arrowhead + ")");
-    			attr_dev(line, "stroke-dasharray", ctx.dasharray);
-    			add_location(line, file$2, 39, 2, 899);
-    			add_location(svg1, file$2, 38, 0, 891);
-    			set_style(div, "left", "-1px");
-    			set_style(div, "top", "4px");
-    			set_style(div, "width", "15px");
-    			set_style(div, "height", "" + ctx.height + "px");
-    			set_style(div, "background-color", "white");
-    			set_style(div, "border-radius", "5px");
-    			set_style(div, "top", "25px");
-    			set_style(div, "opacity", "1.0");
-    			set_style(div, "pointer-events", "None");
-    			add_location(div, file$2, 37, 0, 733);
-    		},
-
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-
-    		m: function mount(target, anchor) {
-    			insert_dev(target, svg0, anchor);
-    			append_dev(svg0, defs0);
-    			append_dev(defs0, marker0);
-    			append_dev(marker0, path);
-    			append_dev(svg0, defs1);
-    			append_dev(defs1, marker1);
-    			append_dev(marker1, circle);
-    			insert_dev(target, t, anchor);
-    			insert_dev(target, div, anchor);
-    			append_dev(div, svg1);
-    			append_dev(svg1, line);
-    		},
-
-    		p: function update(changed, ctx) {
-    			if ((changed.height) && line_y__value !== (line_y__value = ctx.height-5)) {
-    				attr_dev(line, "y2", line_y__value);
-    			}
-
-    			if ((changed.arrowhead) && line_marker_end_value !== (line_marker_end_value = "url(" + ctx.arrowhead + ")")) {
-    				attr_dev(line, "marker-end", line_marker_end_value);
-    			}
-
-    			if (changed.dasharray) {
-    				attr_dev(line, "stroke-dasharray", ctx.dasharray);
-    			}
-
-    			if (changed.height) {
-    				set_style(div, "height", "" + ctx.height + "px");
-    			}
-    		},
-
-    		i: noop,
-    		o: noop,
-
-    		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach_dev(svg0);
-    				detach_dev(t);
-    				detach_dev(div);
-    			}
-    		}
-    	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$2.name, type: "component", source: "", ctx });
-    	return block;
-    }
-
-    function instance$2($$self, $$props, $$invalidate) {
-    	let { height, arrowhead = "#arrow", dasharray = "3 2" } = $$props;
-
-    	const writable_props = ['height', 'arrowhead', 'dasharray'];
-    	Object.keys($$props).forEach(key => {
-    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<Arrow> was created with unknown prop '${key}'`);
-    	});
-
-    	$$self.$set = $$props => {
-    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
-    		if ('arrowhead' in $$props) $$invalidate('arrowhead', arrowhead = $$props.arrowhead);
-    		if ('dasharray' in $$props) $$invalidate('dasharray', dasharray = $$props.dasharray);
-    	};
-
-    	$$self.$capture_state = () => {
-    		return { height, arrowhead, dasharray };
-    	};
-
-    	$$self.$inject_state = $$props => {
-    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
-    		if ('arrowhead' in $$props) $$invalidate('arrowhead', arrowhead = $$props.arrowhead);
-    		if ('dasharray' in $$props) $$invalidate('dasharray', dasharray = $$props.dasharray);
-    	};
-
-    	return { height, arrowhead, dasharray };
-    }
-
-    class Arrow extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, instance$2, create_fragment$2, safe_not_equal, ["height", "arrowhead", "dasharray"]);
-    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "Arrow", options, id: create_fragment$2.name });
-
-    		const { ctx } = this.$$;
-    		const props = options.props || {};
-    		if (ctx.height === undefined && !('height' in props)) {
-    			console.warn("<Arrow> was created without expected prop 'height'");
-    		}
-    	}
-
-    	get height() {
-    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set height(value) {
-    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get arrowhead() {
-    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set arrowhead(value) {
-    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	get dasharray() {
-    		throw new Error("<Arrow>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-
-    	set dasharray(value) {
-    		throw new Error("<Arrow>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
-    	}
-    }
 
     var katex = createCommonjsModule(function (module, exports) {
     (function webpackUniversalModuleDefinition(root, factory) {
@@ -22437,74 +24437,407 @@
     });
     });
 
-    var katex$1 = unwrapExports(katex);
+    unwrapExports(katex);
 
-    /* src/App.svelte generated by Svelte v3.12.1 */
+    /* src/SEIR.svelte generated by Svelte v3.12.1 */
 
-    const file$3 = "src/App.svelte";
+    const file$6 = "src/SEIR.svelte";
 
-    function create_fragment$3(ctx) {
-    	var link, t0, div99, div38, div0, t1, t2_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "", t2, t3, div37, div3, div1, t5, div2, t7, div4, span0, t8, div9, div8, div5, span1, b0, t9_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "", t9, t10, t11, t12_value = (100*ctx.Iters[ctx.active_][0]).toFixed(1) + "", t12, t13, t14, div6, span2, t15_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t15, t16, t17, div7, t18, div10, t19, div13, div11, t21, div12, t23, div14, span3, updating_checked, t24, div19, div18, div15, i0, span4, b1, t25_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "", t25, t26, t27, t28_value = (100*ctx.Iters[ctx.active_][1]).toFixed(2) + "", t28, t29, t30, div16, span5, t31_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t31, t32, t33, div17, t34, div20, t35, div23, div21, t37, div22, t39, div24, span6, updating_checked_1, t40, div28, div27, div25, span7, b2, t41_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "", t41, t42, t43, t44_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t44, t45, t46, div26, span8, t47_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t47, t48, t49, div29, t50, div31, div30, t52, div32, span9, updating_checked_2, t53, div36, div35, div33, span10, b3, i1, t54_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "", t54, t55, t56, t57_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t57, t58, t59, div34, span11, t60_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t60, t61, t62, div73, div39, t64, div58, div45, div40, b4, t66, t67, div44, div41, input0, t68, div43, div42, t69, t70, div51, div46, b5, t72, div50, div47, input1, t73, div49, div48, t74_value = (ctx.D_incbation).toFixed(2) + "", t74, t75, t76, div57, div52, b6, t78, div56, div53, input2, t79, div55, div54, t80, t81, t82, div59, t84, div72, div65, div60, b7, t86, div64, div61, input3, t87, div63, div62, t88_value = (ctx.CFR*100).toFixed(2) + "", t88, t89, t90, div71, div66, b8, t92, div70, div67, input4, input4_min_value, t93, div69, div68, t94, t95, t96, div74, t97, div98, div75, updating_checked_3, updating_active, t98, div76, t99, div77, t100, div80, div79, div78, t101, div89, div88, div87, div86, div81, t103, div85, div82, t104, span12, t105_value = format("d")(ctx.InterventionTime) + "", t105, t106, div83, t107, t108_value = ctx.OMInterventionAmt.toFixed(2) + "", t108, t109, br, t110, div84, input5, t111, div97, div90, b9, t113, div96, div91, label0, t115, input6, t116, div92, label1, t118, input7, t119, div93, label2, t121, input8, t122, div94, label3, t124, input9, t125, div95, label4, t127, input10, current, dispose;
+    // (411:2) {:else}
+    function create_else_block$3(ctx) {
+    	var div2, div1, div0, div1_style_value, t0, div8, div7, div6, div5, div3, t2, div4, t3, t4_value = format("d")(ctx.InterventionTime) + "", t4;
 
-    	var checkbox0 = new Checkbox({
-    		props: { color: "#CCC" },
-    		$$inline: true
-    	});
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = space();
+    			div8 = element("div");
+    			div7 = element("div");
+    			div6 = element("div");
+    			div5 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "← Drag →";
+    			t2 = space();
+    			div4 = element("div");
+    			t3 = text("Day ");
+    			t4 = text(t4_value);
+    			attr_dev(div0, "style", "width:150px; \n                  position:relative; \n                  /*background-color: black;*/\n                  top:-65px; \n                  left: -80px; \n                  height: 60px; \n                  padding-right: 15px; \n                  cursor:col-resize; \n                  position:absolute;");
+    			add_location(div0, file$6, 425, 6, 12813);
+    			attr_dev(div1, "id", "dottedline");
+    			attr_dev(div1, "style", div1_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px");
+    			add_location(div1, file$6, 414, 6, 12327);
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			set_style(div2, "height", "" + ctx.height + "px");
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "top", "80px");
+    			set_style(div2, "left", "25px");
+    			set_style(div2, "pointer-events", "none");
+    			add_location(div2, file$6, 413, 4, 12184);
+    			attr_dev(div3, "class", "paneldesc svelte-1bm8542");
+    			set_style(div3, "position", "absolute");
+    			set_style(div3, "font-size", "10px");
+    			set_style(div3, "text-align", "center");
+    			set_style(div3, "width", "100px");
+    			set_style(div3, "left", "-14px");
+    			set_style(div3, "top", "-15px");
+    			add_location(div3, file$6, 462, 14, 14482);
+    			set_style(div4, "text-align", "center");
+    			set_style(div4, "padding", "0px");
+    			set_style(div4, "margin", "0px");
+    			set_style(div4, "color", "white");
+    			set_style(div4, "font-weight", "bold");
+    			set_style(div4, "top", "-3px");
+    			set_style(div4, "position", "relative");
+    			add_location(div4, file$6, 463, 14, 14641);
+    			attr_dev(div5, "class", "caption draggymobile svelte-1bm8542");
+    			set_style(div5, "pointer-events", "none");
+    			set_style(div5, "width", "60px");
+    			set_style(div5, "position", "absolute");
+    			set_style(div5, "left", "0");
+    			set_style(div5, "top", "0px");
+    			set_style(div5, "height", "10px");
+    			set_style(div5, "padding", "5px 7px 7px 7px");
+    			set_style(div5, "background-color", "rgb(71, 129, 255)");
+    			set_style(div5, "border", "1px solid rgb(200,200,200)");
+    			set_style(div5, "border-radius", "20px");
+    			add_location(div5, file$6, 452, 12, 13853);
+    			set_style(div6, "position", "relative");
+    			set_style(div6, "top", "-35px");
+    			set_style(div6, "left", "" + (-102+63) + "px");
+    			add_location(div6, file$6, 451, 10, 13777);
+    			set_style(div7, "position", "absolute");
+    			set_style(div7, "top", "30px");
+    			set_style(div7, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div7, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div7, "width", "2px");
+    			set_style(div7, "background-color", "rgb(255, 255, 255, 0.5)");
+    			set_style(div7, "border-right", "1px dashed rgb(0,0,0, 0.5)");
+    			set_style(div7, "cursor", "col-resize");
+    			set_style(div7, "height", "" + (ctx.height-54) + "px");
+    			add_location(div7, file$6, 441, 6, 13365);
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "width", "" + (ctx.width+15) + "px");
+    			set_style(div8, "height", "" + (ctx.height + 30) + "px");
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "top", "20px");
+    			set_style(div8, "left", "25px");
+    			set_style(div8, "pointer-events", "none");
+    			add_location(div8, file$6, 440, 4, 13218);
+    		},
 
-    	var arrow0 = new Arrow({ props: { height: "36" }, $$inline: true });
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div8, anchor);
+    			append_dev(div8, div7);
+    			append_dev(div7, div6);
+    			append_dev(div6, div5);
+    			append_dev(div5, div3);
+    			append_dev(div5, t2);
+    			append_dev(div5, div4);
+    			append_dev(div4, t3);
+    			append_dev(div4, t4);
+    		},
 
-    	function checkbox1_checked_binding(value) {
-    		ctx.checkbox1_checked_binding.call(null, value);
+    		p: function update(changed, ctx) {
+    			if ((changed.xScaleTime || changed.InterventionTime || changed.width || changed.height) && div1_style_value !== (div1_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px")) {
+    				attr_dev(div1, "style", div1_style_value);
+    			}
+
+    			if (changed.width) {
+    				set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			}
+
+    			if (changed.height) {
+    				set_style(div2, "height", "" + ctx.height + "px");
+    			}
+
+    			if ((changed.InterventionTime) && t4_value !== (t4_value = format("d")(ctx.InterventionTime) + "")) {
+    				set_data_dev(t4, t4_value);
+    			}
+
+    			if (changed.xScaleTime || changed.InterventionTime) {
+    				set_style(div7, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			}
+
+    			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
+    				set_style(div7, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			}
+
+    			if (changed.height) {
+    				set_style(div7, "height", "" + (ctx.height-54) + "px");
+    			}
+
+    			if (changed.width) {
+    				set_style(div8, "width", "" + (ctx.width+15) + "px");
+    			}
+
+    			if (changed.height) {
+    				set_style(div8, "height", "" + (ctx.height + 30) + "px");
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div2);
+    				detach_dev(t0);
+    				detach_dev(div8);
+    			}
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$3.name, type: "else", source: "(411:2) {:else}", ctx });
+    	return block;
+    }
+
+    // (348:2) {#if !mobile}
+    function create_if_block$3(ctx) {
+    	var div2, div1, div0, t0, div11, div10, div9, div8, div3, t2, div7, div4, t3, span, t4_value = format("d")(ctx.InterventionTime) + "", t4, t5, div5, t6, br0, t7, t8_value = 100*ctx.OMInterventionAmt.toFixed(2) + "", t8, t9, br1, t10, div6, input, dispose;
+
+    	const block = {
+    		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
+    			div0 = element("div");
+    			t0 = space();
+    			div11 = element("div");
+    			div10 = element("div");
+    			div9 = element("div");
+    			div8 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "← Drag →";
+    			t2 = space();
+    			div7 = element("div");
+    			div4 = element("div");
+    			t3 = text("Day of intervention: ");
+    			span = element("span");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			div5 = element("div");
+    			t6 = text("Intervention decreases transmission by ");
+    			br0 = element("br");
+    			t7 = space();
+    			t8 = text(t8_value);
+    			t9 = text("%");
+    			br1 = element("br");
+    			t10 = space();
+    			div6 = element("div");
+    			input = element("input");
+    			set_style(div0, "width", "150px");
+    			set_style(div0, "position", "relative");
+    			set_style(div0, "top", "-65px");
+    			set_style(div0, "left", "-80px");
+    			set_style(div0, "height", "140px");
+    			set_style(div0, "padding-right", "15px");
+    			set_style(div0, "cursor", "col-resize");
+    			set_style(div0, "position", "absolute");
+    			add_location(div0, file$6, 361, 6, 9550);
+    			attr_dev(div1, "id", "dottedline");
+    			set_style(div1, "pointer-events", "all");
+    			set_style(div1, "position", "absolute");
+    			set_style(div1, "top", "-40px");
+    			set_style(div1, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div1, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div1, "width", "2px");
+    			set_style(div1, "pointer-events", "all");
+    			set_style(div1, "cursor", "col-resize");
+    			set_style(div1, "height", "" + (ctx.height+19) + "px");
+    			add_location(div1, file$6, 351, 6, 9112);
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			set_style(div2, "height", "" + ctx.height + "px");
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "top", "100px");
+    			set_style(div2, "left", "25px");
+    			set_style(div2, "pointer-events", "none");
+    			add_location(div2, file$6, 350, 4, 8969);
+    			attr_dev(div3, "class", "paneldesc svelte-1bm8542");
+    			set_style(div3, "position", "absolute");
+    			set_style(div3, "text-align", "center");
+    			set_style(div3, "width", "100px");
+    			set_style(div3, "left", "47px");
+    			set_style(div3, "top", "-20px");
+    			add_location(div3, file$6, 398, 14, 11233);
+    			set_style(span, "color", "red");
+    			add_location(span, file$6, 400, 157, 11592);
+    			attr_dev(div4, "class", "paneltitle svelte-1bm8542");
+    			set_style(div4, "margin-top", "5px");
+    			set_style(div4, "padding-bottom", "5px");
+    			set_style(div4, "margin-bottom", "5px");
+    			set_style(div4, "border-bottom", "2px dotted grey");
+    			add_location(div4, file$6, 400, 16, 11451);
+    			add_location(br0, file$6, 401, 124, 11801);
+    			add_location(br1, file$6, 401, 164, 11841);
+    			attr_dev(div5, "class", "paneldesc svelte-1bm8542");
+    			set_style(div5, "text-align", "center");
+    			set_style(div5, "margin-bottom", "3px");
+    			add_location(div5, file$6, 401, 16, 11693);
+    			attr_dev(input, "class", "range svelte-1bm8542");
+    			attr_dev(input, "type", "range");
+    			attr_dev(input, "min", "0");
+    			attr_dev(input, "max", "1");
+    			attr_dev(input, "step", "0.01");
+    			add_location(input, file$6, 403, 18, 11920);
+    			set_style(div6, "pointer-events", "all");
+    			add_location(div6, file$6, 402, 16, 11868);
+    			attr_dev(div7, "class", "paneltext draggy2 svelte-1bm8542");
+    			set_style(div7, "text-align", "center");
+    			add_location(div7, file$6, 399, 14, 11374);
+    			attr_dev(div8, "class", "caption draggy svelte-1bm8542");
+    			set_style(div8, "pointer-events", "none");
+    			set_style(div8, "width", "180px");
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "left", "0");
+    			set_style(div8, "top", "90px");
+    			set_style(div8, "height", "105px");
+    			set_style(div8, "padding", "5px 7px 7px 7px");
+    			set_style(div8, "box-shadow", "0px 0px 5px rgb(0,0,0,0.1)");
+    			set_style(div8, "background-color", "white");
+    			set_style(div8, "border", "1px solid rgb(200,200,200)");
+    			set_style(div8, "border-radius", "3px");
+    			add_location(div8, file$6, 387, 12, 10540);
+    			set_style(div9, "position", "relative");
+    			set_style(div9, "top", "-225px");
+    			set_style(div9, "left", "-102px");
+    			add_location(div9, file$6, 386, 10, 10468);
+    			set_style(div10, "position", "absolute");
+    			set_style(div10, "top", "0px");
+    			set_style(div10, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div10, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div10, "width", "2px");
+    			set_style(div10, "background-color", "rgb(255, 255, 255, 0.5)");
+    			set_style(div10, "border-right", "1px dashed rgb(0,0,0, 0.5)");
+    			set_style(div10, "cursor", "col-resize");
+    			set_style(div10, "height", "" + (ctx.height-59) + "px");
+    			add_location(div10, file$6, 376, 6, 10057);
+    			set_style(div11, "position", "absolute");
+    			set_style(div11, "width", "" + (ctx.width+15) + "px");
+    			set_style(div11, "height", "" + (ctx.height + 30) + "px");
+    			set_style(div11, "position", "absolute");
+    			set_style(div11, "top", "150px");
+    			set_style(div11, "left", "25px");
+    			set_style(div11, "pointer-events", "none");
+    			add_location(div11, file$6, 375, 4, 9909);
+
+    			dispose = [
+    				listen_dev(input, "change", ctx.input_change_input_handler),
+    				listen_dev(input, "input", ctx.input_change_input_handler),
+    				listen_dev(input, "mousedown", ctx.lock_yaxis)
+    			];
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div11, anchor);
+    			append_dev(div11, div10);
+    			append_dev(div10, div9);
+    			append_dev(div9, div8);
+    			append_dev(div8, div3);
+    			append_dev(div8, t2);
+    			append_dev(div8, div7);
+    			append_dev(div7, div4);
+    			append_dev(div4, t3);
+    			append_dev(div4, span);
+    			append_dev(span, t4);
+    			append_dev(div7, t5);
+    			append_dev(div7, div5);
+    			append_dev(div5, t6);
+    			append_dev(div5, br0);
+    			append_dev(div5, t7);
+    			append_dev(div5, t8);
+    			append_dev(div5, t9);
+    			append_dev(div5, br1);
+    			append_dev(div7, t10);
+    			append_dev(div7, div6);
+    			append_dev(div6, input);
+
+    			set_input_value(input, ctx.OMInterventionAmt);
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.xScaleTime || changed.InterventionTime) {
+    				set_style(div1, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			}
+
+    			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
+    				set_style(div1, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			}
+
+    			if (changed.height) {
+    				set_style(div1, "height", "" + (ctx.height+19) + "px");
+    			}
+
+    			if (changed.width) {
+    				set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			}
+
+    			if (changed.height) {
+    				set_style(div2, "height", "" + ctx.height + "px");
+    			}
+
+    			if ((changed.InterventionTime) && t4_value !== (t4_value = format("d")(ctx.InterventionTime) + "")) {
+    				set_data_dev(t4, t4_value);
+    			}
+
+    			if ((changed.OMInterventionAmt) && t8_value !== (t8_value = 100*ctx.OMInterventionAmt.toFixed(2) + "")) {
+    				set_data_dev(t8, t8_value);
+    			}
+
+    			if (changed.OMInterventionAmt) set_input_value(input, ctx.OMInterventionAmt);
+
+    			if (changed.xScaleTime || changed.InterventionTime) {
+    				set_style(div10, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			}
+
+    			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
+    				set_style(div10, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			}
+
+    			if (changed.height) {
+    				set_style(div10, "height", "" + (ctx.height-59) + "px");
+    			}
+
+    			if (changed.width) {
+    				set_style(div11, "width", "" + (ctx.width+15) + "px");
+    			}
+
+    			if (changed.height) {
+    				set_style(div11, "height", "" + (ctx.height + 30) + "px");
+    			}
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div2);
+    				detach_dev(t0);
+    				detach_dev(div11);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$3.name, type: "if", source: "(348:2) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    function create_fragment$6(ctx) {
+    	var div, updating_checked, updating_active, t, if_block_anchor, current;
+
+    	function chart_checked_binding(value) {
+    		ctx.chart_checked_binding.call(null, value);
     		updating_checked = true;
     		add_flush_callback(() => updating_checked = false);
     	}
 
-    	let checkbox1_props = { color: ctx.colors[4] };
-    	if (ctx.checked[4] !== void 0) {
-    		checkbox1_props.checked = ctx.checked[4];
-    	}
-    	var checkbox1 = new Checkbox({ props: checkbox1_props, $$inline: true });
-
-    	binding_callbacks.push(() => bind(checkbox1, 'checked', checkbox1_checked_binding));
-
-    	var arrow1 = new Arrow({ props: { height: "36" }, $$inline: true });
-
-    	function checkbox2_checked_binding(value_1) {
-    		ctx.checkbox2_checked_binding.call(null, value_1);
-    		updating_checked_1 = true;
-    		add_flush_callback(() => updating_checked_1 = false);
-    	}
-
-    	let checkbox2_props = { color: ctx.colors[3] };
-    	if (ctx.checked[3] !== void 0) {
-    		checkbox2_props.checked = ctx.checked[3];
-    	}
-    	var checkbox2 = new Checkbox({ props: checkbox2_props, $$inline: true });
-
-    	binding_callbacks.push(() => bind(checkbox2, 'checked', checkbox2_checked_binding));
-
-    	function checkbox3_checked_binding(value_2) {
-    		ctx.checkbox3_checked_binding.call(null, value_2);
-    		updating_checked_2 = true;
-    		add_flush_callback(() => updating_checked_2 = false);
-    	}
-
-    	let checkbox3_props = { color: ctx.colors[0] };
-    	if (ctx.checked[0] !== void 0) {
-    		checkbox3_props.checked = ctx.checked[0];
-    	}
-    	var checkbox3 = new Checkbox({ props: checkbox3_props, $$inline: true });
-
-    	binding_callbacks.push(() => bind(checkbox3, 'checked', checkbox3_checked_binding));
-
-    	function chart_checked_binding(value_3) {
-    		ctx.chart_checked_binding.call(null, value_3);
-    		updating_checked_3 = true;
-    		add_flush_callback(() => updating_checked_3 = false);
-    	}
-
-    	function chart_active_binding(value_4) {
-    		ctx.chart_active_binding.call(null, value_4);
+    	function chart_active_binding(value_1) {
+    		ctx.chart_active_binding.call(null, value_1);
     		updating_active = true;
     		add_flush_callback(() => updating_active = false);
     	}
@@ -22522,8 +24855,10 @@
     		InterventionTime: ctx.InterventionTime,
     		colors: ctx.colors,
     		log: !ctx.log,
-    		width: width,
-    		height: height-30
+    		width: ctx.width,
+    		space: ctx.mobile ? 0.5 : 1.5,
+    		displayday: ctx.mobile ? false : true,
+    		height: ctx.height-30
     	};
     	if (ctx.checked !== void 0) {
     		chart_props.checked = ctx.checked;
@@ -22536,754 +24871,26 @@
     	binding_callbacks.push(() => bind(chart, 'checked', chart_checked_binding));
     	binding_callbacks.push(() => bind(chart, 'active', chart_active_binding));
 
+    	function select_block_type(changed, ctx) {
+    		if (!ctx.mobile) return create_if_block$3;
+    		return create_else_block$3;
+    	}
+
+    	var current_block_type = select_block_type(null, ctx);
+    	var if_block = current_block_type(ctx);
+
     	const block = {
     		c: function create() {
-    			link = element("link");
-    			t0 = space();
-    			div99 = element("div");
-    			div38 = element("div");
-    			div0 = element("div");
-    			t1 = text("DAY ");
-    			t2 = text(t2_value);
-    			t3 = space();
-    			div37 = element("div");
-    			div3 = element("div");
-    			div1 = element("div");
-    			div1.textContent = "Susceptible";
-    			t5 = space();
-    			div2 = element("div");
-    			div2.textContent = "Population not immune to the virus";
-    			t7 = space();
-    			div4 = element("div");
-    			span0 = element("span");
-    			checkbox0.$$.fragment.c();
-    			t8 = space();
-    			div9 = element("div");
-    			div8 = element("div");
-    			div5 = element("div");
-    			span1 = element("span");
-    			b0 = element("b");
-    			t9 = text(t9_value);
-    			t10 = text("k");
-    			t11 = text("\n                                  (");
-    			t12 = text(t12_value);
-    			t13 = text("%)");
-    			t14 = space();
-    			div6 = element("div");
-    			span2 = element("span");
-    			t15 = text(t15_value);
-    			t16 = text(" / day");
-    			t17 = space();
-    			div7 = element("div");
-    			arrow0.$$.fragment.c();
-    			t18 = space();
-    			div10 = element("div");
-    			t19 = space();
-    			div13 = element("div");
-    			div11 = element("div");
-    			div11.textContent = "Exposed";
-    			t21 = space();
-    			div12 = element("div");
-    			div12.textContent = "Number of people incubating the virus";
-    			t23 = space();
-    			div14 = element("div");
-    			span3 = element("span");
-    			checkbox1.$$.fragment.c();
-    			t24 = space();
-    			div19 = element("div");
-    			div18 = element("div");
-    			div15 = element("div");
-    			i0 = element("i");
-    			span4 = element("span");
-    			b1 = element("b");
-    			t25 = text(t25_value);
-    			t26 = text("k");
-    			t27 = text("\n                                  (");
-    			t28 = text(t28_value);
-    			t29 = text("%)");
-    			t30 = space();
-    			div16 = element("div");
-    			span5 = element("span");
-    			t31 = text(t31_value);
-    			t32 = text(" / day");
-    			t33 = space();
-    			div17 = element("div");
-    			arrow1.$$.fragment.c();
-    			t34 = space();
-    			div20 = element("div");
-    			t35 = space();
-    			div23 = element("div");
-    			div21 = element("div");
-    			div21.textContent = "Infectious";
-    			t37 = space();
-    			div22 = element("div");
-    			div22.textContent = "Population that can transmit the virus";
-    			t39 = space();
-    			div24 = element("div");
-    			span6 = element("span");
-    			checkbox2.$$.fragment.c();
-    			t40 = space();
-    			div28 = element("div");
-    			div27 = element("div");
-    			div25 = element("div");
-    			span7 = element("span");
-    			b2 = element("b");
-    			t41 = text(t41_value);
-    			t42 = text("K");
-    			t43 = text("\n                                  (");
-    			t44 = text(t44_value);
-    			t45 = text("%)");
-    			t46 = space();
-    			div26 = element("div");
-    			span8 = element("span");
-    			t47 = text(t47_value);
-    			t48 = text(" / day");
-    			t49 = space();
-    			div29 = element("div");
-    			t50 = space();
-    			div31 = element("div");
-    			div30 = element("div");
-    			div30.textContent = "Fatalities";
-    			t52 = space();
-    			div32 = element("div");
-    			span9 = element("span");
-    			checkbox3.$$.fragment.c();
-    			t53 = space();
-    			div36 = element("div");
-    			div35 = element("div");
-    			div33 = element("div");
-    			span10 = element("span");
-    			b3 = element("b");
-    			i1 = element("i");
-    			t54 = text(t54_value);
-    			t55 = text("K");
-    			t56 = text("\n                                  (");
-    			t57 = text(t57_value);
-    			t58 = text("%)");
-    			t59 = space();
-    			div34 = element("div");
-    			span11 = element("span");
-    			t60 = text(t60_value);
-    			t61 = text(" / day");
-    			t62 = space();
-    			div73 = element("div");
-    			div39 = element("div");
-    			div39.textContent = "Transmission Variables";
-    			t64 = space();
-    			div58 = element("div");
-    			div45 = element("div");
-    			div40 = element("div");
-    			b4 = element("b");
-    			b4.textContent = "Basic reproduction";
-    			t66 = text(" - number of people infected given by a given infectious individual");
-    			t67 = space();
-    			div44 = element("div");
-    			div41 = element("div");
-    			input0 = element("input");
-    			t68 = space();
-    			div43 = element("div");
-    			div42 = element("div");
-    			t69 = text(ctx.R0);
-    			t70 = space();
-    			div51 = element("div");
-    			div46 = element("div");
-    			b5 = element("b");
-    			b5.textContent = "Incubation Period";
-    			t72 = space();
-    			div50 = element("div");
-    			div47 = element("div");
-    			input1 = element("input");
-    			t73 = space();
-    			div49 = element("div");
-    			div48 = element("div");
-    			t74 = text(t74_value);
-    			t75 = text(" days");
-    			t76 = space();
-    			div57 = element("div");
-    			div52 = element("div");
-    			b6 = element("b");
-    			b6.textContent = "How long a patient is infectious";
-    			t78 = space();
-    			div56 = element("div");
-    			div53 = element("div");
-    			input2 = element("input");
-    			t79 = space();
-    			div55 = element("div");
-    			div54 = element("div");
-    			t80 = text(ctx.D_infectious);
-    			t81 = text(" Days");
-    			t82 = space();
-    			div59 = element("div");
-    			div59.textContent = "Clinical Variables";
-    			t84 = space();
-    			div72 = element("div");
-    			div65 = element("div");
-    			div60 = element("div");
-    			b7 = element("b");
-    			b7.textContent = "Fatality Rate";
-    			t86 = space();
-    			div64 = element("div");
-    			div61 = element("div");
-    			input3 = element("input");
-    			t87 = space();
-    			div63 = element("div");
-    			div62 = element("div");
-    			t88 = text(t88_value);
-    			t89 = text(" %");
-    			t90 = space();
-    			div71 = element("div");
-    			div66 = element("div");
-    			b8 = element("b");
-    			b8.textContent = "Time from incubation to death";
-    			t92 = space();
-    			div70 = element("div");
-    			div67 = element("div");
-    			input4 = element("input");
-    			t93 = space();
-    			div69 = element("div");
-    			div68 = element("div");
-    			t94 = text(ctx.Time_to_death);
-    			t95 = text(" Days");
-    			t96 = space();
-    			div74 = element("div");
-    			t97 = space();
-    			div98 = element("div");
-    			div75 = element("div");
+    			div = element("div");
     			chart.$$.fragment.c();
-    			t98 = space();
-    			div76 = element("div");
-    			t99 = space();
-    			div77 = element("div");
-    			t100 = space();
-    			div80 = element("div");
-    			div79 = element("div");
-    			div78 = element("div");
-    			t101 = space();
-    			div89 = element("div");
-    			div88 = element("div");
-    			div87 = element("div");
-    			div86 = element("div");
-    			div81 = element("div");
-    			div81.textContent = "← Drag Me →";
-    			t103 = space();
-    			div85 = element("div");
-    			div82 = element("div");
-    			t104 = text("Intervention day: ");
-    			span12 = element("span");
-    			t105 = text(t105_value);
-    			t106 = space();
-    			div83 = element("div");
-    			t107 = text("Intervention effectiveness to decrease transmission by ");
-    			t108 = text(t108_value);
-    			t109 = text("%");
-    			br = element("br");
-    			t110 = space();
-    			div84 = element("div");
-    			input5 = element("input");
-    			t111 = space();
-    			div97 = element("div");
-    			div90 = element("div");
-    			b9 = element("b");
-    			b9.textContent = "PRESETS";
-    			t113 = space();
-    			div96 = element("div");
-    			div91 = element("div");
-    			label0 = element("label");
-    			label0.textContent = "COVID 19";
-    			t115 = space();
-    			input6 = element("input");
-    			t116 = space();
-    			div92 = element("div");
-    			label1 = element("label");
-    			label1.textContent = "H1N1 Influenza";
-    			t118 = space();
-    			input7 = element("input");
-    			t119 = space();
-    			div93 = element("div");
-    			label2 = element("label");
-    			label2.textContent = "Seasonal Flu";
-    			t121 = space();
-    			input8 = element("input");
-    			t122 = space();
-    			div94 = element("div");
-    			label3 = element("label");
-    			label3.textContent = "SARS";
-    			t124 = space();
-    			input9 = element("input");
-    			t125 = space();
-    			div95 = element("div");
-    			label4 = element("label");
-    			label4.textContent = "Ebola";
-    			t127 = space();
-    			input10 = element("input");
-    			attr_dev(link, "rel", "stylesheet");
-    			attr_dev(link, "href", "https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.css");
-    			attr_dev(link, "integrity", "sha384-bsHo4/LA+lkZv61JspMDQB9QP1TtO4IgOf2yYS+J6VdAYLVyx1c3XKcsHh0Vy8Ws");
-    			attr_dev(link, "crossorigin", "anonymous");
-    			add_location(link, file$3, 421, 0, 13820);
-    			attr_dev(div0, "class", "title svelte-1pjja45");
-    			set_style(div0, "margin", "auto");
-    			set_style(div0, "width", "100%");
-    			set_style(div0, "margin-right", "20px");
-    			set_style(div0, "border-radius", "20px");
-    			set_style(div0, "padding", "4px");
-    			set_style(div0, "padding-top", "7px");
-    			set_style(div0, "line-height", "14px");
-    			set_style(div0, "font-weight", "bold");
-    			set_style(div0, "text-align", "center");
-    			set_style(div0, "background-color", "rgb(82, 132, 247)");
-    			set_style(div0, "margin-bottom", "20px");
-    			add_location(div0, file$3, 676, 4, 19075);
-    			attr_dev(div1, "class", "legendtitle svelte-1pjja45");
-    			add_location(div1, file$3, 681, 8, 19470);
-    			attr_dev(div2, "class", "legendtext svelte-1pjja45");
-    			add_location(div2, file$3, 682, 8, 19521);
-    			attr_dev(div3, "class", "x11 svelte-1pjja45");
-    			set_style(div3, "grid-area", "x11");
-    			add_location(div3, file$3, 680, 6, 19420);
-    			add_location(span0, file$3, 685, 8, 19655);
-    			attr_dev(div4, "class", "x12 svelte-1pjja45");
-    			set_style(div4, "grid-area", "x12");
-    			add_location(div4, file$3, 684, 6, 19605);
-    			add_location(b0, file$3, 689, 64, 19906);
-    			attr_dev(span1, "class", "legendtitle svelte-1pjja45");
-    			add_location(span1, file$3, 689, 38, 19880);
-    			attr_dev(div5, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div5, file$3, 689, 10, 19852);
-    			attr_dev(span2, "class", "legendblue svelte-1pjja45");
-    			add_location(span2, file$3, 691, 38, 20082);
-    			attr_dev(div6, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div6, file$3, 691, 10, 20054);
-    			set_style(div7, "position", "absolute");
-    			set_style(div7, "top", "19px");
-    			add_location(div7, file$3, 692, 10, 20185);
-    			set_style(div8, "padding-top", "2px");
-    			set_style(div8, "padding-bottom", "1px");
-    			add_location(div8, file$3, 688, 8, 19790);
-    			attr_dev(div9, "class", "x13 svelte-1pjja45");
-    			set_style(div9, "position", "relative");
-    			set_style(div9, "grid-area", "x13");
-    			add_location(div9, file$3, 687, 6, 19721);
-    			attr_dev(div10, "class", "line svelte-1pjja45");
-    			set_style(div10, "grid-area", "line1");
-    			add_location(div10, file$3, 698, 6, 20314);
-    			attr_dev(div11, "class", "legendtitle svelte-1pjja45");
-    			add_location(div11, file$3, 701, 8, 20398);
-    			attr_dev(div12, "class", "legendtext svelte-1pjja45");
-    			add_location(div12, file$3, 702, 8, 20445);
-    			attr_dev(div13, "class", "x21 svelte-1pjja45");
-    			add_location(div13, file$3, 700, 6, 20372);
-    			add_location(span3, file$3, 705, 8, 20558);
-    			attr_dev(div14, "class", "x22 svelte-1pjja45");
-    			add_location(div14, file$3, 704, 6, 20532);
-    			add_location(b1, file$3, 709, 67, 20822);
-    			attr_dev(span4, "class", "legendtitle svelte-1pjja45");
-    			add_location(span4, file$3, 709, 41, 20796);
-    			add_location(i0, file$3, 709, 38, 20793);
-    			attr_dev(div15, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div15, file$3, 709, 10, 20765);
-    			attr_dev(span5, "class", "legendblue svelte-1pjja45");
-    			add_location(span5, file$3, 711, 38, 20998);
-    			attr_dev(div16, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div16, file$3, 711, 10, 20970);
-    			set_style(div17, "position", "absolute");
-    			set_style(div17, "top", "19px");
-    			add_location(div17, file$3, 713, 10, 21135);
-    			set_style(div18, "position", "relative");
-    			set_style(div18, "padding-top", "2px");
-    			set_style(div18, "padding-bottom", "1px");
-    			add_location(div18, file$3, 708, 8, 20683);
-    			attr_dev(div19, "class", "x23 svelte-1pjja45");
-    			add_location(div19, file$3, 707, 6, 20657);
-    			attr_dev(div20, "class", "line svelte-1pjja45");
-    			set_style(div20, "grid-area", "line2");
-    			add_location(div20, file$3, 719, 6, 21264);
-    			attr_dev(div21, "class", "legendtitle svelte-1pjja45");
-    			add_location(div21, file$3, 722, 8, 21348);
-    			attr_dev(div22, "class", "legendtext svelte-1pjja45");
-    			add_location(div22, file$3, 723, 8, 21398);
-    			attr_dev(div23, "class", "x31 svelte-1pjja45");
-    			add_location(div23, file$3, 721, 6, 21322);
-    			add_location(span6, file$3, 726, 8, 21512);
-    			attr_dev(div24, "class", "x32 svelte-1pjja45");
-    			add_location(div24, file$3, 725, 6, 21486);
-    			add_location(b2, file$3, 730, 64, 21773);
-    			attr_dev(span7, "class", "legendtitle svelte-1pjja45");
-    			add_location(span7, file$3, 730, 38, 21747);
-    			attr_dev(div25, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div25, file$3, 730, 10, 21719);
-    			attr_dev(span8, "class", "legendblue svelte-1pjja45");
-    			add_location(span8, file$3, 732, 38, 21949);
-    			attr_dev(div26, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div26, file$3, 732, 10, 21921);
-    			set_style(div27, "position", "relative");
-    			set_style(div27, "padding-top", "2px");
-    			set_style(div27, "padding-bottom", "1px");
-    			add_location(div27, file$3, 729, 8, 21637);
-    			attr_dev(div28, "class", "x33 svelte-1pjja45");
-    			add_location(div28, file$3, 728, 6, 21611);
-    			attr_dev(div29, "class", "line svelte-1pjja45");
-    			set_style(div29, "grid-area", "line3");
-    			add_location(div29, file$3, 737, 6, 22111);
-    			attr_dev(div30, "class", "legendtitle svelte-1pjja45");
-    			add_location(div30, file$3, 740, 8, 22195);
-    			attr_dev(div31, "class", "x31 svelte-1pjja45");
-    			add_location(div31, file$3, 739, 6, 22169);
-    			add_location(span9, file$3, 743, 8, 22282);
-    			attr_dev(div32, "class", "x32 svelte-1pjja45");
-    			add_location(div32, file$3, 742, 6, 22256);
-    			add_location(i1, file$3, 747, 67, 22526);
-    			add_location(b3, file$3, 747, 64, 22523);
-    			attr_dev(span10, "class", "legendtitle svelte-1pjja45");
-    			add_location(span10, file$3, 747, 38, 22497);
-    			attr_dev(div33, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div33, file$3, 747, 10, 22469);
-    			attr_dev(span11, "class", "legendblue svelte-1pjja45");
-    			add_location(span11, file$3, 749, 38, 22703);
-    			attr_dev(div34, "class", "legendtextnum svelte-1pjja45");
-    			add_location(div34, file$3, 749, 10, 22675);
-    			set_style(div35, "padding-top", "2px");
-    			set_style(div35, "padding-bottom", "1px");
-    			add_location(div35, file$3, 746, 8, 22407);
-    			attr_dev(div36, "class", "x33 svelte-1pjja45");
-    			add_location(div36, file$3, 745, 6, 22381);
-    			attr_dev(div37, "class", "grid-container svelte-1pjja45");
-    			set_style(div37, "width", "100%");
-    			add_location(div37, file$3, 678, 4, 19364);
-    			set_style(div38, "margin-right", "5px");
-    			set_style(div38, "grid-area", "left-top");
-    			add_location(div38, file$3, 674, 2, 19016);
-    			attr_dev(div39, "class", "bluetitle svelte-1pjja45");
-    			add_location(div39, file$3, 759, 4, 22944);
-    			add_location(b4, file$3, 764, 32, 23073);
-    			attr_dev(div40, "class", "legendtext svelte-1pjja45");
-    			add_location(div40, file$3, 764, 8, 23049);
-    			attr_dev(input0, "class", "range svelte-1pjja45");
-    			attr_dev(input0, "type", "range");
-    			attr_dev(input0, "min", "0.01");
-    			attr_dev(input0, "max", "10");
-    			attr_dev(input0, "step", "0.01");
-    			add_location(input0, file$3, 768, 12, 23281);
-    			set_style(div41, "width", "58%");
-    			add_location(div41, file$3, 767, 10, 23244);
-    			attr_dev(div42, "class", "adjustableslidertext svelte-1pjja45");
-    			add_location(div42, file$3, 771, 12, 23421);
-    			set_style(div43, "width", "42%");
-    			add_location(div43, file$3, 770, 10, 23384);
-    			set_style(div44, "display", "flex");
-    			set_style(div44, "justify-content", "center");
-    			add_location(div44, file$3, 766, 8, 23181);
-    			add_location(div45, file$3, 763, 6, 23035);
-    			add_location(b5, file$3, 781, 32, 23586);
-    			attr_dev(div46, "class", "legendtext svelte-1pjja45");
-    			add_location(div46, file$3, 781, 8, 23562);
-    			attr_dev(input1, "class", "range svelte-1pjja45");
-    			set_style(input1, "margin-bottom", "8px");
-    			attr_dev(input1, "type", "range");
-    			attr_dev(input1, "min", 0.15);
-    			attr_dev(input1, "max", "24");
-    			attr_dev(input1, "step", "0.0001");
-    			add_location(input1, file$3, 785, 12, 23726);
-    			set_style(div47, "width", "58%");
-    			add_location(div47, file$3, 784, 10, 23689);
-    			attr_dev(div48, "class", "adjustableslidertext svelte-1pjja45");
-    			add_location(div48, file$3, 788, 12, 23904);
-    			set_style(div49, "width", "42%");
-    			add_location(div49, file$3, 787, 10, 23867);
-    			set_style(div50, "display", "flex");
-    			set_style(div50, "justify-content", "center");
-    			add_location(div50, file$3, 783, 8, 23626);
-    			add_location(div51, file$3, 780, 6, 23548);
-    			add_location(b6, file$3, 797, 32, 24095);
-    			attr_dev(div52, "class", "legendtext svelte-1pjja45");
-    			add_location(div52, file$3, 797, 8, 24071);
-    			attr_dev(input2, "class", "range svelte-1pjja45");
-    			attr_dev(input2, "type", "range");
-    			attr_dev(input2, "min", 0);
-    			attr_dev(input2, "max", "24");
-    			attr_dev(input2, "step", "0.01");
-    			add_location(input2, file$3, 801, 12, 24250);
-    			set_style(div53, "width", "58%");
-    			add_location(div53, file$3, 800, 10, 24213);
-    			attr_dev(div54, "class", "adjustableslidertext svelte-1pjja45");
-    			add_location(div54, file$3, 804, 12, 24398);
-    			set_style(div55, "width", "42%");
-    			add_location(div55, file$3, 803, 10, 24361);
-    			set_style(div56, "display", "flex");
-    			set_style(div56, "justify-content", "center");
-    			add_location(div56, file$3, 799, 8, 24150);
-    			add_location(div57, file$3, 796, 6, 24057);
-    			set_style(div58, "width", "100%");
-    			add_location(div58, file$3, 761, 4, 23002);
-    			attr_dev(div59, "class", "bluetitle svelte-1pjja45");
-    			add_location(div59, file$3, 814, 4, 24549);
-    			add_location(b7, file$3, 819, 32, 24674);
-    			attr_dev(div60, "class", "legendtext svelte-1pjja45");
-    			add_location(div60, file$3, 819, 8, 24650);
-    			attr_dev(input3, "class", "range svelte-1pjja45");
-    			set_style(input3, "margin-bottom", "8px");
-    			attr_dev(input3, "type", "range");
-    			attr_dev(input3, "min", 0);
-    			attr_dev(input3, "max", "1");
-    			attr_dev(input3, "step", "0.0001");
-    			add_location(input3, file$3, 823, 12, 24810);
-    			set_style(div61, "width", "58%");
-    			add_location(div61, file$3, 822, 10, 24773);
-    			attr_dev(div62, "class", "adjustableslidertext svelte-1pjja45");
-    			add_location(div62, file$3, 826, 12, 24977);
-    			set_style(div63, "width", "42%");
-    			add_location(div63, file$3, 825, 10, 24940);
-    			set_style(div64, "display", "flex");
-    			set_style(div64, "justify-content", "center");
-    			add_location(div64, file$3, 821, 8, 24710);
-    			add_location(div65, file$3, 818, 6, 24636);
-    			add_location(b8, file$3, 835, 32, 25161);
-    			attr_dev(div66, "class", "legendtext svelte-1pjja45");
-    			add_location(div66, file$3, 835, 8, 25137);
-    			attr_dev(input4, "class", "range svelte-1pjja45");
-    			attr_dev(input4, "type", "range");
-    			attr_dev(input4, "min", input4_min_value = (ctx.D_infectious)+0.1);
-    			attr_dev(input4, "max", "100");
-    			attr_dev(input4, "step", "0.01");
-    			add_location(input4, file$3, 839, 12, 25313);
-    			set_style(div67, "width", "58%");
-    			add_location(div67, file$3, 838, 10, 25276);
-    			attr_dev(div68, "class", "adjustableslidertext svelte-1pjja45");
-    			add_location(div68, file$3, 842, 12, 25480);
-    			set_style(div69, "width", "42%");
-    			add_location(div69, file$3, 841, 10, 25443);
-    			set_style(div70, "display", "flex");
-    			set_style(div70, "justify-content", "center");
-    			add_location(div70, file$3, 837, 8, 25213);
-    			add_location(div71, file$3, 834, 6, 25123);
-    			set_style(div72, "width", "100%");
-    			add_location(div72, file$3, 816, 4, 24603);
-    			set_style(div73, "margin-right", "5px");
-    			set_style(div73, "grid-area", "left-bottom");
-    			add_location(div73, file$3, 757, 2, 22882);
-    			set_style(div74, "border-right", "2.5px dotted rgb(200,200,200)");
-    			set_style(div74, "grid-area", "vline");
-    			add_location(div74, file$3, 853, 2, 25639);
-    			set_style(div75, "position", "relative");
-    			set_style(div75, "height", "" + (height+105) + "px");
-    			set_style(div75, "top", "122px");
-    			set_style(div75, "left", "25px");
-    			add_location(div75, file$3, 858, 4, 25781);
-    			attr_dev(div76, "id", "xAxisDrag");
-    			set_style(div76, "pointer-events", "all");
-    			set_style(div76, "position", "absolute");
-    			set_style(div76, "top", "" + (height+80) + "px");
-    			set_style(div76, "left", "" + 0 + "px");
-    			set_style(div76, "width", "" + 780 + "px");
-    			set_style(div76, "background-color", "#222");
-    			set_style(div76, "opacity", "0");
-    			set_style(div76, "height", "25px");
-    			set_style(div76, "cursor", "col-resize");
-    			add_location(div76, file$3, 878, 6, 26390);
-    			attr_dev(div77, "id", "yAxisDrag");
-    			set_style(div77, "pointer-events", "all");
-    			set_style(div77, "position", "absolute");
-    			set_style(div77, "top", "" + 55 + "px");
-    			set_style(div77, "left", "" + 0 + "px");
-    			set_style(div77, "width", "" + 20 + "px");
-    			set_style(div77, "background-color", "#222");
-    			set_style(div77, "opacity", "0");
-    			set_style(div77, "height", "425px");
-    			set_style(div77, "cursor", "row-resize");
-    			add_location(div77, file$3, 890, 6, 26747);
-    			set_style(div78, "width", "150px");
-    			set_style(div78, "position", "relative");
-    			set_style(div78, "top", "-65px");
-    			set_style(div78, "left", "-80px");
-    			set_style(div78, "height", "140px");
-    			set_style(div78, "padding-right", "15px");
-    			set_style(div78, "cursor", "col-resize");
-    			set_style(div78, "position", "absolute");
-    			add_location(div78, file$3, 914, 8, 27731);
-    			attr_dev(div79, "id", "dottedline");
-    			set_style(div79, "pointer-events", "all");
-    			set_style(div79, "position", "absolute");
-    			set_style(div79, "top", "-40px");
-    			set_style(div79, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    			set_style(div79, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (width - ctx.padding.right)) ? 'visible':'hidden'));
-    			set_style(div79, "width", "2px");
-    			set_style(div79, "pointer-events", "all");
-    			set_style(div79, "cursor", "col-resize");
-    			set_style(div79, "height", "" + (height+19) + "px");
-    			add_location(div79, file$3, 904, 8, 27275);
-    			set_style(div80, "position", "absolute");
-    			set_style(div80, "width", "" + (width+15) + "px");
-    			set_style(div80, "height", "" + height + "px");
-    			set_style(div80, "position", "absolute");
-    			set_style(div80, "top", "100px");
-    			set_style(div80, "left", "25px");
-    			set_style(div80, "pointer-events", "none");
-    			add_location(div80, file$3, 903, 6, 27130);
-    			attr_dev(div81, "class", "paneldesc svelte-1pjja45");
-    			set_style(div81, "position", "absolute");
-    			set_style(div81, "text-align", "center");
-    			set_style(div81, "width", "100px");
-    			set_style(div81, "left", "47px");
-    			set_style(div81, "top", "-20px");
-    			add_location(div81, file$3, 951, 16, 29485);
-    			set_style(span12, "color", "red");
-    			add_location(span12, file$3, 953, 156, 29848);
-    			attr_dev(div82, "class", "paneltitle svelte-1pjja45");
-    			set_style(div82, "margin-top", "5px");
-    			set_style(div82, "padding-bottom", "5px");
-    			set_style(div82, "margin-bottom", "5px");
-    			set_style(div82, "border-bottom", "2px dotted grey");
-    			add_location(div82, file$3, 953, 18, 29710);
-    			add_location(br, file$3, 954, 173, 30106);
-    			attr_dev(div83, "class", "paneldesc svelte-1pjja45");
-    			set_style(div83, "text-align", "center");
-    			set_style(div83, "margin-bottom", "3px");
-    			add_location(div83, file$3, 954, 18, 29951);
-    			attr_dev(input5, "class", "range svelte-1pjja45");
-    			attr_dev(input5, "type", "range");
-    			attr_dev(input5, "min", "0");
-    			attr_dev(input5, "max", "1");
-    			attr_dev(input5, "step", "0.01");
-    			add_location(input5, file$3, 956, 20, 30189);
-    			set_style(div84, "pointer-events", "all");
-    			add_location(div84, file$3, 955, 18, 30135);
-    			attr_dev(div85, "class", "paneltext draggy2 svelte-1pjja45");
-    			set_style(div85, "text-align", "center");
-    			add_location(div85, file$3, 952, 16, 29631);
-    			attr_dev(div86, "class", "caption draggy svelte-1pjja45");
-    			set_style(div86, "pointer-events", "none");
-    			set_style(div86, "width", "180px");
-    			set_style(div86, "position", "absolute");
-    			set_style(div86, "left", "0");
-    			set_style(div86, "top", "90px");
-    			set_style(div86, "height", "105px");
-    			set_style(div86, "padding", "5px 7px 7px 7px");
-    			set_style(div86, "box-shadow", "0px 0px 5px rgb(0,0,0,0.1)");
-    			set_style(div86, "background-color", "white");
-    			set_style(div86, "border", "1px solid rgb(200,200,200)");
-    			set_style(div86, "border-radius", "3px");
-    			add_location(div86, file$3, 940, 14, 28770);
-    			set_style(div87, "position", "relative");
-    			set_style(div87, "top", "-225px");
-    			set_style(div87, "left", "-102px");
-    			add_location(div87, file$3, 939, 12, 28696);
-    			set_style(div88, "position", "absolute");
-    			set_style(div88, "top", "30px");
-    			set_style(div88, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    			set_style(div88, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (width - ctx.padding.right)) ? 'visible':'hidden'));
-    			set_style(div88, "width", "2px");
-    			set_style(div88, "background-color", "rgb(255, 255, 255, 0.5)");
-    			set_style(div88, "border-right", "1px dashed rgb(0,0,0, 0.5)");
-    			set_style(div88, "cursor", "col-resize");
-    			set_style(div88, "height", "" + (height-59) + "px");
-    			add_location(div88, file$3, 929, 8, 28264);
-    			set_style(div89, "position", "absolute");
-    			set_style(div89, "width", "" + (width+15) + "px");
-    			set_style(div89, "height", "" + (height + 30) + "px");
-    			set_style(div89, "position", "absolute");
-    			set_style(div89, "top", "120px");
-    			set_style(div89, "left", "25px");
-    			set_style(div89, "pointer-events", "none");
-    			add_location(div89, file$3, 928, 6, 28114);
-    			add_location(b9, file$3, 965, 52, 30572);
-    			set_style(div90, "color", "rgb(66,66,66)");
-    			set_style(div90, "margin", "3px");
-    			add_location(div90, file$3, 965, 6, 30526);
-    			attr_dev(label0, "for", "covid");
-    			attr_dev(label0, "class", "svelte-1pjja45");
-    			add_location(label0, file$3, 969, 10, 30781);
-    			attr_dev(input6, "type", "radio");
-    			attr_dev(input6, "id", "covid");
-    			attr_dev(input6, "name", "age");
-    			input6.value = "0";
-    			input6.checked = true;
-    			add_location(input6, file$3, 970, 10, 30827);
-    			set_style(div91, "width", "20%");
-    			set_style(div91, "text-align", "center");
-    			add_location(div91, file$3, 968, 8, 30727);
-    			attr_dev(label1, "for", "h1n1");
-    			attr_dev(label1, "class", "svelte-1pjja45");
-    			add_location(label1, file$3, 974, 10, 30995);
-    			attr_dev(input7, "type", "radio");
-    			attr_dev(input7, "id", "h1n1");
-    			attr_dev(input7, "name", "age");
-    			input7.value = "1";
-    			add_location(input7, file$3, 975, 10, 31046);
-    			set_style(div92, "width", "20%");
-    			set_style(div92, "text-align", "center");
-    			add_location(div92, file$3, 973, 8, 30941);
-    			attr_dev(label2, "for", "flu");
-    			attr_dev(label2, "class", "svelte-1pjja45");
-    			add_location(label2, file$3, 979, 10, 31207);
-    			attr_dev(input8, "type", "radio");
-    			attr_dev(input8, "id", "flu");
-    			attr_dev(input8, "name", "age");
-    			input8.value = "2";
-    			add_location(input8, file$3, 980, 10, 31255);
-    			set_style(div93, "width", "20%");
-    			set_style(div93, "text-align", "center");
-    			add_location(div93, file$3, 978, 8, 31153);
-    			attr_dev(label3, "for", "sars");
-    			attr_dev(label3, "class", "svelte-1pjja45");
-    			add_location(label3, file$3, 984, 10, 31413);
-    			attr_dev(input9, "type", "radio");
-    			attr_dev(input9, "id", "sars");
-    			attr_dev(input9, "name", "age");
-    			input9.value = "3";
-    			add_location(input9, file$3, 985, 10, 31454);
-    			set_style(div94, "width", "20%");
-    			set_style(div94, "text-align", "center");
-    			add_location(div94, file$3, 983, 8, 31359);
-    			attr_dev(label4, "for", "ebola");
-    			attr_dev(label4, "class", "svelte-1pjja45");
-    			add_location(label4, file$3, 989, 10, 31613);
-    			attr_dev(input10, "type", "radio");
-    			attr_dev(input10, "id", "ebola");
-    			attr_dev(input10, "name", "age");
-    			input10.value = "4";
-    			add_location(input10, file$3, 990, 10, 31656);
-    			set_style(div95, "width", "20%");
-    			set_style(div95, "text-align", "center");
-    			add_location(div95, file$3, 988, 8, 31559);
-    			set_style(div96, "margin", "2px");
-    			set_style(div96, "padding", "5px");
-    			set_style(div96, "background-color", "rgb(240,240,240)");
-    			set_style(div96, "display", "flex");
-    			set_style(div96, "text-transform", "uppercase");
-    			add_location(div96, file$3, 966, 6, 30599);
-    			attr_dev(div97, "class", "legendtext svelte-1pjja45");
-    			set_style(div97, "width", "100%");
-    			set_style(div97, "margin-top", "5px");
-    			set_style(div97, "position", "relative");
-    			set_style(div97, "padding", "10px");
-    			add_location(div97, file$3, 964, 4, 30424);
-    			set_style(div98, "position", "relative");
-    			set_style(div98, "grid-area", "right");
-    			add_location(div98, file$3, 857, 2, 25727);
-    			attr_dev(div99, "class", "chart svelte-1pjja45");
-    			set_style(div99, "width", "980px");
-    			add_location(div99, file$3, 672, 0, 18972);
-
-    			dispose = [
-    				listen_dev(input0, "change", ctx.input0_change_input_handler),
-    				listen_dev(input0, "input", ctx.input0_change_input_handler),
-    				listen_dev(input1, "change", ctx.input1_change_input_handler),
-    				listen_dev(input1, "input", ctx.input1_change_input_handler),
-    				listen_dev(input2, "change", ctx.input2_change_input_handler),
-    				listen_dev(input2, "input", ctx.input2_change_input_handler),
-    				listen_dev(input3, "change", ctx.input3_change_input_handler),
-    				listen_dev(input3, "input", ctx.input3_change_input_handler),
-    				listen_dev(input4, "change", ctx.input4_change_input_handler),
-    				listen_dev(input4, "input", ctx.input4_change_input_handler),
-    				listen_dev(input5, "change", ctx.input5_change_input_handler),
-    				listen_dev(input5, "input", ctx.input5_change_input_handler),
-    				listen_dev(input5, "mousedown", ctx.lock_yaxis),
-    				listen_dev(input6, "change", ctx.presetParameters),
-    				listen_dev(input7, "change", ctx.presetParameters),
-    				listen_dev(input8, "change", ctx.presetParameters),
-    				listen_dev(input9, "change", ctx.presetParameters),
-    				listen_dev(input10, "change", ctx.presetParameters)
-    			];
+    			t = space();
+    			if_block.c();
+    			if_block_anchor = empty();
+    			set_style(div, "position", "relative");
+    			set_style(div, "top", "" + (ctx.mobile ? 25: 122) + "px");
+    			set_style(div, "left", "25px");
+    			set_style(div, "height", "" + (ctx.mobile ? ctx.height+25: ctx.height+105) + "px");
+    			add_location(div, file$6, 325, 0, 8267);
     		},
 
     		l: function claim(nodes) {
@@ -23291,389 +24898,15 @@
     		},
 
     		m: function mount(target, anchor) {
-    			insert_dev(target, link, anchor);
-    			insert_dev(target, t0, anchor);
-    			insert_dev(target, div99, anchor);
-    			append_dev(div99, div38);
-    			append_dev(div38, div0);
-    			append_dev(div0, t1);
-    			append_dev(div0, t2);
-    			append_dev(div38, t3);
-    			append_dev(div38, div37);
-    			append_dev(div37, div3);
-    			append_dev(div3, div1);
-    			append_dev(div3, t5);
-    			append_dev(div3, div2);
-    			append_dev(div37, t7);
-    			append_dev(div37, div4);
-    			append_dev(div4, span0);
-    			mount_component(checkbox0, span0, null);
-    			append_dev(div37, t8);
-    			append_dev(div37, div9);
-    			append_dev(div9, div8);
-    			append_dev(div8, div5);
-    			append_dev(div5, span1);
-    			append_dev(span1, b0);
-    			append_dev(b0, t9);
-    			append_dev(b0, t10);
-    			append_dev(div5, t11);
-    			append_dev(div5, t12);
-    			append_dev(div5, t13);
-    			append_dev(div8, t14);
-    			append_dev(div8, div6);
-    			append_dev(div6, span2);
-    			append_dev(span2, t15);
-    			append_dev(div6, t16);
-    			append_dev(div8, t17);
-    			append_dev(div8, div7);
-    			mount_component(arrow0, div7, null);
-    			append_dev(div37, t18);
-    			append_dev(div37, div10);
-    			append_dev(div37, t19);
-    			append_dev(div37, div13);
-    			append_dev(div13, div11);
-    			append_dev(div13, t21);
-    			append_dev(div13, div12);
-    			append_dev(div37, t23);
-    			append_dev(div37, div14);
-    			append_dev(div14, span3);
-    			mount_component(checkbox1, span3, null);
-    			append_dev(div37, t24);
-    			append_dev(div37, div19);
-    			append_dev(div19, div18);
-    			append_dev(div18, div15);
-    			append_dev(div15, i0);
-    			append_dev(i0, span4);
-    			append_dev(span4, b1);
-    			append_dev(b1, t25);
-    			append_dev(b1, t26);
-    			append_dev(i0, t27);
-    			append_dev(i0, t28);
-    			append_dev(i0, t29);
-    			append_dev(div18, t30);
-    			append_dev(div18, div16);
-    			append_dev(div16, span5);
-    			append_dev(span5, t31);
-    			append_dev(div16, t32);
-    			append_dev(div18, t33);
-    			append_dev(div18, div17);
-    			mount_component(arrow1, div17, null);
-    			append_dev(div37, t34);
-    			append_dev(div37, div20);
-    			append_dev(div37, t35);
-    			append_dev(div37, div23);
-    			append_dev(div23, div21);
-    			append_dev(div23, t37);
-    			append_dev(div23, div22);
-    			append_dev(div37, t39);
-    			append_dev(div37, div24);
-    			append_dev(div24, span6);
-    			mount_component(checkbox2, span6, null);
-    			append_dev(div37, t40);
-    			append_dev(div37, div28);
-    			append_dev(div28, div27);
-    			append_dev(div27, div25);
-    			append_dev(div25, span7);
-    			append_dev(span7, b2);
-    			append_dev(b2, t41);
-    			append_dev(b2, t42);
-    			append_dev(div25, t43);
-    			append_dev(div25, t44);
-    			append_dev(div25, t45);
-    			append_dev(div27, t46);
-    			append_dev(div27, div26);
-    			append_dev(div26, span8);
-    			append_dev(span8, t47);
-    			append_dev(div26, t48);
-    			append_dev(div37, t49);
-    			append_dev(div37, div29);
-    			append_dev(div37, t50);
-    			append_dev(div37, div31);
-    			append_dev(div31, div30);
-    			append_dev(div37, t52);
-    			append_dev(div37, div32);
-    			append_dev(div32, span9);
-    			mount_component(checkbox3, span9, null);
-    			append_dev(div37, t53);
-    			append_dev(div37, div36);
-    			append_dev(div36, div35);
-    			append_dev(div35, div33);
-    			append_dev(div33, span10);
-    			append_dev(span10, b3);
-    			append_dev(b3, i1);
-    			append_dev(i1, t54);
-    			append_dev(i1, t55);
-    			append_dev(div33, t56);
-    			append_dev(div33, t57);
-    			append_dev(div33, t58);
-    			append_dev(div35, t59);
-    			append_dev(div35, div34);
-    			append_dev(div34, span11);
-    			append_dev(span11, t60);
-    			append_dev(div34, t61);
-    			append_dev(div99, t62);
-    			append_dev(div99, div73);
-    			append_dev(div73, div39);
-    			append_dev(div73, t64);
-    			append_dev(div73, div58);
-    			append_dev(div58, div45);
-    			append_dev(div45, div40);
-    			append_dev(div40, b4);
-    			append_dev(div40, t66);
-    			append_dev(div45, t67);
-    			append_dev(div45, div44);
-    			append_dev(div44, div41);
-    			append_dev(div41, input0);
-
-    			set_input_value(input0, ctx.R0);
-
-    			append_dev(div44, t68);
-    			append_dev(div44, div43);
-    			append_dev(div43, div42);
-    			append_dev(div42, t69);
-    			append_dev(div58, t70);
-    			append_dev(div58, div51);
-    			append_dev(div51, div46);
-    			append_dev(div46, b5);
-    			append_dev(div51, t72);
-    			append_dev(div51, div50);
-    			append_dev(div50, div47);
-    			append_dev(div47, input1);
-
-    			set_input_value(input1, ctx.D_incbation);
-
-    			append_dev(div50, t73);
-    			append_dev(div50, div49);
-    			append_dev(div49, div48);
-    			append_dev(div48, t74);
-    			append_dev(div48, t75);
-    			append_dev(div58, t76);
-    			append_dev(div58, div57);
-    			append_dev(div57, div52);
-    			append_dev(div52, b6);
-    			append_dev(div57, t78);
-    			append_dev(div57, div56);
-    			append_dev(div56, div53);
-    			append_dev(div53, input2);
-
-    			set_input_value(input2, ctx.D_infectious);
-
-    			append_dev(div56, t79);
-    			append_dev(div56, div55);
-    			append_dev(div55, div54);
-    			append_dev(div54, t80);
-    			append_dev(div54, t81);
-    			append_dev(div73, t82);
-    			append_dev(div73, div59);
-    			append_dev(div73, t84);
-    			append_dev(div73, div72);
-    			append_dev(div72, div65);
-    			append_dev(div65, div60);
-    			append_dev(div60, b7);
-    			append_dev(div65, t86);
-    			append_dev(div65, div64);
-    			append_dev(div64, div61);
-    			append_dev(div61, input3);
-
-    			set_input_value(input3, ctx.CFR);
-
-    			append_dev(div64, t87);
-    			append_dev(div64, div63);
-    			append_dev(div63, div62);
-    			append_dev(div62, t88);
-    			append_dev(div62, t89);
-    			append_dev(div72, t90);
-    			append_dev(div72, div71);
-    			append_dev(div71, div66);
-    			append_dev(div66, b8);
-    			append_dev(div71, t92);
-    			append_dev(div71, div70);
-    			append_dev(div70, div67);
-    			append_dev(div67, input4);
-
-    			set_input_value(input4, ctx.Time_to_death);
-
-    			append_dev(div70, t93);
-    			append_dev(div70, div69);
-    			append_dev(div69, div68);
-    			append_dev(div68, t94);
-    			append_dev(div68, t95);
-    			append_dev(div99, t96);
-    			append_dev(div99, div74);
-    			append_dev(div99, t97);
-    			append_dev(div99, div98);
-    			append_dev(div98, div75);
-    			mount_component(chart, div75, null);
-    			append_dev(div98, t98);
-    			append_dev(div98, div76);
-    			append_dev(div98, t99);
-    			append_dev(div98, div77);
-    			append_dev(div98, t100);
-    			append_dev(div98, div80);
-    			append_dev(div80, div79);
-    			append_dev(div79, div78);
-    			append_dev(div98, t101);
-    			append_dev(div98, div89);
-    			append_dev(div89, div88);
-    			append_dev(div88, div87);
-    			append_dev(div87, div86);
-    			append_dev(div86, div81);
-    			append_dev(div86, t103);
-    			append_dev(div86, div85);
-    			append_dev(div85, div82);
-    			append_dev(div82, t104);
-    			append_dev(div82, span12);
-    			append_dev(span12, t105);
-    			append_dev(div85, t106);
-    			append_dev(div85, div83);
-    			append_dev(div83, t107);
-    			append_dev(div83, t108);
-    			append_dev(div83, t109);
-    			append_dev(div83, br);
-    			append_dev(div85, t110);
-    			append_dev(div85, div84);
-    			append_dev(div84, input5);
-
-    			set_input_value(input5, ctx.OMInterventionAmt);
-
-    			append_dev(div98, t111);
-    			append_dev(div98, div97);
-    			append_dev(div97, div90);
-    			append_dev(div90, b9);
-    			append_dev(div97, t113);
-    			append_dev(div97, div96);
-    			append_dev(div96, div91);
-    			append_dev(div91, label0);
-    			append_dev(div91, t115);
-    			append_dev(div91, input6);
-    			append_dev(div96, t116);
-    			append_dev(div96, div92);
-    			append_dev(div92, label1);
-    			append_dev(div92, t118);
-    			append_dev(div92, input7);
-    			append_dev(div96, t119);
-    			append_dev(div96, div93);
-    			append_dev(div93, label2);
-    			append_dev(div93, t121);
-    			append_dev(div93, input8);
-    			append_dev(div96, t122);
-    			append_dev(div96, div94);
-    			append_dev(div94, label3);
-    			append_dev(div94, t124);
-    			append_dev(div94, input9);
-    			append_dev(div96, t125);
-    			append_dev(div96, div95);
-    			append_dev(div95, label4);
-    			append_dev(div95, t127);
-    			append_dev(div95, input10);
+    			insert_dev(target, div, anchor);
+    			mount_component(chart, div, null);
+    			insert_dev(target, t, anchor);
+    			if_block.m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
     			current = true;
     		},
 
     		p: function update(changed, ctx) {
-    			if ((!current || changed.indexToTime || changed.active_) && t2_value !== (t2_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "")) {
-    				set_data_dev(t2, t2_value);
-    			}
-
-    			if ((!current || changed.N || changed.Iters || changed.active_) && t9_value !== (t9_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "")) {
-    				set_data_dev(t9, t9_value);
-    			}
-
-    			if ((!current || changed.Iters || changed.active_) && t12_value !== (t12_value = (100*ctx.Iters[ctx.active_][0]).toFixed(1) + "")) {
-    				set_data_dev(t12, t12_value);
-    			}
-
-    			if ((!current || changed.N || changed.get_d || changed.active_) && t15_value !== (t15_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "")) {
-    				set_data_dev(t15, t15_value);
-    			}
-
-    			var checkbox1_changes = {};
-    			if (!updating_checked && changed.checked) {
-    				checkbox1_changes.checked = ctx.checked[4];
-    			}
-    			checkbox1.$set(checkbox1_changes);
-
-    			if ((!current || changed.N || changed.Iters || changed.active_) && t25_value !== (t25_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "")) {
-    				set_data_dev(t25, t25_value);
-    			}
-
-    			if ((!current || changed.Iters || changed.active_) && t28_value !== (t28_value = (100*ctx.Iters[ctx.active_][1]).toFixed(2) + "")) {
-    				set_data_dev(t28, t28_value);
-    			}
-
-    			if ((!current || changed.N || changed.get_d || changed.active_) && t31_value !== (t31_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "")) {
-    				set_data_dev(t31, t31_value);
-    			}
-
-    			var checkbox2_changes = {};
-    			if (!updating_checked_1 && changed.checked) {
-    				checkbox2_changes.checked = ctx.checked[3];
-    			}
-    			checkbox2.$set(checkbox2_changes);
-
-    			if ((!current || changed.N || changed.Iters || changed.active_) && t41_value !== (t41_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "")) {
-    				set_data_dev(t41, t41_value);
-    			}
-
-    			if ((!current || changed.Iters || changed.active_) && t44_value !== (t44_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "")) {
-    				set_data_dev(t44, t44_value);
-    			}
-
-    			if ((!current || changed.N || changed.get_d || changed.active_) && t47_value !== (t47_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "")) {
-    				set_data_dev(t47, t47_value);
-    			}
-
-    			var checkbox3_changes = {};
-    			if (!updating_checked_2 && changed.checked) {
-    				checkbox3_changes.checked = ctx.checked[0];
-    			}
-    			checkbox3.$set(checkbox3_changes);
-
-    			if ((!current || changed.N || changed.Iters || changed.active_) && t54_value !== (t54_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "")) {
-    				set_data_dev(t54, t54_value);
-    			}
-
-    			if ((!current || changed.Iters || changed.active_) && t57_value !== (t57_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "")) {
-    				set_data_dev(t57, t57_value);
-    			}
-
-    			if ((!current || changed.N || changed.get_d || changed.active_) && t60_value !== (t60_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "")) {
-    				set_data_dev(t60, t60_value);
-    			}
-
-    			if (changed.R0) set_input_value(input0, ctx.R0);
-
-    			if (!current || changed.R0) {
-    				set_data_dev(t69, ctx.R0);
-    			}
-
-    			if (changed.D_incbation) set_input_value(input1, ctx.D_incbation);
-
-    			if ((!current || changed.D_incbation) && t74_value !== (t74_value = (ctx.D_incbation).toFixed(2) + "")) {
-    				set_data_dev(t74, t74_value);
-    			}
-
-    			if (changed.D_infectious) set_input_value(input2, ctx.D_infectious);
-
-    			if (!current || changed.D_infectious) {
-    				set_data_dev(t80, ctx.D_infectious);
-    			}
-
-    			if (changed.CFR) set_input_value(input3, ctx.CFR);
-
-    			if ((!current || changed.CFR) && t88_value !== (t88_value = (ctx.CFR*100).toFixed(2) + "")) {
-    				set_data_dev(t88, t88_value);
-    			}
-
-    			if (changed.Time_to_death) set_input_value(input4, ctx.Time_to_death);
-
-    			if ((!current || changed.D_infectious) && input4_min_value !== (input4_min_value = (ctx.D_infectious)+0.1)) {
-    				attr_dev(input4, "min", input4_min_value);
-    			}
-
-    			if (!current || changed.Time_to_death) {
-    				set_data_dev(t94, ctx.Time_to_death);
-    			}
-
     			var chart_changes = {};
     			if (changed.P) chart_changes.y = ctx.P;
     			if (changed.Xmax) chart_changes.xmax = ctx.Xmax;
@@ -23685,8 +24918,13 @@
     			if (changed.N) chart_changes.N = ctx.N;
     			if (changed.lock || changed.Plock || changed.Pmax) chart_changes.ymax = ctx.lock ? ctx.Plock: ctx.Pmax;
     			if (changed.InterventionTime) chart_changes.InterventionTime = ctx.InterventionTime;
+    			if (changed.colors) chart_changes.colors = ctx.colors;
     			if (changed.log) chart_changes.log = !ctx.log;
-    			if (!updating_checked_3 && changed.checked) {
+    			if (changed.width) chart_changes.width = ctx.width;
+    			if (changed.mobile) chart_changes.space = ctx.mobile ? 0.5 : 1.5;
+    			if (changed.mobile) chart_changes.displayday = ctx.mobile ? false : true;
+    			if (changed.height) chart_changes.height = ctx.height-30;
+    			if (!updating_checked && changed.checked) {
     				chart_changes.checked = ctx.checked;
     			}
     			if (!updating_active && changed.active) {
@@ -23694,108 +24932,62 @@
     			}
     			chart.$set(chart_changes);
 
-    			if (!current || changed.xScaleTime || changed.InterventionTime) {
-    				set_style(div79, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    				set_style(div79, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (width - ctx.padding.right)) ? 'visible':'hidden'));
+    			if (!current || changed.mobile) {
+    				set_style(div, "top", "" + (ctx.mobile ? 25: 122) + "px");
     			}
 
-    			if ((!current || changed.InterventionTime) && t105_value !== (t105_value = format("d")(ctx.InterventionTime) + "")) {
-    				set_data_dev(t105, t105_value);
+    			if (!current || changed.mobile || changed.height) {
+    				set_style(div, "height", "" + (ctx.mobile ? ctx.height+25: ctx.height+105) + "px");
     			}
 
-    			if ((!current || changed.OMInterventionAmt) && t108_value !== (t108_value = ctx.OMInterventionAmt.toFixed(2) + "")) {
-    				set_data_dev(t108, t108_value);
-    			}
-
-    			if (changed.OMInterventionAmt) set_input_value(input5, ctx.OMInterventionAmt);
-
-    			if (!current || changed.xScaleTime || changed.InterventionTime) {
-    				set_style(div88, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    				set_style(div88, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (width - ctx.padding.right)) ? 'visible':'hidden'));
+    			if (current_block_type === (current_block_type = select_block_type(changed, ctx)) && if_block) {
+    				if_block.p(changed, ctx);
+    			} else {
+    				if_block.d(1);
+    				if_block = current_block_type(ctx);
+    				if (if_block) {
+    					if_block.c();
+    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    				}
     			}
     		},
 
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(checkbox0.$$.fragment, local);
-
-    			transition_in(arrow0.$$.fragment, local);
-
-    			transition_in(checkbox1.$$.fragment, local);
-
-    			transition_in(arrow1.$$.fragment, local);
-
-    			transition_in(checkbox2.$$.fragment, local);
-
-    			transition_in(checkbox3.$$.fragment, local);
-
     			transition_in(chart.$$.fragment, local);
 
     			current = true;
     		},
 
     		o: function outro(local) {
-    			transition_out(checkbox0.$$.fragment, local);
-    			transition_out(arrow0.$$.fragment, local);
-    			transition_out(checkbox1.$$.fragment, local);
-    			transition_out(arrow1.$$.fragment, local);
-    			transition_out(checkbox2.$$.fragment, local);
-    			transition_out(checkbox3.$$.fragment, local);
     			transition_out(chart.$$.fragment, local);
     			current = false;
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach_dev(link);
-    				detach_dev(t0);
-    				detach_dev(div99);
+    				detach_dev(div);
     			}
-
-    			destroy_component(checkbox0);
-
-    			destroy_component(arrow0);
-
-    			destroy_component(checkbox1);
-
-    			destroy_component(arrow1);
-
-    			destroy_component(checkbox2);
-
-    			destroy_component(checkbox3);
 
     			destroy_component(chart);
 
-    			run_all(dispose);
+    			if (detaching) {
+    				detach_dev(t);
+    			}
+
+    			if_block.d(detaching);
+
+    			if (detaching) {
+    				detach_dev(if_block_anchor);
+    			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$3.name, type: "component", source: "", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$6.name, type: "component", source: "", ctx });
     	return block;
     }
 
-    let width  = 680;
-
-    let height = 490;
-
-    var Tinc_s = "\\color{#CCC}{T^{-1}_{\\text{inc}}} ";
-
-    var Tinf_s = "\\color{#CCC}{T^{-1}_{\\text{inf}}}";
-
-    var Rt_s   = "\\color{#CCC}{\\frac{\\mathcal{R}_{t}}{T_{\\text{inf}}}} ";
-
-    function formatNumber$1(num) {
-      return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-    }
-
-    function formatnumber(num) {
-      if (num < 0.001) {
-        return format(",.2r")(0)
-      }
-      return format(",.2r")(num)
-    }
-
-    function instance$3($$self, $$props, $$invalidate) {
-    	  
+    function instance$6($$self, $$props, $$invalidate) {
+    	
 
       var sum = function(arr, bools){
         var x = 0;
@@ -23804,6 +24996,1051 @@
         }
         return x
       };
+
+      function max(P, checked) {
+        return P.reduce((max, b) => Math.max(max, sum(b, checked) ), sum(P[0], checked) )
+      }
+
+      let { Sol, OMInterventionAmt, InterventionTime = 100, N, checked } = $$props;
+
+      let { colors, mobile } = $$props;
+
+      var Plock = 1;
+
+      var drag_y = function (){
+        var dragstarty = 0;
+        var Pmaxstart = 0;
+
+        var dragstarted = function (d) {
+          dragstarty = event.y;  
+          Pmaxstart  = Pmax;
+        };
+
+        var dragged = function (d) {
+          $$invalidate('Pmax', Pmax = Math.max( (Pmaxstart*(1 + (event.y - dragstarty)/500)), 10));
+        };
+
+        return drag().on("drag", dragged).on("start", dragstarted)
+      };
+
+      var drag_x = function (){
+        var dragstartx = 0;
+        var dtstart = 0;
+        var dragstarted = function (d) {
+          dragstartx = event.x;
+          dtstart  = dt;
+          $$invalidate('Plock', Plock = Pmax);
+          $$invalidate('lock', lock = true);
+        };
+        var dragged = function (d) {
+          dt = dtstart - 0.0015*(event.x - dragstartx);
+        };
+        var dragend = function (d) {
+          $$invalidate('lock', lock = false);
+        };
+        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
+      };
+
+      var drag_intervention = function (){
+        var dragstarty = 0;
+        var InterventionTimeStart = 0;
+
+        var dragstarted = function (d) {
+          dragstarty = event.x;  
+          InterventionTimeStart = InterventionTime;
+          $$invalidate('Plock', Plock = Pmax);
+          $$invalidate('lock', lock = true);
+        };
+
+        var dragged = function (d) {
+          // InterventionTime = Math.max( (*(1 + (event.x - dragstarty)/500)), 10)
+          // console.log(event.x)
+          $$invalidate('InterventionTime', InterventionTime = Math.min(tmax-1, Math.max(0, InterventionTimeStart + xScaleTimeInv(event.x - dragstarty))));
+        };
+
+        var dragend = function (d) {
+          $$invalidate('lock', lock = false);
+        };
+
+        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
+      };
+
+      var drag_intervention_end = function (){
+        var dragstarty = 0;
+        var durationStart = 0;
+
+        var dragstarted = function (d) {
+          dragstarty = event.x;  
+          durationStart = duration;
+          $$invalidate('Plock', Plock = Pmax);
+          $$invalidate('lock', lock = true);
+        };
+
+        var dragged = function (d) {
+          // InterventionTime = Math.max( (*(1 + (event.x - dragstarty)/500)), 10)
+          // console.log(event.x)
+          duration = Math.min(tmax-1, Math.max(0, durationStart + xScaleTimeInv(event.x - dragstarty)));
+        };
+
+        var dragend = function (d) {
+          $$invalidate('lock', lock = false);
+        };
+
+        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
+      };
+
+      function draggycallbacks() {
+        var drag_callback_y = drag_y();
+        drag_callback_y(selectAll("#yAxisDrag"));
+        var drag_callback_x = drag_x();
+        drag_callback_x(selectAll("#xAxisDrag"));
+        var drag_callback_intervention = drag_intervention();
+        // drag_callback_intervention(selectAll("#interventionDrag"))
+        drag_callback_intervention(selectAll("#dottedline"));
+        // var drag_callback_intervention_end = drag_intervention_end()
+        // drag_callback_intervention_end(selectAll("#dottedline2"))
+      }
+      onMount(async () => {
+
+        if (typeof window !== 'undefined') {
+          
+          draggycallbacks();
+
+          parsed = queryString.parse(window.location.search);
+          if (!(parsed.logN === undefined)) {logN = parsed.logN;}
+          if (!(parsed.I0 === undefined)) {I0 = parseFloat(parsed.I0);}
+          if (!(parsed.R0 === undefined)) {R0 = parseFloat(parsed.R0);}
+          if (!(parsed.D_incbation === undefined)) {D_incbation = parseFloat(parsed.D_incbation);}
+          if (!(parsed.D_infectious === undefined)) {D_infectious = parseFloat(parsed.D_infectious);}
+          if (!(parsed.D_recovery_mild === undefined)) {D_recovery_mild = parseFloat(parsed.D_recovery_mild);}
+          if (!(parsed.D_recovery_severe === undefined)) {D_recovery_severe = parseFloat(parsed.D_recovery_severe);}
+          if (!(parsed.CFR === undefined)) {CFR = parseFloat(parsed.CFR);}
+          if (!(parsed.InterventionTime === undefined)) {$$invalidate('InterventionTime', InterventionTime = parseFloat(parsed.InterventionTime));}
+          if (!(parsed.InterventionAmt === undefined)) {InterventionAmt = parseFloat(parsed.InterventionAmt);}
+          if (!(parsed.D_hospital_lag === undefined)) {D_hospital_lag = parseFloat(parsed.D_hospital_lag);}
+          if (!(parsed.P_SEVERE === undefined)) {P_SEVERE = parseFloat(parsed.P_SEVERE);}
+          if (!(parsed.Time_to_death === undefined)) {Time_to_death = parseFloat(parsed.Time_to_death);}
+
+        }
+      });
+
+      function lock_yaxis(){
+        $$invalidate('Plock', Plock = Pmax);
+        $$invalidate('lock', lock  = true);
+      }
+
+      function unlock_yaxis(){
+        $$invalidate('lock', lock = false);
+      }
+
+      const padding = { top: 20, right: 0, bottom: 20, left: 25 };
+
+      let { width  = 680, height = 490 } = $$props;
+
+      window.addEventListener('mouseup', unlock_yaxis);
+
+      let { active  = 0 } = $$props;
+
+    	const writable_props = ['Sol', 'OMInterventionAmt', 'InterventionTime', 'N', 'checked', 'colors', 'mobile', 'width', 'height', 'active'];
+    	Object.keys($$props).forEach(key => {
+    		if (!writable_props.includes(key) && !key.startsWith('$$')) console.warn(`<SEIR> was created with unknown prop '${key}'`);
+    	});
+
+    	function chart_checked_binding(value) {
+    		checked = value;
+    		$$invalidate('checked', checked);
+    	}
+
+    	function chart_active_binding(value_1) {
+    		active = value_1;
+    		$$invalidate('active', active);
+    	}
+
+    	function input_change_input_handler() {
+    		OMInterventionAmt = to_number(this.value);
+    		$$invalidate('OMInterventionAmt', OMInterventionAmt);
+    	}
+
+    	$$self.$set = $$props => {
+    		if ('Sol' in $$props) $$invalidate('Sol', Sol = $$props.Sol);
+    		if ('OMInterventionAmt' in $$props) $$invalidate('OMInterventionAmt', OMInterventionAmt = $$props.OMInterventionAmt);
+    		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
+    		if ('N' in $$props) $$invalidate('N', N = $$props.N);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    		if ('width' in $$props) $$invalidate('width', width = $$props.width);
+    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    	};
+
+    	$$self.$capture_state = () => {
+    		return { sum, Sol, OMInterventionAmt, InterventionTime, N, checked, colors, mobile, Plock, drag_y, drag_x, drag_intervention, drag_intervention_end, width, height, active, screenWidth, screenHeight, P, timestep, tmax, deaths, total, total_infected, Iters, dIters, Pmax, lock, Xmax, xScaleTimeInv, parsed, xScaleTime, p_num_ind, log };
+    	};
+
+    	$$self.$inject_state = $$props => {
+    		if ('sum' in $$props) sum = $$props.sum;
+    		if ('Sol' in $$props) $$invalidate('Sol', Sol = $$props.Sol);
+    		if ('OMInterventionAmt' in $$props) $$invalidate('OMInterventionAmt', OMInterventionAmt = $$props.OMInterventionAmt);
+    		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
+    		if ('N' in $$props) $$invalidate('N', N = $$props.N);
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
+    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    		if ('Plock' in $$props) $$invalidate('Plock', Plock = $$props.Plock);
+    		if ('drag_y' in $$props) drag_y = $$props.drag_y;
+    		if ('drag_x' in $$props) drag_x = $$props.drag_x;
+    		if ('drag_intervention' in $$props) drag_intervention = $$props.drag_intervention;
+    		if ('drag_intervention_end' in $$props) drag_intervention_end = $$props.drag_intervention_end;
+    		if ('width' in $$props) $$invalidate('width', width = $$props.width);
+    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
+    		if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    		if ('screenWidth' in $$props) screenWidth = $$props.screenWidth;
+    		if ('screenHeight' in $$props) screenHeight = $$props.screenHeight;
+    		if ('P' in $$props) $$invalidate('P', P = $$props.P);
+    		if ('timestep' in $$props) $$invalidate('timestep', timestep = $$props.timestep);
+    		if ('tmax' in $$props) $$invalidate('tmax', tmax = $$props.tmax);
+    		if ('deaths' in $$props) $$invalidate('deaths', deaths = $$props.deaths);
+    		if ('total' in $$props) $$invalidate('total', total = $$props.total);
+    		if ('total_infected' in $$props) $$invalidate('total_infected', total_infected = $$props.total_infected);
+    		if ('Iters' in $$props) Iters = $$props.Iters;
+    		if ('dIters' in $$props) dIters = $$props.dIters;
+    		if ('Pmax' in $$props) $$invalidate('Pmax', Pmax = $$props.Pmax);
+    		if ('lock' in $$props) $$invalidate('lock', lock = $$props.lock);
+    		if ('Xmax' in $$props) $$invalidate('Xmax', Xmax = $$props.Xmax);
+    		if ('xScaleTimeInv' in $$props) xScaleTimeInv = $$props.xScaleTimeInv;
+    		if ('parsed' in $$props) parsed = $$props.parsed;
+    		if ('xScaleTime' in $$props) $$invalidate('xScaleTime', xScaleTime = $$props.xScaleTime);
+    		if ('p_num_ind' in $$props) p_num_ind = $$props.p_num_ind;
+    		if ('log' in $$props) $$invalidate('log', log = $$props.log);
+    	};
+
+    	let screenWidth, screenHeight, P, timestep, tmax, deaths, total, total_infected, Iters, dIters, Pmax, lock, Xmax, parsed, xScaleTime, xScaleTimeInv, p_num_ind, log;
+
+    	$$self.$$.update = ($$dirty = { Sol: 1, P: 1, checked: 1, tmax: 1, width: 1 }) => {
+    		if ($$dirty.Sol) { $$invalidate('P', P              = Sol["P"].slice(0,100)); }
+    		if ($$dirty.Sol) { $$invalidate('timestep', timestep       = Sol["dt"]); }
+    		if ($$dirty.Sol) { $$invalidate('tmax', tmax           = Sol["dt"]*100); }
+    		if ($$dirty.Sol) { $$invalidate('deaths', deaths         = Sol["deaths"]); }
+    		if ($$dirty.Sol) { $$invalidate('total', total          = Sol["total"]); }
+    		if ($$dirty.Sol) { $$invalidate('total_infected', total_infected = Sol["total_infected"].slice(0,100)); }
+    		if ($$dirty.Sol) { Iters          = Sol["Iters"]; }
+    		if ($$dirty.Sol) { dIters         = Sol["dIters"]; }
+    		if ($$dirty.P || $$dirty.checked) { $$invalidate('Pmax', Pmax           = max(P, checked)); }
+    		if ($$dirty.tmax || $$dirty.width) { $$invalidate('xScaleTime', xScaleTime = linear$1()
+            .domain([0, tmax])
+            .range([padding.left, width - padding.right])); }
+    		if ($$dirty.width || $$dirty.tmax) { xScaleTimeInv = linear$1()
+            .domain([0, width])
+            .range([0, tmax]); }
+    	};
+
+    	screenWidth = 0;
+    	screenHeight = 0;
+    	$$invalidate('lock', lock           = false);
+    	$$invalidate('Xmax', Xmax           = 110000);
+    	parsed = "";
+    	p_num_ind = 40;
+    	$$invalidate('log', log = true);
+
+    	return {
+    		Sol,
+    		OMInterventionAmt,
+    		InterventionTime,
+    		N,
+    		checked,
+    		colors,
+    		mobile,
+    		Plock,
+    		lock_yaxis,
+    		padding,
+    		width,
+    		height,
+    		active,
+    		P,
+    		timestep,
+    		tmax,
+    		deaths,
+    		total,
+    		total_infected,
+    		Pmax,
+    		lock,
+    		Xmax,
+    		xScaleTime,
+    		log,
+    		chart_checked_binding,
+    		chart_active_binding,
+    		input_change_input_handler
+    	};
+    }
+
+    class SEIR extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, ["Sol", "OMInterventionAmt", "InterventionTime", "N", "checked", "colors", "mobile", "width", "height", "active"]);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "SEIR", options, id: create_fragment$6.name });
+
+    		const { ctx } = this.$$;
+    		const props = options.props || {};
+    		if (ctx.Sol === undefined && !('Sol' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'Sol'");
+    		}
+    		if (ctx.OMInterventionAmt === undefined && !('OMInterventionAmt' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'OMInterventionAmt'");
+    		}
+    		if (ctx.N === undefined && !('N' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'N'");
+    		}
+    		if (ctx.checked === undefined && !('checked' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'checked'");
+    		}
+    		if (ctx.colors === undefined && !('colors' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'colors'");
+    		}
+    		if (ctx.mobile === undefined && !('mobile' in props)) {
+    			console.warn("<SEIR> was created without expected prop 'mobile'");
+    		}
+    	}
+
+    	get Sol() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set Sol(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get OMInterventionAmt() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set OMInterventionAmt(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get InterventionTime() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set InterventionTime(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get N() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set N(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get checked() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set checked(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get colors() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set colors(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get mobile() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set mobile(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get width() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set width(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get height() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set height(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	get active() {
+    		throw new Error("<SEIR>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+
+    	set active(value) {
+    		throw new Error("<SEIR>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
+    	}
+    }
+
+    /* src/App.svelte generated by Svelte v3.12.1 */
+
+    const file$7 = "src/App.svelte";
+
+    // (262:0) {:else}
+    function create_else_block$4(ctx) {
+    	var meta, t0, div5, div0, updating_mobile, updating_OMInterventionAmt, updating_InterventionTime, updating_checked, updating_active, t1, div1, t2, div2, updating_checked_1, t3, div3, t4, div4, current;
+
+    	function seir_mobile_binding(value) {
+    		ctx.seir_mobile_binding.call(null, value);
+    		updating_mobile = true;
+    		add_flush_callback(() => updating_mobile = false);
+    	}
+
+    	function seir_OMInterventionAmt_binding_1(value_1) {
+    		ctx.seir_OMInterventionAmt_binding_1.call(null, value_1);
+    		updating_OMInterventionAmt = true;
+    		add_flush_callback(() => updating_OMInterventionAmt = false);
+    	}
+
+    	function seir_InterventionTime_binding_1(value_2) {
+    		ctx.seir_InterventionTime_binding_1.call(null, value_2);
+    		updating_InterventionTime = true;
+    		add_flush_callback(() => updating_InterventionTime = false);
+    	}
+
+    	function seir_checked_binding_1(value_3) {
+    		ctx.seir_checked_binding_1.call(null, value_3);
+    		updating_checked = true;
+    		add_flush_callback(() => updating_checked = false);
+    	}
+
+    	function seir_active_binding_1(value_4) {
+    		ctx.seir_active_binding_1.call(null, value_4);
+    		updating_active = true;
+    		add_flush_callback(() => updating_active = false);
+    	}
+
+    	let seir_props = {
+    		colors: ctx.colors,
+    		Sol: ctx.Sol,
+    		N: ctx.N,
+    		height: 280,
+    		width: 365
+    	};
+    	if (ctx.mobile !== void 0) {
+    		seir_props.mobile = ctx.mobile;
+    	}
+    	if (ctx.OMInterventionAmt !== void 0) {
+    		seir_props.OMInterventionAmt = ctx.OMInterventionAmt;
+    	}
+    	if (ctx.InterventionTime !== void 0) {
+    		seir_props.InterventionTime = ctx.InterventionTime;
+    	}
+    	if (ctx.checked !== void 0) {
+    		seir_props.checked = ctx.checked;
+    	}
+    	if (ctx.active !== void 0) {
+    		seir_props.active = ctx.active;
+    	}
+    	var seir = new SEIR({ props: seir_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(seir, 'mobile', seir_mobile_binding));
+    	binding_callbacks.push(() => bind(seir, 'OMInterventionAmt', seir_OMInterventionAmt_binding_1));
+    	binding_callbacks.push(() => bind(seir, 'InterventionTime', seir_InterventionTime_binding_1));
+    	binding_callbacks.push(() => bind(seir, 'checked', seir_checked_binding_1));
+    	binding_callbacks.push(() => bind(seir, 'active', seir_active_binding_1));
+
+    	function seirpanel_checked_binding_1(value_5) {
+    		ctx.seirpanel_checked_binding_1.call(null, value_5);
+    		updating_checked_1 = true;
+    		add_flush_callback(() => updating_checked_1 = false);
+    	}
+
+    	let seirpanel_props = {
+    		Iters: ctx.Sol["Iters"],
+    		N: ctx.N,
+    		colors: ctx.colors,
+    		active_: ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1,
+    		indexToTime: ctx.indexToTime,
+    		get_d: ctx.get_d,
+    		mobile: true
+    	};
+    	if (ctx.checked !== void 0) {
+    		seirpanel_props.checked = ctx.checked;
+    	}
+    	var seirpanel = new SEIRPanel({ props: seirpanel_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(seirpanel, 'checked', seirpanel_checked_binding_1));
+
+    	var selector = new Selector({
+    		props: {
+    		presetParameters: ctx.presetParameters,
+    		align: "left",
+    		mobile: true
+    	},
+    		$$inline: true
+    	});
+
+    	const block = {
+    		c: function create() {
+    			meta = element("meta");
+    			t0 = space();
+    			div5 = element("div");
+    			div0 = element("div");
+    			seir.$$.fragment.c();
+    			t1 = space();
+    			div1 = element("div");
+    			t2 = space();
+    			div2 = element("div");
+    			seirpanel.$$.fragment.c();
+    			t3 = space();
+    			div3 = element("div");
+    			selector.$$.fragment.c();
+    			t4 = space();
+    			div4 = element("div");
+    			attr_dev(meta, "name", "viewport");
+    			attr_dev(meta, "content", "width=400");
+    			add_location(meta, file$7, 263, 2, 8270);
+    			set_style(div0, "position", "relative");
+    			set_style(div0, "grid-area", "top");
+    			set_style(div0, "left", "-20px");
+    			add_location(div0, file$7, 266, 4, 8367);
+    			set_style(div1, "grid-area", "line");
+    			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
+    			add_location(div1, file$7, 279, 4, 8706);
+    			set_style(div2, "grid-area", "left-bottom");
+    			set_style(div2, "padding", "2px 15px 0px 0px");
+    			add_location(div2, file$7, 281, 4, 8790);
+    			attr_dev(div3, "class", "legendtext svelte-owwsho");
+    			set_style(div3, "width", "100%");
+    			set_style(div3, "margin-top", "5px");
+    			set_style(div3, "position", "relative");
+    			set_style(div3, "grid-area", "right-bottom");
+    			add_location(div3, file$7, 293, 4, 9189);
+    			set_style(div4, "grid-area", "line2");
+    			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
+    			add_location(div4, file$7, 297, 4, 9392);
+    			attr_dev(div5, "class", "chartmobile svelte-owwsho");
+    			set_style(div5, "width", "381px");
+    			add_location(div5, file$7, 264, 2, 8315);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, meta, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div0);
+    			mount_component(seir, div0, null);
+    			append_dev(div5, t1);
+    			append_dev(div5, div1);
+    			append_dev(div5, t2);
+    			append_dev(div5, div2);
+    			mount_component(seirpanel, div2, null);
+    			append_dev(div5, t3);
+    			append_dev(div5, div3);
+    			mount_component(selector, div3, null);
+    			append_dev(div5, t4);
+    			append_dev(div5, div4);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var seir_changes = {};
+    			if (changed.Sol) seir_changes.Sol = ctx.Sol;
+    			if (changed.N) seir_changes.N = ctx.N;
+    			if (!updating_mobile && changed.mobile) {
+    				seir_changes.mobile = ctx.mobile;
+    			}
+    			if (!updating_OMInterventionAmt && changed.OMInterventionAmt) {
+    				seir_changes.OMInterventionAmt = ctx.OMInterventionAmt;
+    			}
+    			if (!updating_InterventionTime && changed.InterventionTime) {
+    				seir_changes.InterventionTime = ctx.InterventionTime;
+    			}
+    			if (!updating_checked && changed.checked) {
+    				seir_changes.checked = ctx.checked;
+    			}
+    			if (!updating_active && changed.active) {
+    				seir_changes.active = ctx.active;
+    			}
+    			seir.$set(seir_changes);
+
+    			var seirpanel_changes = {};
+    			if (changed.Sol) seirpanel_changes.Iters = ctx.Sol["Iters"];
+    			if (changed.N) seirpanel_changes.N = ctx.N;
+    			if (changed.active || changed.Sol) seirpanel_changes.active_ = ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1;
+    			if (changed.indexToTime) seirpanel_changes.indexToTime = ctx.indexToTime;
+    			if (changed.get_d) seirpanel_changes.get_d = ctx.get_d;
+    			if (!updating_checked_1 && changed.checked) {
+    				seirpanel_changes.checked = ctx.checked;
+    			}
+    			seirpanel.$set(seirpanel_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(seir.$$.fragment, local);
+
+    			transition_in(seirpanel.$$.fragment, local);
+
+    			transition_in(selector.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(seir.$$.fragment, local);
+    			transition_out(seirpanel.$$.fragment, local);
+    			transition_out(selector.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(meta);
+    				detach_dev(t0);
+    				detach_dev(div5);
+    			}
+
+    			destroy_component(seir);
+
+    			destroy_component(seirpanel);
+
+    			destroy_component(selector);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$4.name, type: "else", source: "(262:0) {:else}", ctx });
+    	return block;
+    }
+
+    // (219:0) {#if !mobile}
+    function create_if_block$4(ctx) {
+    	var meta, t0, div5, div0, updating_checked, t1, div1, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, t2, div2, t3, div4, updating_OMInterventionAmt, updating_InterventionTime, updating_checked_1, updating_active, t4, div3, current;
+
+    	function seirpanel_checked_binding(value) {
+    		ctx.seirpanel_checked_binding.call(null, value);
+    		updating_checked = true;
+    		add_flush_callback(() => updating_checked = false);
+    	}
+
+    	let seirpanel_props = {
+    		Iters: ctx.Sol["Iters"],
+    		N: ctx.N,
+    		colors: ctx.colors,
+    		active_: ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1,
+    		indexToTime: ctx.indexToTime,
+    		get_d: ctx.get_d
+    	};
+    	if (ctx.checked !== void 0) {
+    		seirpanel_props.checked = ctx.checked;
+    	}
+    	var seirpanel = new SEIRPanel({ props: seirpanel_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(seirpanel, 'checked', seirpanel_checked_binding));
+
+    	function control_R0_binding(value_1) {
+    		ctx.control_R0_binding.call(null, value_1);
+    		updating_R0 = true;
+    		add_flush_callback(() => updating_R0 = false);
+    	}
+
+    	function control_D_incbation_binding(value_2) {
+    		ctx.control_D_incbation_binding.call(null, value_2);
+    		updating_D_incbation = true;
+    		add_flush_callback(() => updating_D_incbation = false);
+    	}
+
+    	function control_D_infectious_binding(value_3) {
+    		ctx.control_D_infectious_binding.call(null, value_3);
+    		updating_D_infectious = true;
+    		add_flush_callback(() => updating_D_infectious = false);
+    	}
+
+    	function control_CFR_binding(value_4) {
+    		ctx.control_CFR_binding.call(null, value_4);
+    		updating_CFR = true;
+    		add_flush_callback(() => updating_CFR = false);
+    	}
+
+    	function control_Time_to_death_binding(value_5) {
+    		ctx.control_Time_to_death_binding.call(null, value_5);
+    		updating_Time_to_death = true;
+    		add_flush_callback(() => updating_Time_to_death = false);
+    	}
+
+    	let control_props = {};
+    	if (ctx.R0 !== void 0) {
+    		control_props.R0 = ctx.R0;
+    	}
+    	if (ctx.D_incbation !== void 0) {
+    		control_props.D_incbation = ctx.D_incbation;
+    	}
+    	if (ctx.D_infectious !== void 0) {
+    		control_props.D_infectious = ctx.D_infectious;
+    	}
+    	if (ctx.CFR !== void 0) {
+    		control_props.CFR = ctx.CFR;
+    	}
+    	if (ctx.Time_to_death !== void 0) {
+    		control_props.Time_to_death = ctx.Time_to_death;
+    	}
+    	var control = new Control({ props: control_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(control, 'R0', control_R0_binding));
+    	binding_callbacks.push(() => bind(control, 'D_incbation', control_D_incbation_binding));
+    	binding_callbacks.push(() => bind(control, 'D_infectious', control_D_infectious_binding));
+    	binding_callbacks.push(() => bind(control, 'CFR', control_CFR_binding));
+    	binding_callbacks.push(() => bind(control, 'Time_to_death', control_Time_to_death_binding));
+
+    	function seir_OMInterventionAmt_binding(value_6) {
+    		ctx.seir_OMInterventionAmt_binding.call(null, value_6);
+    		updating_OMInterventionAmt = true;
+    		add_flush_callback(() => updating_OMInterventionAmt = false);
+    	}
+
+    	function seir_InterventionTime_binding(value_7) {
+    		ctx.seir_InterventionTime_binding.call(null, value_7);
+    		updating_InterventionTime = true;
+    		add_flush_callback(() => updating_InterventionTime = false);
+    	}
+
+    	function seir_checked_binding(value_8) {
+    		ctx.seir_checked_binding.call(null, value_8);
+    		updating_checked_1 = true;
+    		add_flush_callback(() => updating_checked_1 = false);
+    	}
+
+    	function seir_active_binding(value_9) {
+    		ctx.seir_active_binding.call(null, value_9);
+    		updating_active = true;
+    		add_flush_callback(() => updating_active = false);
+    	}
+
+    	let seir_props = {
+    		colors: ctx.colors,
+    		Sol: ctx.Sol,
+    		N: ctx.N,
+    		height: 480,
+    		width: 680
+    	};
+    	if (ctx.OMInterventionAmt !== void 0) {
+    		seir_props.OMInterventionAmt = ctx.OMInterventionAmt;
+    	}
+    	if (ctx.InterventionTime !== void 0) {
+    		seir_props.InterventionTime = ctx.InterventionTime;
+    	}
+    	if (ctx.checked !== void 0) {
+    		seir_props.checked = ctx.checked;
+    	}
+    	if (ctx.active !== void 0) {
+    		seir_props.active = ctx.active;
+    	}
+    	var seir = new SEIR({ props: seir_props, $$inline: true });
+
+    	binding_callbacks.push(() => bind(seir, 'OMInterventionAmt', seir_OMInterventionAmt_binding));
+    	binding_callbacks.push(() => bind(seir, 'InterventionTime', seir_InterventionTime_binding));
+    	binding_callbacks.push(() => bind(seir, 'checked', seir_checked_binding));
+    	binding_callbacks.push(() => bind(seir, 'active', seir_active_binding));
+
+    	var selector = new Selector({
+    		props: { presetParameters: ctx.presetParameters },
+    		$$inline: true
+    	});
+
+    	const block = {
+    		c: function create() {
+    			meta = element("meta");
+    			t0 = space();
+    			div5 = element("div");
+    			div0 = element("div");
+    			seirpanel.$$.fragment.c();
+    			t1 = space();
+    			div1 = element("div");
+    			control.$$.fragment.c();
+    			t2 = space();
+    			div2 = element("div");
+    			t3 = space();
+    			div4 = element("div");
+    			seir.$$.fragment.c();
+    			t4 = space();
+    			div3 = element("div");
+    			selector.$$.fragment.c();
+    			attr_dev(meta, "name", "viewport");
+    			attr_dev(meta, "content", "width=980");
+    			add_location(meta, file$7, 219, 2, 7046);
+    			set_style(div0, "margin-right", "5px");
+    			set_style(div0, "grid-area", "left-top");
+    			add_location(div0, file$7, 222, 4, 7137);
+    			set_style(div1, "margin-right", "5px");
+    			set_style(div1, "grid-area", "left-bottom");
+    			add_location(div1, file$7, 235, 4, 7497);
+    			set_style(div2, "border-right", "2.5px dotted rgb(200,200,200)");
+    			set_style(div2, "grid-area", "vline");
+    			add_location(div2, file$7, 245, 4, 7776);
+    			attr_dev(div3, "class", "legendtext svelte-owwsho");
+    			set_style(div3, "width", "100%");
+    			set_style(div3, "margin-top", "20px");
+    			set_style(div3, "position", "relative");
+    			set_style(div3, "padding", "10px");
+    			add_location(div3, file$7, 253, 6, 8070);
+    			set_style(div4, "position", "relative");
+    			set_style(div4, "grid-area", "right");
+    			add_location(div4, file$7, 249, 4, 7868);
+    			attr_dev(div5, "class", "chart svelte-owwsho");
+    			set_style(div5, "width", "980px");
+    			add_location(div5, file$7, 220, 2, 7091);
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, meta, anchor);
+    			insert_dev(target, t0, anchor);
+    			insert_dev(target, div5, anchor);
+    			append_dev(div5, div0);
+    			mount_component(seirpanel, div0, null);
+    			append_dev(div5, t1);
+    			append_dev(div5, div1);
+    			mount_component(control, div1, null);
+    			append_dev(div5, t2);
+    			append_dev(div5, div2);
+    			append_dev(div5, t3);
+    			append_dev(div5, div4);
+    			mount_component(seir, div4, null);
+    			append_dev(div4, t4);
+    			append_dev(div4, div3);
+    			mount_component(selector, div3, null);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			var seirpanel_changes = {};
+    			if (changed.Sol) seirpanel_changes.Iters = ctx.Sol["Iters"];
+    			if (changed.N) seirpanel_changes.N = ctx.N;
+    			if (changed.active || changed.Sol) seirpanel_changes.active_ = ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1;
+    			if (changed.indexToTime) seirpanel_changes.indexToTime = ctx.indexToTime;
+    			if (changed.get_d) seirpanel_changes.get_d = ctx.get_d;
+    			if (!updating_checked && changed.checked) {
+    				seirpanel_changes.checked = ctx.checked;
+    			}
+    			seirpanel.$set(seirpanel_changes);
+
+    			var control_changes = {};
+    			if (!updating_R0 && changed.R0) {
+    				control_changes.R0 = ctx.R0;
+    			}
+    			if (!updating_D_incbation && changed.D_incbation) {
+    				control_changes.D_incbation = ctx.D_incbation;
+    			}
+    			if (!updating_D_infectious && changed.D_infectious) {
+    				control_changes.D_infectious = ctx.D_infectious;
+    			}
+    			if (!updating_CFR && changed.CFR) {
+    				control_changes.CFR = ctx.CFR;
+    			}
+    			if (!updating_Time_to_death && changed.Time_to_death) {
+    				control_changes.Time_to_death = ctx.Time_to_death;
+    			}
+    			control.$set(control_changes);
+
+    			var seir_changes = {};
+    			if (changed.Sol) seir_changes.Sol = ctx.Sol;
+    			if (changed.N) seir_changes.N = ctx.N;
+    			if (!updating_OMInterventionAmt && changed.OMInterventionAmt) {
+    				seir_changes.OMInterventionAmt = ctx.OMInterventionAmt;
+    			}
+    			if (!updating_InterventionTime && changed.InterventionTime) {
+    				seir_changes.InterventionTime = ctx.InterventionTime;
+    			}
+    			if (!updating_checked_1 && changed.checked) {
+    				seir_changes.checked = ctx.checked;
+    			}
+    			if (!updating_active && changed.active) {
+    				seir_changes.active = ctx.active;
+    			}
+    			seir.$set(seir_changes);
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(seirpanel.$$.fragment, local);
+
+    			transition_in(control.$$.fragment, local);
+
+    			transition_in(seir.$$.fragment, local);
+
+    			transition_in(selector.$$.fragment, local);
+
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(seirpanel.$$.fragment, local);
+    			transition_out(control.$$.fragment, local);
+    			transition_out(seir.$$.fragment, local);
+    			transition_out(selector.$$.fragment, local);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(meta);
+    				detach_dev(t0);
+    				detach_dev(div5);
+    			}
+
+    			destroy_component(seirpanel);
+
+    			destroy_component(control);
+
+    			destroy_component(seir);
+
+    			destroy_component(selector);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(219:0) {#if !mobile}", ctx });
+    	return block;
+    }
+
+    function create_fragment$7(ctx) {
+    	var div, input, t0, t1, t2, current_block_type_index, if_block, if_block_anchor, current, dispose;
+
+    	add_render_callback(ctx.onwindowresize);
+
+    	var if_block_creators = [
+    		create_if_block$4,
+    		create_else_block$4
+    	];
+
+    	var if_blocks = [];
+
+    	function select_block_type(changed, ctx) {
+    		if (!ctx.mobile) return 0;
+    		return 1;
+    	}
+
+    	current_block_type_index = select_block_type(null, ctx);
+    	if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+
+    	const block = {
+    		c: function create() {
+    			div = element("div");
+    			input = element("input");
+    			t0 = text(" Mobile = ");
+    			t1 = text(ctx.mobile);
+    			t2 = space();
+    			if_block.c();
+    			if_block_anchor = empty();
+    			attr_dev(input, "type", "checkbox");
+    			input.checked = true;
+    			add_location(input, file$7, 215, 0, 6950);
+    			set_style(div, "padding", "5px");
+    			add_location(div, file$7, 214, 0, 6923);
+
+    			dispose = [
+    				listen_dev(window, "resize", ctx.onwindowresize),
+    				listen_dev(input, "change", ctx.input_change_handler)
+    			];
+    		},
+
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+
+    		m: function mount(target, anchor) {
+    			insert_dev(target, div, anchor);
+    			append_dev(div, input);
+
+    			input.checked = ctx.mobile;
+
+    			append_dev(div, t0);
+    			append_dev(div, t1);
+    			insert_dev(target, t2, anchor);
+    			if_blocks[current_block_type_index].m(target, anchor);
+    			insert_dev(target, if_block_anchor, anchor);
+    			current = true;
+    		},
+
+    		p: function update(changed, ctx) {
+    			if (changed.mobile) input.checked = ctx.mobile;
+
+    			if (!current || changed.mobile) {
+    				set_data_dev(t1, ctx.mobile);
+    			}
+
+    			var previous_block_index = current_block_type_index;
+    			current_block_type_index = select_block_type(changed, ctx);
+    			if (current_block_type_index === previous_block_index) {
+    				if_blocks[current_block_type_index].p(changed, ctx);
+    			} else {
+    				group_outros();
+    				transition_out(if_blocks[previous_block_index], 1, 1, () => {
+    					if_blocks[previous_block_index] = null;
+    				});
+    				check_outros();
+
+    				if_block = if_blocks[current_block_type_index];
+    				if (!if_block) {
+    					if_block = if_blocks[current_block_type_index] = if_block_creators[current_block_type_index](ctx);
+    					if_block.c();
+    				}
+    				transition_in(if_block, 1);
+    				if_block.m(if_block_anchor.parentNode, if_block_anchor);
+    			}
+    		},
+
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(if_block);
+    			current = true;
+    		},
+
+    		o: function outro(local) {
+    			transition_out(if_block);
+    			current = false;
+    		},
+
+    		d: function destroy(detaching) {
+    			if (detaching) {
+    				detach_dev(div);
+    				detach_dev(t2);
+    			}
+
+    			if_blocks[current_block_type_index].d(detaching);
+
+    			if (detaching) {
+    				detach_dev(if_block_anchor);
+    			}
+
+    			run_all(dispose);
+    		}
+    	};
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$7.name, type: "component", source: "", ctx });
+    	return block;
+    }
+
+    function instance$7($$self, $$props, $$invalidate) {
+    	
+
+      var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"];
+
+      function presetParameters(event) {
+        const i = event.currentTarget.value;
+        const params = 
+        [{R0: 3.0, D_incbation: 5.5, D_infectious: 9.0/2, CFR: 0.5/100, Time_to_death: 19},
+         {R0: 1.5, D_incbation: 2.5, D_infectious: 8.9/2, CFR: 0.02/100, Time_to_death: 12},
+         {R0: 1.3, D_incbation: 2, D_infectious: 7.0/2, CFR: 0.05/100, Time_to_death: 14},
+         {R0: 2.5, D_incbation: 6.4, D_infectious: 15/2, CFR: 9.6/100, Time_to_death: 17.4},
+         {R0: 1.7, D_incbation: 10, D_infectious: 7/2, CFR: 53/100,  Time_to_death: 8}];
+
+        $$invalidate('R0', R0 = params[i].R0);
+        $$invalidate('D_incbation', D_incbation = params[i].D_incbation);
+        $$invalidate('D_infectious', D_infectious = params[i].D_infectious);
+        $$invalidate('CFR', CFR = params[i].CFR);
+        $$invalidate('Time_to_death', Time_to_death = params[i].Time_to_death);
+      }
+
+      var active = 0;
+      let mobile = false;
 
       var Integrators = {
         Euler    : [[1]],
@@ -23828,25 +26065,8 @@
         }
         for (var r=y.slice(),l=0; l<_y.length; l++) for (var j=0; j<k.length; j++) r[l]=r[l]+h*(k[j][l])*(m[ki-1][j]);
         return r;
-      };
-
-      function presetParameters(event) {
-        const i = event.currentTarget.value;
-        const params = 
-        [{R0: 2.2, D_incbation: 5.2, D_infectious: 2.9, CFR: 0.02, Time_to_death: 32},
-         {R0: 1.5, D_incbation: 1.2, D_infectious: 1.9, CFR: 0.01, Time_to_death: 64},
-         {R0: 1.2, D_incbation: 2.2, D_infectious: 4.9, CFR: 0.01, Time_to_death: 30},
-         {R0: 1.1, D_incbation: 3.2, D_infectious: 1.4, CFR: 0.04, Time_to_death: 50},
-         {R0: 1.1, D_incbation: 1.2, D_infectious: 1.2, CFR: 0.1,  Time_to_death: 132}];
-
-        $$invalidate('R0', R0 = params[i].R0);
-        $$invalidate('D_incbation', D_incbation = params[i].D_incbation);
-        $$invalidate('D_infectious', D_infectious = params[i].D_infectious);
-        $$invalidate('CFR', CFR = params[i].CFR);
-        $$invalidate('Time_to_death', Time_to_death = params[i].Time_to_death);
-      }
-
-    // dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration
+      };  
+      let InterventionTime  = 100;
 
       function get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration) {
 
@@ -23922,216 +26142,98 @@
                 "total": 1-v[0],
                 "total_infected": TI,
                 "Iters":Iters,
+                "dt": dt*interpolation_steps,
                 "dIters": f}
       }
 
-      function max(P, checked) {
-        return P.reduce((max, b) => Math.max(max, sum(b, checked) ), sum(P[0], checked) )
-      }
+    	function onwindowresize() {
+    		screenWidth = window.innerWidth; $$invalidate('screenWidth', screenWidth);
+    		screenHeight = window.innerHeight; $$invalidate('screenHeight', screenHeight);
+    	}
 
-      var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"];
+    	function input_change_handler() {
+    		mobile = this.checked;
+    		$$invalidate('mobile', mobile);
+    	}
 
-      var Plock = 1;
-
-      var drag_y = function (){
-        var dragstarty = 0;
-        var Pmaxstart = 0;
-
-        var dragstarted = function (d) {
-          dragstarty = event.y;  
-          Pmaxstart  = Pmax;
-        };
-
-        var dragged = function (d) {
-          $$invalidate('Pmax', Pmax = Math.max( (Pmaxstart*(1 + (event.y - dragstarty)/500)), 10));
-        };
-
-        return drag().on("drag", dragged).on("start", dragstarted)
-      };
-
-      var drag_x = function (){
-        var dragstartx = 0;
-        var dtstart = 0;
-        var dragstarted = function (d) {
-          dragstartx = event.x;
-          dtstart  = dt;
-          $$invalidate('Plock', Plock = Pmax);
-          $$invalidate('lock', lock = true);
-        };
-        var dragged = function (d) {
-          $$invalidate('dt', dt = dtstart - 0.0015*(event.x - dragstartx));
-        };
-        var dragend = function (d) {
-          $$invalidate('lock', lock = false);
-        };
-        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
-      };
-
-      var drag_intervention = function (){
-        var dragstarty = 0;
-        var InterventionTimeStart = 0;
-
-        var dragstarted = function (d) {
-          dragstarty = event.x;  
-          InterventionTimeStart = InterventionTime;
-          $$invalidate('Plock', Plock = Pmax);
-          $$invalidate('lock', lock = true);
-        };
-
-        var dragged = function (d) {
-          // InterventionTime = Math.max( (*(1 + (event.x - dragstarty)/500)), 10)
-          // console.log(event.x)
-          $$invalidate('InterventionTime', InterventionTime = Math.min(tmax-1, Math.max(0, InterventionTimeStart + xScaleTimeInv(event.x - dragstarty))));
-        };
-
-        var dragend = function (d) {
-          $$invalidate('lock', lock = false);
-        };
-
-        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
-      };
-
-
-      var drag_intervention_end = function (){
-        var dragstarty = 0;
-        var durationStart = 0;
-
-        var dragstarted = function (d) {
-          dragstarty = event.x;  
-          durationStart = duration;
-          $$invalidate('Plock', Plock = Pmax);
-          $$invalidate('lock', lock = true);
-        };
-
-        var dragged = function (d) {
-          // InterventionTime = Math.max( (*(1 + (event.x - dragstarty)/500)), 10)
-          // console.log(event.x)
-          $$invalidate('duration', duration = Math.min(tmax-1, Math.max(0, durationStart + xScaleTimeInv(event.x - dragstarty))));
-        };
-
-        var dragend = function (d) {
-          $$invalidate('lock', lock = false);
-        };
-
-        return drag().on("drag", dragged).on("start", dragstarted).on("end", dragend)
-      };
-      onMount(async () => {
-        var drag_callback_y = drag_y();
-        drag_callback_y(selectAll("#yAxisDrag"));
-        var drag_callback_x = drag_x();
-        drag_callback_x(selectAll("#xAxisDrag"));
-        var drag_callback_intervention = drag_intervention();
-        // drag_callback_intervention(selectAll("#interventionDrag"))
-        drag_callback_intervention(selectAll("#dottedline"));
-        // var drag_callback_intervention_end = drag_intervention_end()
-        // drag_callback_intervention_end(selectAll("#dottedline2"))
-
-        if (typeof window !== 'undefined') {
-          parsed = queryString.parse(window.location.search);
-          if (!(parsed.logN === undefined)) {$$invalidate('logN', logN = parsed.logN);}
-          if (!(parsed.I0 === undefined)) {$$invalidate('I0', I0 = parseFloat(parsed.I0));}
-          if (!(parsed.R0 === undefined)) {$$invalidate('R0', R0 = parseFloat(parsed.R0));}
-          if (!(parsed.D_incbation === undefined)) {$$invalidate('D_incbation', D_incbation = parseFloat(parsed.D_incbation));}
-          if (!(parsed.D_infectious === undefined)) {$$invalidate('D_infectious', D_infectious = parseFloat(parsed.D_infectious));}
-          if (!(parsed.D_recovery_mild === undefined)) {$$invalidate('D_recovery_mild', D_recovery_mild = parseFloat(parsed.D_recovery_mild));}
-          if (!(parsed.D_recovery_severe === undefined)) {$$invalidate('D_recovery_severe', D_recovery_severe = parseFloat(parsed.D_recovery_severe));}
-          if (!(parsed.CFR === undefined)) {$$invalidate('CFR', CFR = parseFloat(parsed.CFR));}
-          if (!(parsed.InterventionTime === undefined)) {$$invalidate('InterventionTime', InterventionTime = parseFloat(parsed.InterventionTime));}
-          if (!(parsed.InterventionAmt === undefined)) {$$invalidate('InterventionAmt', InterventionAmt = parseFloat(parsed.InterventionAmt));}
-          if (!(parsed.D_hospital_lag === undefined)) {$$invalidate('D_hospital_lag', D_hospital_lag = parseFloat(parsed.D_hospital_lag));}
-          if (!(parsed.P_SEVERE === undefined)) {$$invalidate('P_SEVERE', P_SEVERE = parseFloat(parsed.P_SEVERE));}
-          if (!(parsed.Time_to_death === undefined)) {$$invalidate('Time_to_death', Time_to_death = parseFloat(parsed.Time_to_death));}
-
-        }
-      });
-
-      function lock_yaxis(){
-        $$invalidate('Plock', Plock = Pmax);
-        $$invalidate('lock', lock  = true);
-      }
-
-      function unlock_yaxis(){
-        $$invalidate('lock', lock = false);
-      }
-
-      const padding = { top: 20, right: 0, bottom: 20, left: 25 };
-
-      window.addEventListener('mouseup', unlock_yaxis);
-
-      function get_milestones(P){
-
-        function argmax(x, index) {
-          return x.map((x, i) => [x[index], i]).reduce((r, a) => (a[0] > r[0] ? a : r))[1];
-        }
-
-         //    Dead   Hospital          Recovered        Infectious   Exposed
-        var milestones = [];
-        for (var i = 0; i < P.length; i++) {
-          if (P[i][0] >= 0.5) {
-            milestones.push([i*dt, "First death"]);
-            break
-          }
-        }
-
-        var i = argmax(P, 1);
-        milestones.push([i*dt, "Peak: " + format(",")(Math.round(P[i][1])) + " hospitalizations"]);
-
-        return milestones
-      }
-
-    	function checkbox1_checked_binding(value) {
-    		checked[4] = value;
+    	function seirpanel_checked_binding(value) {
+    		checked = value;
     		$$invalidate('checked', checked);
     	}
 
-    	function checkbox2_checked_binding(value_1) {
-    		checked[3] = value_1;
-    		$$invalidate('checked', checked);
-    	}
-
-    	function checkbox3_checked_binding(value_2) {
-    		checked[0] = value_2;
-    		$$invalidate('checked', checked);
-    	}
-
-    	function input0_change_input_handler() {
-    		R0 = to_number(this.value);
+    	function control_R0_binding(value_1) {
+    		R0 = value_1;
     		$$invalidate('R0', R0);
     	}
 
-    	function input1_change_input_handler() {
-    		D_incbation = to_number(this.value);
+    	function control_D_incbation_binding(value_2) {
+    		D_incbation = value_2;
     		$$invalidate('D_incbation', D_incbation);
     	}
 
-    	function input2_change_input_handler() {
-    		D_infectious = to_number(this.value);
+    	function control_D_infectious_binding(value_3) {
+    		D_infectious = value_3;
     		$$invalidate('D_infectious', D_infectious);
     	}
 
-    	function input3_change_input_handler() {
-    		CFR = to_number(this.value);
+    	function control_CFR_binding(value_4) {
+    		CFR = value_4;
     		$$invalidate('CFR', CFR);
     	}
 
-    	function input4_change_input_handler() {
-    		Time_to_death = to_number(this.value);
+    	function control_Time_to_death_binding(value_5) {
+    		Time_to_death = value_5;
     		$$invalidate('Time_to_death', Time_to_death);
     	}
 
-    	function chart_checked_binding(value_3) {
+    	function seir_OMInterventionAmt_binding(value_6) {
+    		OMInterventionAmt = value_6;
+    		$$invalidate('OMInterventionAmt', OMInterventionAmt);
+    	}
+
+    	function seir_InterventionTime_binding(value_7) {
+    		InterventionTime = value_7;
+    		$$invalidate('InterventionTime', InterventionTime);
+    	}
+
+    	function seir_checked_binding(value_8) {
+    		checked = value_8;
+    		$$invalidate('checked', checked);
+    	}
+
+    	function seir_active_binding(value_9) {
+    		active = value_9;
+    		$$invalidate('active', active);
+    	}
+
+    	function seir_mobile_binding(value) {
+    		mobile = value;
+    		$$invalidate('mobile', mobile);
+    	}
+
+    	function seir_OMInterventionAmt_binding_1(value_1) {
+    		OMInterventionAmt = value_1;
+    		$$invalidate('OMInterventionAmt', OMInterventionAmt);
+    	}
+
+    	function seir_InterventionTime_binding_1(value_2) {
+    		InterventionTime = value_2;
+    		$$invalidate('InterventionTime', InterventionTime);
+    	}
+
+    	function seir_checked_binding_1(value_3) {
     		checked = value_3;
     		$$invalidate('checked', checked);
     	}
 
-    	function chart_active_binding(value_4) {
+    	function seir_active_binding_1(value_4) {
     		active = value_4;
     		$$invalidate('active', active);
     	}
 
-    	function input5_change_input_handler() {
-    		OMInterventionAmt = to_number(this.value);
-    		$$invalidate('OMInterventionAmt', OMInterventionAmt);
+    	function seirpanel_checked_binding_1(value_5) {
+    		checked = value_5;
+    		$$invalidate('checked', checked);
     	}
 
     	$$self.$capture_state = () => {
@@ -24139,25 +26241,21 @@
     	};
 
     	$$self.$inject_state = $$props => {
-    		if ('sum' in $$props) sum = $$props.sum;
+    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
+    		if ('active' in $$props) $$invalidate('active', active = $$props.active);
+    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
     		if ('Integrators' in $$props) Integrators = $$props.Integrators;
     		if ('integrate' in $$props) integrate = $$props.integrate;
-    		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
-    		if ('Plock' in $$props) $$invalidate('Plock', Plock = $$props.Plock);
-    		if ('drag_y' in $$props) drag_y = $$props.drag_y;
-    		if ('drag_x' in $$props) drag_x = $$props.drag_x;
-    		if ('drag_intervention' in $$props) drag_intervention = $$props.drag_intervention;
-    		if ('drag_intervention_end' in $$props) drag_intervention_end = $$props.drag_intervention_end;
-    		if ('width' in $$props) $$invalidate('width', width = $$props.width);
-    		if ('height' in $$props) $$invalidate('height', height = $$props.height);
-    		if ('Tinc_s' in $$props) $$invalidate('Tinc_s', Tinc_s = $$props.Tinc_s);
-    		if ('Tinf_s' in $$props) $$invalidate('Tinf_s', Tinf_s = $$props.Tinf_s);
-    		if ('Rt_s' in $$props) $$invalidate('Rt_s', Rt_s = $$props.Rt_s);
+    		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
     		if ('R0' in $$props) $$invalidate('R0', R0 = $$props.R0);
     		if ('D_incbation' in $$props) $$invalidate('D_incbation', D_incbation = $$props.D_incbation);
     		if ('D_infectious' in $$props) $$invalidate('D_infectious', D_infectious = $$props.D_infectious);
     		if ('CFR' in $$props) $$invalidate('CFR', CFR = $$props.CFR);
     		if ('Time_to_death' in $$props) $$invalidate('Time_to_death', Time_to_death = $$props.Time_to_death);
+    		if ('screenWidth' in $$props) $$invalidate('screenWidth', screenWidth = $$props.screenWidth);
+    		if ('screenHeight' in $$props) $$invalidate('screenHeight', screenHeight = $$props.screenHeight);
+    		if ('lock' in $$props) lock = $$props.lock;
+    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
     		if ('logN' in $$props) $$invalidate('logN', logN = $$props.logN);
     		if ('N' in $$props) $$invalidate('N', N = $$props.N);
     		if ('I0' in $$props) $$invalidate('I0', I0 = $$props.I0);
@@ -24165,90 +26263,36 @@
     		if ('D_recovery_severe' in $$props) $$invalidate('D_recovery_severe', D_recovery_severe = $$props.D_recovery_severe);
     		if ('D_hospital_lag' in $$props) $$invalidate('D_hospital_lag', D_hospital_lag = $$props.D_hospital_lag);
     		if ('D_death' in $$props) $$invalidate('D_death', D_death = $$props.D_death);
-    		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
     		if ('OMInterventionAmt' in $$props) $$invalidate('OMInterventionAmt', OMInterventionAmt = $$props.OMInterventionAmt);
     		if ('InterventionAmt' in $$props) $$invalidate('InterventionAmt', InterventionAmt = $$props.InterventionAmt);
     		if ('Time' in $$props) Time = $$props.Time;
-    		if ('Xmax' in $$props) $$invalidate('Xmax', Xmax = $$props.Xmax);
     		if ('dt' in $$props) $$invalidate('dt', dt = $$props.dt);
     		if ('P_SEVERE' in $$props) $$invalidate('P_SEVERE', P_SEVERE = $$props.P_SEVERE);
     		if ('duration' in $$props) $$invalidate('duration', duration = $$props.duration);
-    		if ('state' in $$props) state = $$props.state;
     		if ('Sol' in $$props) $$invalidate('Sol', Sol = $$props.Sol);
-    		if ('P' in $$props) $$invalidate('P', P = $$props.P);
-    		if ('timestep' in $$props) $$invalidate('timestep', timestep = $$props.timestep);
-    		if ('tmax' in $$props) $$invalidate('tmax', tmax = $$props.tmax);
-    		if ('deaths' in $$props) $$invalidate('deaths', deaths = $$props.deaths);
-    		if ('total' in $$props) $$invalidate('total', total = $$props.total);
-    		if ('total_infected' in $$props) $$invalidate('total_infected', total_infected = $$props.total_infected);
-    		if ('Iters' in $$props) $$invalidate('Iters', Iters = $$props.Iters);
-    		if ('dIters' in $$props) $$invalidate('dIters', dIters = $$props.dIters);
-    		if ('Pmax' in $$props) $$invalidate('Pmax', Pmax = $$props.Pmax);
-    		if ('checked' in $$props) $$invalidate('checked', checked = $$props.checked);
-    		if ('lock' in $$props) $$invalidate('lock', lock = $$props.lock);
-    		if ('xScaleTimeInv' in $$props) xScaleTimeInv = $$props.xScaleTimeInv;
-    		if ('parsed' in $$props) parsed = $$props.parsed;
-    		if ('xScaleTime' in $$props) $$invalidate('xScaleTime', xScaleTime = $$props.xScaleTime);
     		if ('indexToTime' in $$props) $$invalidate('indexToTime', indexToTime = $$props.indexToTime);
-    		if ('active' in $$props) $$invalidate('active', active = $$props.active);
-    		if ('active_' in $$props) $$invalidate('active_', active_ = $$props.active_);
-    		if ('ode_eqn' in $$props) ode_eqn = $$props.ode_eqn;
-    		if ('p_num_ind' in $$props) p_num_ind = $$props.p_num_ind;
     		if ('get_d' in $$props) $$invalidate('get_d', get_d = $$props.get_d);
-    		if ('milestones' in $$props) milestones = $$props.milestones;
-    		if ('log' in $$props) $$invalidate('log', log = $$props.log);
     	};
 
-    	let Time_to_death, logN, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_recovery_severe, D_hospital_lag, D_death, CFR, InterventionTime, OMInterventionAmt, InterventionAmt, Time, Xmax, dt, P_SEVERE, duration, state, Sol, P, timestep, tmax, deaths, total, total_infected, Iters, dIters, Pmax, lock, parsed, xScaleTime, xScaleTimeInv, indexToTime, checked, active, active_, ode_eqn, p_num_ind, get_d, milestones, log;
+    	let screenWidth, screenHeight, lock, checked, Time_to_death, logN, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_recovery_severe, D_hospital_lag, D_death, CFR, OMInterventionAmt, InterventionAmt, Time, dt, P_SEVERE, duration, Sol, indexToTime, get_d;
 
-    	$$self.$$.update = ($$dirty = { logN: 1, Time_to_death: 1, D_infectious: 1, OMInterventionAmt: 1, I0: 1, R0: 1, D_incbation: 1, D_recovery_mild: 1, D_recovery_severe: 1, CFR: 1, InterventionTime: 1, InterventionAmt: 1, D_hospital_lag: 1, P_SEVERE: 1, dt: 1, N: 1, D_death: 1, duration: 1, Sol: 1, P: 1, checked: 1, tmax: 1, width: 1, active: 1, Iters: 1, Rt_s: 1, Tinc_s: 1, Tinf_s: 1, dIters: 1, indexToTime: 1 }) => {
+    	$$self.$$.update = ($$dirty = { logN: 1, Time_to_death: 1, D_infectious: 1, OMInterventionAmt: 1, dt: 1, N: 1, I0: 1, R0: 1, D_incbation: 1, D_recovery_mild: 1, D_hospital_lag: 1, D_recovery_severe: 1, D_death: 1, P_SEVERE: 1, CFR: 1, InterventionTime: 1, InterventionAmt: 1, duration: 1, Sol: 1, indexToTime: 1 }) => {
     		if ($$dirty.logN) { $$invalidate('N', N                 = Math.exp(logN)); }
     		if ($$dirty.Time_to_death || $$dirty.D_infectious) { $$invalidate('D_death', D_death           = Time_to_death - D_infectious); }
     		if ($$dirty.OMInterventionAmt) { $$invalidate('InterventionAmt', InterventionAmt   = 1 - OMInterventionAmt); }
-    		if ($$dirty.Time_to_death || $$dirty.logN || $$dirty.I0 || $$dirty.R0 || $$dirty.D_incbation || $$dirty.D_infectious || $$dirty.D_recovery_mild || $$dirty.D_recovery_severe || $$dirty.CFR || $$dirty.InterventionTime || $$dirty.InterventionAmt || $$dirty.D_hospital_lag || $$dirty.P_SEVERE) { state = location.protocol + '//' + location.host + location.pathname + "?" + queryString.stringify({"Time_to_death":Time_to_death,
-                       "logN":logN,
-                       "I0":I0,
-                       "R0":R0,
-                       "D_incbation":D_incbation,
-                       "D_infectious":D_infectious,
-                       "D_recovery_mild":D_recovery_mild,
-                       "D_recovery_severe":D_recovery_severe,
-                       "CFR":CFR,
-                       "InterventionTime":InterventionTime,
-                       "InterventionAmt":InterventionAmt,
-                       "D_hospital_lag":D_hospital_lag,
-                       "P_SEVERE": P_SEVERE}); }
-    		if ($$dirty.dt || $$dirty.N || $$dirty.I0 || $$dirty.R0 || $$dirty.D_incbation || $$dirty.D_infectious || $$dirty.D_recovery_mild || $$dirty.D_hospital_lag || $$dirty.D_recovery_severe || $$dirty.D_death || $$dirty.P_SEVERE || $$dirty.CFR || $$dirty.InterventionTime || $$dirty.InterventionAmt || $$dirty.duration) { $$invalidate('Sol', Sol            = get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration)); }
-    		if ($$dirty.Sol) { $$invalidate('P', P              = Sol["P"].slice(0,100)); }
-    		if ($$dirty.dt) { $$invalidate('timestep', timestep       = dt); }
-    		if ($$dirty.dt) { $$invalidate('tmax', tmax           = dt*100); }
-    		if ($$dirty.Sol) { $$invalidate('deaths', deaths         = Sol["deaths"]); }
-    		if ($$dirty.Sol) { $$invalidate('total', total          = Sol["total"]); }
-    		if ($$dirty.Sol) { $$invalidate('total_infected', total_infected = Sol["total_infected"].slice(0,100)); }
-    		if ($$dirty.Sol) { $$invalidate('Iters', Iters          = Sol["Iters"]); }
-    		if ($$dirty.Sol) { $$invalidate('dIters', dIters         = Sol["dIters"]); }
-    		if ($$dirty.P || $$dirty.checked) { $$invalidate('Pmax', Pmax           = max(P, checked)); }
-    		if ($$dirty.tmax || $$dirty.width) { $$invalidate('xScaleTime', xScaleTime = linear$1()
-            .domain([0, tmax])
-            .range([padding.left, width - padding.right])); }
-    		if ($$dirty.width || $$dirty.tmax) { xScaleTimeInv = linear$1()
-            .domain([0, width])
-            .range([0, tmax]); }
-    		if ($$dirty.P || $$dirty.tmax) { $$invalidate('indexToTime', indexToTime = linear$1()
-            .domain([0, P.length])
-            .range([0, tmax])); }
-    		if ($$dirty.active || $$dirty.Iters) { $$invalidate('active_', active_ = active >= 0 ? active : Iters.length - 1); }
-    		if ($$dirty.Rt_s || $$dirty.Tinc_s || $$dirty.Tinf_s) { ode_eqn = katex$1.renderToString("\\frac{d S}{d t}=-" +Rt_s +"\\cdot IS,\\qquad \\frac{d E}{d t}=" +Rt_s +"\\cdot IS- " + Tinc_s + " E,\\qquad \\frac{d I}{d t}=" + Tinc_s + "E-" + Tinf_s+ "I, \\qquad \\frac{d R}{d t}=" + Tinf_s+ "I", {
-            throwOnError: false,
-            displayMode: true,
-            colorIsTextColor: true
+    		if ($$dirty.dt || $$dirty.N || $$dirty.I0 || $$dirty.R0 || $$dirty.D_incbation || $$dirty.D_infectious || $$dirty.D_recovery_mild || $$dirty.D_hospital_lag || $$dirty.D_recovery_severe || $$dirty.D_death || $$dirty.P_SEVERE || $$dirty.CFR || $$dirty.InterventionTime || $$dirty.InterventionAmt || $$dirty.duration) { $$invalidate('Sol', Sol = get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration)); }
+    		if ($$dirty.Sol) { $$invalidate('indexToTime', indexToTime = linear$1()
+            .domain([0, 100])
+            .range([0, Sol["dt"]*100])); }
+    		if ($$dirty.Sol || $$dirty.indexToTime) { $$invalidate('get_d', get_d = function(i){
+            return Sol["dIters"](indexToTime(i), Sol["Iters"][i])
           }); }
-    		if ($$dirty.dIters || $$dirty.indexToTime || $$dirty.Iters) { $$invalidate('get_d', get_d = function(i){
-            return dIters(indexToTime(i), Iters[i])
-          }); }
-    		if ($$dirty.P) { milestones = get_milestones(P); }
     	};
 
+    	$$invalidate('screenWidth', screenWidth = 0);
+    	$$invalidate('screenHeight', screenHeight = 0);
+    	lock = false;
+    	$$invalidate('checked', checked = [true, false, false, true, true]);
     	$$invalidate('Time_to_death', Time_to_death     = 32);
     	$$invalidate('logN', logN              = Math.log(7e6));
     	$$invalidate('I0', I0                = 1);
@@ -24259,71 +26303,57 @@
     	$$invalidate('D_recovery_severe', D_recovery_severe = (31.5 - 2.9));
     	$$invalidate('D_hospital_lag', D_hospital_lag    = 5);
     	$$invalidate('CFR', CFR               = 0.02);
-    	$$invalidate('InterventionTime', InterventionTime  = 100);
     	$$invalidate('OMInterventionAmt', OMInterventionAmt = 2/3);
     	Time              = 220;
-    	$$invalidate('Xmax', Xmax              = 110000);
     	$$invalidate('dt', dt                = 2);
     	$$invalidate('P_SEVERE', P_SEVERE          = 0.2);
     	$$invalidate('duration', duration          = 7*12*1e10);
-    	$$invalidate('checked', checked = [true, false, false, true, true]);
-    	$$invalidate('lock', lock           = false);
-    	parsed = "";
-    	$$invalidate('active', active  = 0);
-    	p_num_ind = 40;
-    	$$invalidate('log', log = true);
 
     	return {
-    		presetParameters,
     		colors,
-    		Plock,
-    		lock_yaxis,
-    		padding,
+    		presetParameters,
+    		active,
+    		mobile,
+    		InterventionTime,
     		R0,
     		D_incbation,
     		D_infectious,
     		CFR,
     		Time_to_death,
-    		Math,
-    		N,
-    		InterventionTime,
-    		OMInterventionAmt,
-    		Xmax,
-    		P,
-    		timestep,
-    		tmax,
-    		deaths,
-    		total,
-    		total_infected,
-    		Iters,
-    		Pmax,
+    		screenWidth,
+    		screenHeight,
     		checked,
-    		lock,
-    		xScaleTime,
+    		N,
+    		OMInterventionAmt,
+    		Sol,
     		indexToTime,
-    		active,
-    		active_,
     		get_d,
-    		log,
-    		checkbox1_checked_binding,
-    		checkbox2_checked_binding,
-    		checkbox3_checked_binding,
-    		input0_change_input_handler,
-    		input1_change_input_handler,
-    		input2_change_input_handler,
-    		input3_change_input_handler,
-    		input4_change_input_handler,
-    		chart_checked_binding,
-    		chart_active_binding,
-    		input5_change_input_handler
+    		onwindowresize,
+    		input_change_handler,
+    		seirpanel_checked_binding,
+    		control_R0_binding,
+    		control_D_incbation_binding,
+    		control_D_infectious_binding,
+    		control_CFR_binding,
+    		control_Time_to_death_binding,
+    		seir_OMInterventionAmt_binding,
+    		seir_InterventionTime_binding,
+    		seir_checked_binding,
+    		seir_active_binding,
+    		seir_mobile_binding,
+    		seir_OMInterventionAmt_binding_1,
+    		seir_InterventionTime_binding_1,
+    		seir_checked_binding_1,
+    		seir_active_binding_1,
+    		seirpanel_checked_binding_1
     	};
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$3, create_fragment$3, safe_not_equal, []);
-    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "App", options, id: create_fragment$3.name });
+    		init(this, options, instance$7, create_fragment$7, safe_not_equal, []);
+    		dispatch_dev("SvelteRegisterComponent", { component: this, tagName: "App", options, id: create_fragment$7.name });
     	}
     }
 
