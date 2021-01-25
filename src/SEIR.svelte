@@ -311,19 +311,32 @@
   .draggymobile:after {
       content:'';
       position: absolute;
-      top: 98.5%;
+      top: 98%;
       left: 50%;
       margin-left: -3px;
       width: 0;
       height: 0;
-      border-top: solid 6px rgb(71, 129, 255);
+      border-top: solid 6px white;
+      border-left: solid 6px transparent;
+      border-right: solid 6px transparent;
+  }
+
+  .draggymobile2:after {
+      content:'';
+      position: absolute;
+      top: 113.5%;
+      left: 50%;
+      margin-left: -3px;
+      width: 0;
+      height: 0;
+      border-top: solid 6px rgb(200,200,200);
       border-left: solid 6px transparent;
       border-right: solid 6px transparent;
   }
 
 </style>
 
-<div style="position:relative; top:{mobile ? 25: 122}px; left: 25px; height: {mobile ? height+25: height+105}px">
+<div style="position:relative; top:{mobile ? 60: 122}px; left: 25px; height: {mobile ? height+35: height+105}px">
 
   <Chart bind:checked={checked}
          bind:active={active}
@@ -342,7 +355,7 @@
          width={width}
          space={mobile ? 0.5 : 1.5}
          displayday={mobile ? false : true}
-         height={height-30}/>
+         height={height-50}/>
   </div>
 
   {#if !mobile}
@@ -428,7 +441,7 @@
                   /*background-color: black;*/
                   top:-65px; 
                   left: -80px; 
-                  height: 60px; 
+                  height: 90px; 
                   padding-right: 15px; 
                   cursor:col-resize; 
                   position:absolute;" >
@@ -438,7 +451,7 @@
     </div>
 
     <!-- Intervention Line slider -->
-    <div style="position: absolute; width:{width+15}px; height: {height + 30}px; position: absolute; top:20px; left:25px; pointer-events: none">
+    <div style="position: absolute; width:{width+15}px; height: {height + 30}px; position: absolute; top:35px; left:25px; pointer-events: none">
       <div style="
           position: absolute;
           top:30px;
@@ -449,20 +462,20 @@
           border-right: 1px dashed rgb(0,0,0, 0.5);
           cursor:col-resize;
           height:{height-54}px">
-          <div style="position:relative; top:-35px; left: {-102+63}px;" >
+          <div style="position:relative; top:-35px; left: {-102+56.5}px;" >
             <div class="caption draggymobile" style="pointer-events: none; 
-                                        width: 60px; 
+                                        width: 74px; 
                                         position: absolute; 
                                         left:0; 
-                                        top:0px; 
-                                        height: 10px;
+                                        top:-10px; 
+                                        height: 42px;
                                         padding: 5px 7px 7px 7px; 
-                                        background-color: rgb(71, 129, 255);
+                                        background-color: white;
                                         border: 1px solid rgb(200,200,200);
-                                        border-radius: 20px;">
-              <div class="paneldesc"  style="position: absolute; font-size: 10px; text-align: center; width: 100px; left: -14px; top: -15px"> ← Drag →</div>  
-              <div style="text-align: center; padding: 0px; margin: 0px; color: white; font-weight: bold; top: -3px; position: relative">
-                Day {format("d")(InterventionTime)}
+                                        border-radius: 3px;">
+              <div class="paneldesc"  style="position: absolute; font-size: 10px; text-align: center; width: 100px; left: -7px; top: -15px"> ← Drag →</div>  
+              <div class="draggymobile2" style="text-align: center; line-height: 14px; padding: 0px; margin: 0px; color: black; top: -2px; position: relative; font-size: 12px">
+                Day of Intervention* <div style="font-weight:bold; color:red; font-size:15px; margin-top: 4px">{format("d")(InterventionTime)}</div>
               </div>
             </div>
           </div>

@@ -9,20 +9,21 @@
 
   var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"]
 
+  const presets = 
+  [{R0: 3.0, D_incbation: 5.5, D_infectious: 9.0, CFR: 0.5/100, Time_to_death: 19},
+   {R0: 1.5, D_incbation: 2.5, D_infectious: 8.9, CFR: 0.02/100, Time_to_death: 12},
+   {R0: 1.3, D_incbation: 2, D_infectious: 7.0, CFR: 0.05/100, Time_to_death: 14},
+   {R0: 2.5, D_incbation: 6.4, D_infectious: 15, CFR: 9.6/100, Time_to_death: 17.4},
+   {R0: 1.7, D_incbation: 10, D_infectious: 7, CFR: 53/100,  Time_to_death: 8}]
+
+
   function presetParameters(event) {
     const i = event.currentTarget.value
-    const params = 
-    [{R0: 3.0, D_incbation: 5.5, D_infectious: 9.0/2, CFR: 0.5/100, Time_to_death: 19},
-     {R0: 1.5, D_incbation: 2.5, D_infectious: 8.9/2, CFR: 0.02/100, Time_to_death: 12},
-     {R0: 1.3, D_incbation: 2, D_infectious: 7.0/2, CFR: 0.05/100, Time_to_death: 14},
-     {R0: 2.5, D_incbation: 6.4, D_infectious: 15/2, CFR: 9.6/100, Time_to_death: 17.4},
-     {R0: 1.7, D_incbation: 10, D_infectious: 7/2, CFR: 53/100,  Time_to_death: 8}]
-
-    R0 = params[i].R0
-    D_incbation = params[i].D_incbation
-    D_infectious = params[i].D_infectious
-    CFR = params[i].CFR
-    Time_to_death = params[i].Time_to_death
+    R0 = presets[i].R0
+    D_incbation = presets[i].D_incbation
+    D_infectious = presets[i].D_infectious
+    CFR = presets[i].CFR
+    Time_to_death = presets[i].Time_to_death
   }
 
   var active = 0
@@ -59,18 +60,18 @@
     return r;
   }
 
-  $: Time_to_death     = 32
+  $: Time_to_death     = presets[0].Time_to_death
   $: logN              = Math.log(7e6)
   $: N                 = Math.exp(logN)
   $: I0                = 1
-  $: R0                = 2.2
-  $: D_incbation       = 5.2       
-  $: D_infectious      = 2.9 
+  $: R0                = presets[0].R0
+  $: D_incbation       = presets[0].D_incbation
+  $: D_infectious      = presets[0].D_infectious
   $: D_recovery_mild   = (14 - 2.9)  
   $: D_recovery_severe = (31.5 - 2.9)
   $: D_hospital_lag    = 5
   $: D_death           = Time_to_death - D_infectious 
-  $: CFR               = 0.02  
+  $: CFR               = presets[0].CFR
   let InterventionTime  = 100
   $: OMInterventionAmt = 2/3
   $: InterventionAmt   = 1 - OMInterventionAmt
@@ -178,7 +179,7 @@
     padding-top:0px;
     padding-bottom:10px;
     display: grid;
-    grid-template-columns: 27% 1% 72%;
+    grid-template-columns: 27% 2% 72%;
     grid-template-areas:
       'left-top    vline right'
       'left-bottom vline right';
@@ -189,11 +190,10 @@
     padding-top:0px;
     padding-bottom:10px;
     display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 253px 118px;
+    grid-gap: 5px;
+    grid-template-columns: 65% 32%;
     grid-template-areas:
       'top         top'
-      'line        line'
       'left-bottom right-bottom'
       'line2        line2';
   }
@@ -225,7 +225,7 @@
       <SEIRPanel Iters={Sol["Iters"]} 
                  N={N}
                  colors={colors}
-                 active_={active >= 0 ? active : Sol['Iters'].length - 1} 
+                 active_={active >= 0 ? active : 0} 
                  indexToTime={indexToTime}
                  get_d={get_d}
                  bind:checked={checked} />
@@ -243,15 +243,13 @@
 
     </div>
 
-    <div style="border-right:2.5px dotted rgb(200,200,200); grid-area: vline">
-    </div>
-
-
     <div style="position:relative; grid-area: right">
 
-      <SEIR colors={colors} Sol={Sol} N={N} height={480} width={680} bind:OMInterventionAmt bind:InterventionTime bind:checked bind:active/>
-   
-      <div class="legendtext" style="width: 100%; margin-top: 20px; position:relative; padding: 10px">
+      <div style="position: relative; left: -12px">
+        <SEIR colors={colors} Sol={Sol} N={N} height={520} width={680} bind:OMInterventionAmt bind:InterventionTime bind:checked bind:active/>
+      </div> 
+
+      <div class="legendtext" style="width: 100%; margin-top: 21px; position:relative; padding: 10px">
         <Selector presetParameters={presetParameters}/>
       </div>
 
@@ -261,15 +259,15 @@
 
 {:else}
 
-  <meta name="viewport" content="width=400">
-  <div class="chartmobile" style="width: 381px">
+  <meta name="viewport" content="width=370">
+  <div class="chartmobile" style="width: 360px; overflow:hidden">
 
-    <div style="position:relative; grid-area: top; left:-20px;">
+    <div style="position:relative; grid-area: top; left:-25px;">
       <SEIR colors={colors}
             Sol={Sol}
             N={N}
             height={280}
-            width={365}
+            width={345}
             bind:mobile
             bind:OMInterventionAmt
             bind:InterventionTime
@@ -279,7 +277,7 @@
 
     <div style="grid-area: line; border-bottom: 1px solid rgb(200,200,200)"></div>
 
-    <div style="grid-area: left-bottom; padding: 2px 15px 0px 0px">
+    <div style="grid-area: left-bottom; padding: 2px 4px 0px 0px">
       <SEIRPanel Iters={Sol["Iters"]} 
                  N={N}
                  colors={colors}
