@@ -1,5 +1,5 @@
 <script>
-   
+  
   import Chart from './Chart.svelte';
   import Control from './Control.svelte';
   import SEIRPanel from './SEIRPanel.svelte';

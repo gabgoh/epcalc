@@ -4,6 +4,7 @@
   import Control from './Control.svelte';
   import SEIRPanel from './SEIRPanel.svelte';
   import Selector from './Selector.svelte';
+  import Slider from './Slider.svelte'
 
   import { scaleLinear } from "d3-scale";
   // import { Date } from "d3-time"
@@ -414,7 +415,7 @@
                 <div class="paneltitle" style="margin-top: 5px; padding-bottom:5px; margin-bottom: 5px; border-bottom: 2px dotted grey">Day of intervention: <span style="color:red">{format("d")(InterventionTime)}</span></div>                
                 <div class="paneldesc" style="text-align:center; margin-bottom: 3px">Intervention decreases transmission by <br> {100*OMInterventionAmt.toFixed(2)}%<br></div>
                 <div style="pointer-events: all">
-                  <input class="range" type=range bind:value={OMInterventionAmt} min=0 max=1 step=0.01 on:mousedown={lock_yaxis}>
+                  <Slider bind:value={OMInterventionAmt} min=0 max=1 step=0.01 mousedown={lock_yaxis}/>
                 </div>
               </div>
             </div>

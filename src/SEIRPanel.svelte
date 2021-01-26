@@ -21,7 +21,7 @@
     if (num < 1) {
       return Math.round(num*1000)
     }
-    return format(",.2s")(num) + "K"
+    return format(",.2s")(num*1000)
   }  
 
   function formatNumber(num) {
@@ -189,7 +189,7 @@
   </div>
   <div class="x23">
     <div style="position: relative; padding-top: 2px; padding-bottom: 1px">
-      <div class="legendtextnum"> <i><span class="legendtitle"><b>{formatnumber(N*Iters[active_][1]/1000)}</b></span>
+      <div class="legendtextnum"> <span class="legendtitle"><b>{formatnumber(N*Iters[active_][1]/1000)}</b></span>
                               ({ format(".1%")(Iters[active_][1]) })</div>
       <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[1])) }</span> per day
                              </div>
@@ -230,7 +230,7 @@
   </div>
   <div class="x33">
     <div style="padding-top: 2px; padding-bottom: 1px">
-      <div class="legendtextnum"> <span class="legendtitle"><b><i>{formatnumber(N*Iters[active_][9]/1000)} </b></span>
+      <div class="legendtextnum"> <span class="legendtitle"><b>{formatnumber(N*Iters[active_][9]/1000)} </b></span>
                               ({ (100*Iters[active_][9]).toFixed(2) }%)</div>
       <div class="legendtextnum"> <span class="legendblue">{formatNumber(Math.round(N*get_d(active_)[9])) }</span> per day
                              </div>
