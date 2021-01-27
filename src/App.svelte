@@ -1,5 +1,7 @@
 <script>
-  
+
+  import { range } from 'd3'  
+  import { format } from 'd3-format'  
   import Chart from './Chart.svelte';
   import Control from './Control.svelte';
   import SEIRPanel from './SEIRPanel.svelte';
@@ -61,26 +63,26 @@
 
   $: Time_to_death     = presets[0].Time_to_death
   $: logN              = Math.log(7e6)
-  $: N                 = Math.exp(logN)
+  $: N                 = 530*1e6
   $: I0                = 1
-  $: R0                = presets[0].R0
-  $: D_incbation       = presets[0].D_incbation
-  $: D_infectious      = presets[0].D_infectious
-  $: D_recovery_mild   = (14 - 2.9)  
-  $: D_recovery_severe = (31.5 - 2.9)
+  $: R0                = 8
+  $: D_incbation       = 2
+  $: D_infectious      = 7
+  $: D_recovery_mild   = 15 - 7
+  $: D_recovery_severe = 25
   $: D_hospital_lag    = 5
   $: D_death           = Time_to_death - D_infectious 
-  $: CFR               = presets[0].CFR
-  let InterventionTime  = 100
-  $: OMInterventionAmt = 2/3
+  $: CFR               = 0.75
+  let InterventionTime  = 15
+  $: OMInterventionAmt = 12.5/100
   $: InterventionAmt   = 1 - OMInterventionAmt
-  $: dt                = 3.675
-  $: P_SEVERE          = 0.2
+  $: dt                = 3
+  $: P_SEVERE          = 0.75
   $: duration          = 7*12*1e10
 
   function get_solution(dt, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_hospital_lag, D_recovery_severe, D_death, P_SEVERE, CFR, InterventionTime, InterventionAmt, duration) {
 
-    var interpolation_steps = 40
+    var interpolation_steps = 40*2
     var steps = 110*interpolation_steps
     var dt = dt/interpolation_steps
     var sample_step = interpolation_steps
@@ -169,130 +171,49 @@
 
 </script>
 
-<style>
-
-  .chart {
-    width: 100%;
-    margin: 0 auto;
-    padding-top:0px;
-    padding-bottom:10px;
-    display: grid;
-    grid-template-columns: 27% 2% 72%;
-    grid-template-areas:
-      'left-top    vline right'
-      'left-bottom vline right';
-  }
-
-  .chartmobile {
-    margin: 0 auto;
-    padding-top:0px;
-    padding-bottom:10px;
-    display: grid;
-    grid-gap: 5px;
-    grid-template-columns: 65% 32%;
-    grid-template-areas:
-      'top         top'
-      'left-bottom right-bottom'
-      'line2        line2';
-  }
-
-
-  .legendtext{
-    color:#888; 
-    font-size:13px;
-    padding-bottom: 6px;
-    font-weight: 300;
-    font-family: Pangram,Avenir,Helvetica,sans-serif;
-    line-height: 15px;
-  }
-
-</style>
 
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight}/>
 
-<div style="padding: 5px">
-<input type="checkbox" bind:checked={mobile} checked> Mobile = {mobile}
+<meta name="viewport" content="width=980">
+<div class="chart" style="width: 980px">
+
+  <div style=" margin-right: 5px; grid-area: left-bottom">
+
+    <Control bind:R0={R0}
+             bind:D_incbation={D_incbation}
+             bind:D_infectious={D_infectious}
+             bind:CFR={CFR}
+             bind:Time_to_death={Time_to_death}/>
+
+  </div>
+
+
 </div>
 
-{#if !mobile}
-  <meta name="viewport" content="width=980">
-  <div class="chart" style="width: 980px">
+<!-- dS, dE, dI, dMild, dSevere, dSevere_H, dFatal, dR_Mild, dR_Severe, dR_Fatal -->
 
-    <div style=" margin-right: 5px; grid-area: left-top">
+<table>
+  <tr>
+    <th>Day</th>
+    <th>Suspectible</th>
+    <th>Exposed</th>
+    <th>Infected</th>
+    <th>Mild</th>
+    <th>Severe</th>
+    <th>Hospitalized</th>
+    <th>Fatalities (total)</th>
 
-      <SEIRPanel Iters={Sol["Iters"]} 
-                 N={N}
-                 colors={colors}
-                 active_={active >= 0 ? active : 0} 
-                 indexToTime={indexToTime}
-                 get_d={get_d}
-                 bind:checked={checked} />
-
-    </div>
-
-
-    <div style=" margin-right: 5px; grid-area: left-bottom">
-
-      <Control bind:R0={R0}
-               bind:D_incbation={D_incbation}
-               bind:D_infectious={D_infectious}
-               bind:CFR={CFR}
-               bind:Time_to_death={Time_to_death}/>
-
-    </div>
-
-    <div style="position:relative; grid-area: right">
-
-      <div style="position: relative; left: -12px">
-        <SEIR colors={colors} Sol={Sol} N={N} height={520} width={680} bind:OMInterventionAmt bind:InterventionTime bind:checked bind:active/>
-      </div> 
-
-      <div class="legendtext" style="width: 100%; margin-top: 21px; position:relative; padding: 10px">
-        <Selector presetParameters={presetParameters}/>
-      </div>
-
-    </div>
-
-  </div>
-
-{:else}
-
-  <meta name="viewport" content="width=370">
-  <div class="chartmobile" style="width: 360px; overflow:hidden">
-
-    <div style="position:relative; grid-area: top; left:-25px;">
-      <SEIR colors={colors}
-            Sol={Sol}
-            N={N}
-            height={280}
-            width={345}
-            bind:mobile
-            bind:OMInterventionAmt
-            bind:InterventionTime
-            bind:checked
-            bind:active/>
-    </div> 
-
-    <div style="grid-area: line; border-bottom: 1px solid rgb(200,200,200)"></div>
-
-    <div style="grid-area: left-bottom; padding: 2px 4px 0px 0px">
-      <SEIRPanel Iters={Sol["Iters"]} 
-                 N={N}
-                 colors={colors}
-                 active_={active >= 0 ? active : 0} 
-                 indexToTime={indexToTime}
-                 get_d={get_d}
-                 bind:checked={checked}
-                 mobile={true} />
-
-    </div>
-
-    <div class="legendtext" style="width: 100%; margin-top: 5px; position:relative; grid-area: right-bottom">
-      <Selector presetParameters={presetParameters} align="left" mobile={true}/>
-    </div>
-
-    <div style="grid-area: line2; border-bottom: 1.5px solid rgb(200,200,200)"></div>
-
-  </div>
-
-{/if}
+  </tr>
+{#each range(50) as i}
+  <tr>
+    <td>{Math.round(2*i*Sol["dt"]) }</td>
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][0]))}</td>
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][1]))}</td>    
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][2]))}</td>    
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][3]))}</td>    
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][4]))}</td>    
+    <td>{format(",.3r")(Math.round(N*Sol["Iters"][2*i][5]))}</td>  
+    <td>{format(",.3r")(Math.round(Sol["P"][2*i][0]))}</td>    
+  </tr>
+{/each}
+</table>

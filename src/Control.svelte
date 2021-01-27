@@ -10,56 +10,6 @@ export let Time_to_death = 0;
 
 </script>
 
-<style>
-  .bluetitle {
-    font-weight: 300;
-    font-family: Pangram,Avenir,Helvetica,sans-serif;
-    margin-right: 0px;
-    line-height:14px;
-    font-weight: normal;
-    text-align: left;
-    color: rgb(71, 129, 255);
-    border-bottom: 1px solid rgb(200,200,200);
-    margin-bottom: 14px;
-    margin-top: 20px;
-    padding-bottom:5px;
-    text-transform: uppercase;
-    font-size: 14px
-  }
-
-  .adjustableslidertext {
-    font-family: Pangram,Avenir,Helvetica,sans-serif;    
-    background-color: rgb(221, 227, 243); 
-    color: rgb(73, 129, 248);
-    text-align: center;
-    font-size: 13px;
-    font-weight: bold;
-    width: 85%; 
-    margin-left: 10px; 
-    border-radius: 10px;
-  }
-
-/*  .range {
-    width: 100%;
-    padding: 0px;
-    margin: 0px;
-    margin-bottom: 0px;
-  }*/
-
-  .legendtext{
-    color:#888; 
-    font-size:13px;
-    padding-bottom: 6px;
-    font-weight: 300;
-    font-family: Pangram,Avenir,Helvetica,sans-serif;
-    line-height: 15px;
-  }
-
-  .rangeval {
-    padding-bottom: 10px;
-  }
-
-</style>
 <div class="bluetitle">Transmission Variables </div>
 
 <div style="width:100%;">
@@ -69,7 +19,7 @@ export let Time_to_death = 0;
 
     <div class="rangeval" style="display:flex; justify-content: center;">
       <div style="width:58%;">
-        <Slider bind:value={R0} min=0.01 max=10 step=0.01/> 
+        <Slider bind:value={R0} min=0.01 max=20 step=0.01/> 
       </div>
       <div style="width:42%;">
         <div class="adjustableslidertext">
