@@ -7,7 +7,7 @@
   import SEIR from './SEIR.svelte'
   import { scaleLinear } from "d3-scale";
 
-  var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"]
+  var colors = [ "#3453d5", "#5aa7f1", "#5aa7f1", "#5aa7f1", "#f1c244"]
 
   const presets = 
   [{R0: 3.0, D_incbation: 5.5, D_infectious: 4.5, CFR: 0.5/100, Time_to_death: 19},
