@@ -10,12 +10,11 @@
   var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"]
 
   const presets = 
-  [{R0: 3.0, D_incbation: 5.5, D_infectious: 9.0, CFR: 0.5/100, Time_to_death: 19},
-   {R0: 1.5, D_incbation: 2.5, D_infectious: 8.9, CFR: 0.02/100, Time_to_death: 12},
-   {R0: 1.3, D_incbation: 2, D_infectious: 7.0, CFR: 0.05/100, Time_to_death: 14},
-   {R0: 2.5, D_incbation: 6.4, D_infectious: 15, CFR: 9.6/100, Time_to_death: 17.4},
-   {R0: 1.7, D_incbation: 10, D_infectious: 7, CFR: 53/100,  Time_to_death: 8}]
-
+  [{R0: 3.0, D_incbation: 5.5, D_infectious: 4.5, CFR: 0.5/100, Time_to_death: 19},
+   {R0: 1.5, D_incbation: 2.5, D_infectious: 5.0, CFR: 0.02/100, Time_to_death: 12},
+   {R0: 1.3, D_incbation: 2,   D_infectious: 4.0, CFR: 0.05/100, Time_to_death: 14},
+   {R0: 2.5, D_incbation: 6.4, D_infectious: 7.0, CFR: 9.6/100, Time_to_death: 17.4},
+   {R0: 1.7, D_incbation: 10,  D_infectious: 7.0, CFR: 53/100,  Time_to_death: 8}]
 
   function presetParameters(event) {
     const i = event.currentTarget.value
@@ -75,8 +74,7 @@
   let InterventionTime  = 100
   $: OMInterventionAmt = 2/3
   $: InterventionAmt   = 1 - OMInterventionAmt
-  $: Time              = 220
-  $: dt                = 2
+  $: dt                = 3.675
   $: P_SEVERE          = 0.2
   $: duration          = 7*12*1e10
 
@@ -281,7 +279,7 @@
       <SEIRPanel Iters={Sol["Iters"]} 
                  N={N}
                  colors={colors}
-                 active_={active >= 0 ? active : Sol['Iters'].length - 1} 
+                 active_={active >= 0 ? active : 0} 
                  indexToTime={indexToTime}
                  get_d={get_d}
                  bind:checked={checked}

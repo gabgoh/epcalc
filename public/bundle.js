@@ -4674,68 +4674,68 @@
     			set_style(div5, "justify-content", "center");
     			add_location(div5, file$2, 69, 4, 1448);
     			add_location(div6, file$2, 66, 2, 1291);
-    			add_location(b1, file$2, 84, 28, 1799);
+    			add_location(b1, file$2, 83, 28, 1798);
     			attr_dev(div7, "class", "legendtext svelte-revs7n");
-    			add_location(div7, file$2, 84, 4, 1775);
+    			add_location(div7, file$2, 83, 4, 1774);
     			set_style(div8, "width", "58%");
-    			add_location(div8, file$2, 87, 6, 1954);
+    			add_location(div8, file$2, 86, 6, 1953);
     			attr_dev(div9, "class", "adjustableslidertext svelte-revs7n");
-    			add_location(div9, file$2, 91, 8, 2115);
+    			add_location(div9, file$2, 90, 8, 2114);
     			set_style(div10, "width", "42%");
-    			add_location(div10, file$2, 90, 6, 2082);
+    			add_location(div10, file$2, 89, 6, 2081);
     			attr_dev(div11, "class", "rangeval svelte-revs7n");
     			set_style(div11, "display", "flex");
     			set_style(div11, "justify-content", "center");
-    			add_location(div11, file$2, 86, 4, 1878);
-    			add_location(div12, file$2, 83, 2, 1765);
-    			add_location(b2, file$2, 100, 28, 2278);
+    			add_location(div11, file$2, 85, 4, 1877);
+    			add_location(div12, file$2, 82, 2, 1764);
+    			add_location(b2, file$2, 99, 28, 2277);
     			attr_dev(div13, "class", "legendtext svelte-revs7n");
-    			add_location(div13, file$2, 100, 4, 2254);
+    			add_location(div13, file$2, 99, 4, 2253);
     			set_style(div14, "width", "58%");
-    			add_location(div14, file$2, 103, 6, 2430);
+    			add_location(div14, file$2, 102, 6, 2429);
     			attr_dev(div15, "class", "adjustableslidertext svelte-revs7n");
-    			add_location(div15, file$2, 107, 8, 2597);
+    			add_location(div15, file$2, 106, 8, 2596);
     			set_style(div16, "width", "42%");
-    			add_location(div16, file$2, 106, 6, 2564);
+    			add_location(div16, file$2, 105, 6, 2563);
     			attr_dev(div17, "class", "rangeval svelte-revs7n");
     			set_style(div17, "display", "flex");
     			set_style(div17, "justify-content", "center");
-    			add_location(div17, file$2, 102, 4, 2354);
-    			add_location(div18, file$2, 99, 2, 2244);
+    			add_location(div17, file$2, 101, 4, 2353);
+    			add_location(div18, file$2, 98, 2, 2243);
     			set_style(div19, "width", "100%");
     			add_location(div19, file$2, 64, 0, 1262);
     			attr_dev(div20, "class", "bluetitle svelte-revs7n");
-    			add_location(div20, file$2, 117, 0, 2720);
-    			add_location(b3, file$2, 122, 28, 2833);
+    			add_location(div20, file$2, 116, 0, 2719);
+    			add_location(b3, file$2, 121, 28, 2832);
     			attr_dev(div21, "class", "legendtext svelte-revs7n");
-    			add_location(div21, file$2, 122, 4, 2809);
+    			add_location(div21, file$2, 121, 4, 2808);
     			set_style(div22, "width", "58%");
-    			add_location(div22, file$2, 125, 6, 2984);
+    			add_location(div22, file$2, 124, 6, 2983);
     			attr_dev(div23, "class", "adjustableslidertext svelte-revs7n");
-    			add_location(div23, file$2, 129, 8, 3122);
+    			add_location(div23, file$2, 128, 8, 3121);
     			set_style(div24, "width", "42%");
-    			add_location(div24, file$2, 128, 6, 3089);
+    			add_location(div24, file$2, 127, 6, 3088);
     			attr_dev(div25, "class", "rangeval svelte-revs7n");
     			set_style(div25, "display", "flex");
     			set_style(div25, "justify-content", "center");
-    			add_location(div25, file$2, 124, 4, 2908);
-    			add_location(div26, file$2, 121, 2, 2799);
-    			add_location(b4, file$2, 138, 28, 3278);
+    			add_location(div25, file$2, 123, 4, 2907);
+    			add_location(div26, file$2, 120, 2, 2798);
+    			add_location(b4, file$2, 137, 28, 3277);
     			attr_dev(div27, "class", "legendtext svelte-revs7n");
-    			add_location(div27, file$2, 138, 4, 3254);
+    			add_location(div27, file$2, 137, 4, 3253);
     			set_style(div28, "width", "58%");
-    			add_location(div28, file$2, 141, 6, 3405);
+    			add_location(div28, file$2, 140, 6, 3404);
     			attr_dev(div29, "class", "adjustableslidertext svelte-revs7n");
-    			add_location(div29, file$2, 145, 8, 3570);
+    			add_location(div29, file$2, 144, 8, 3569);
     			set_style(div30, "width", "42%");
-    			add_location(div30, file$2, 144, 6, 3537);
+    			add_location(div30, file$2, 143, 6, 3536);
     			attr_dev(div31, "class", "rangeval svelte-revs7n");
     			set_style(div31, "display", "flex");
     			set_style(div31, "justify-content", "center");
-    			add_location(div31, file$2, 140, 4, 3329);
-    			add_location(div32, file$2, 137, 2, 3244);
+    			add_location(div31, file$2, 139, 4, 3328);
+    			add_location(div32, file$2, 136, 2, 3243);
     			set_style(div33, "width", "100%");
-    			add_location(div33, file$2, 119, 0, 2770);
+    			add_location(div33, file$2, 118, 0, 2769);
     		},
 
     		l: function claim(nodes) {
@@ -24766,7 +24766,7 @@
     			t3 = text("Day of Intervention* ");
     			div4 = element("div");
     			t4 = text(t4_value);
-    			attr_dev(div0, "style", "width:150px; \n                  position:relative; \n                  /*background-color: black;*/\n                  top:-65px; \n                  left: -80px; \n                  height: 90px; \n                  padding-right: 15px; \n                  cursor:col-resize; \n                  position:absolute;");
+    			attr_dev(div0, "style", "width:150px; \n                  position:relative; \n                  /*background-color: black;*/\n                  top:-65px; \n                  left: -80px; \n                  height: 90px;\n                  padding-right: 15px; \n                  cursor:col-resize; \n                  position:absolute;");
     			add_location(div0, file$7, 439, 6, 13111);
     			attr_dev(div1, "id", "dottedline");
     			attr_dev(div1, "style", div1_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px");
@@ -24786,12 +24786,12 @@
     			set_style(div3, "width", "100px");
     			set_style(div3, "left", "-7px");
     			set_style(div3, "top", "-15px");
-    			add_location(div3, file$7, 476, 14, 14771);
+    			add_location(div3, file$7, 476, 14, 14770);
     			set_style(div4, "font-weight", "bold");
     			set_style(div4, "color", "red");
     			set_style(div4, "font-size", "15px");
     			set_style(div4, "margin-top", "4px");
-    			add_location(div4, file$7, 478, 37, 15129);
+    			add_location(div4, file$7, 478, 37, 15128);
     			attr_dev(div5, "class", "draggymobile2 svelte-1vtbsov");
     			set_style(div5, "text-align", "center");
     			set_style(div5, "line-height", "14px");
@@ -24801,7 +24801,7 @@
     			set_style(div5, "top", "-2px");
     			set_style(div5, "position", "relative");
     			set_style(div5, "font-size", "12px");
-    			add_location(div5, file$7, 477, 14, 14929);
+    			add_location(div5, file$7, 477, 14, 14928);
     			attr_dev(div6, "class", "caption draggymobile svelte-1vtbsov");
     			set_style(div6, "pointer-events", "none");
     			set_style(div6, "width", "74px");
@@ -24813,11 +24813,11 @@
     			set_style(div6, "background-color", "white");
     			set_style(div6, "border", "1px solid rgb(200,200,200)");
     			set_style(div6, "border-radius", "3px");
-    			add_location(div6, file$7, 466, 12, 14153);
+    			add_location(div6, file$7, 466, 12, 14152);
     			set_style(div7, "position", "relative");
     			set_style(div7, "top", "-35px");
     			set_style(div7, "left", "" + (-102+56.5) + "px");
-    			add_location(div7, file$7, 465, 10, 14075);
+    			add_location(div7, file$7, 465, 10, 14074);
     			set_style(div8, "position", "absolute");
     			set_style(div8, "top", "30px");
     			set_style(div8, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
@@ -24826,8 +24826,8 @@
     			set_style(div8, "background-color", "rgb(255, 255, 255, 0.5)");
     			set_style(div8, "border-right", "1px dashed rgb(0,0,0, 0.5)");
     			set_style(div8, "cursor", "col-resize");
-    			set_style(div8, "height", "" + (ctx.height-54) + "px");
-    			add_location(div8, file$7, 455, 6, 13663);
+    			set_style(div8, "height", "" + (ctx.height-55) + "px");
+    			add_location(div8, file$7, 455, 6, 13662);
     			set_style(div9, "position", "absolute");
     			set_style(div9, "width", "" + (ctx.width+15) + "px");
     			set_style(div9, "height", "" + (ctx.height + 30) + "px");
@@ -24835,7 +24835,7 @@
     			set_style(div9, "top", "35px");
     			set_style(div9, "left", "25px");
     			set_style(div9, "pointer-events", "none");
-    			add_location(div9, file$7, 454, 4, 13516);
+    			add_location(div9, file$7, 454, 4, 13515);
     		},
 
     		m: function mount(target, anchor) {
@@ -24881,7 +24881,7 @@
     			}
 
     			if (changed.height) {
-    				set_style(div8, "height", "" + (ctx.height-54) + "px");
+    				set_style(div8, "height", "" + (ctx.height-55) + "px");
     			}
 
     			if (changed.width) {
@@ -25039,7 +25039,7 @@
     			set_style(div10, "background-color", "rgb(255, 255, 255, 0.5)");
     			set_style(div10, "border-right", "1px dashed rgb(0,0,0, 0.5)");
     			set_style(div10, "cursor", "col-resize");
-    			set_style(div10, "height", "" + (ctx.height-59) + "px");
+    			set_style(div10, "height", "" + (ctx.height-79) + "px");
     			add_location(div10, file$7, 390, 6, 10381);
     			set_style(div11, "position", "absolute");
     			set_style(div11, "width", "" + (ctx.width+15) + "px");
@@ -25125,7 +25125,7 @@
     			}
 
     			if (!current || changed.height) {
-    				set_style(div10, "height", "" + (ctx.height-59) + "px");
+    				set_style(div10, "height", "" + (ctx.height-79) + "px");
     			}
 
     			if (!current || changed.width) {
@@ -25741,7 +25741,7 @@
 
     const file$8 = "src/App.svelte";
 
-    // (260:0) {:else}
+    // (258:0) {:else}
     function create_else_block$4(ctx) {
     	var meta, t0, div5, div0, updating_mobile, updating_OMInterventionAmt, updating_InterventionTime, updating_checked, updating_active, t1, div1, t2, div2, updating_checked_1, t3, div3, t4, div4, current;
 
@@ -25815,7 +25815,7 @@
     		Iters: ctx.Sol["Iters"],
     		N: ctx.N,
     		colors: ctx.colors,
-    		active_: ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1,
+    		active_: ctx.active >= 0 ? ctx.active : 0,
     		indexToTime: ctx.indexToTime,
     		get_d: ctx.get_d,
     		mobile: true
@@ -25855,30 +25855,30 @@
     			div4 = element("div");
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=370");
-    			add_location(meta, file$8, 261, 2, 8246);
+    			add_location(meta, file$8, 259, 2, 8226);
     			set_style(div0, "position", "relative");
     			set_style(div0, "grid-area", "top");
     			set_style(div0, "left", "-25px");
-    			add_location(div0, file$8, 264, 4, 8360);
+    			add_location(div0, file$8, 262, 4, 8340);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
-    			add_location(div1, file$8, 277, 4, 8699);
+    			add_location(div1, file$8, 275, 4, 8679);
     			set_style(div2, "grid-area", "left-bottom");
     			set_style(div2, "padding", "2px 4px 0px 0px");
-    			add_location(div2, file$8, 279, 4, 8783);
+    			add_location(div2, file$8, 277, 4, 8763);
     			attr_dev(div3, "class", "legendtext svelte-zyymcl");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "grid-area", "right-bottom");
-    			add_location(div3, file$8, 291, 4, 9181);
+    			add_location(div3, file$8, 289, 4, 9139);
     			set_style(div4, "grid-area", "line2");
     			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
-    			add_location(div4, file$8, 295, 4, 9384);
+    			add_location(div4, file$8, 293, 4, 9342);
     			attr_dev(div5, "class", "chartmobile svelte-zyymcl");
     			set_style(div5, "width", "360px");
     			set_style(div5, "overflow", "hidden");
-    			add_location(div5, file$8, 262, 2, 8291);
+    			add_location(div5, file$8, 260, 2, 8271);
     		},
 
     		m: function mount(target, anchor) {
@@ -25924,7 +25924,7 @@
     			var seirpanel_changes = {};
     			if (changed.Sol) seirpanel_changes.Iters = ctx.Sol["Iters"];
     			if (changed.N) seirpanel_changes.N = ctx.N;
-    			if (changed.active || changed.Sol) seirpanel_changes.active_ = ctx.active >= 0 ? ctx.active : ctx.Sol['Iters'].length - 1;
+    			if (changed.active) seirpanel_changes.active_ = ctx.active >= 0 ? ctx.active : 0;
     			if (changed.indexToTime) seirpanel_changes.indexToTime = ctx.indexToTime;
     			if (changed.get_d) seirpanel_changes.get_d = ctx.get_d;
     			if (!updating_checked_1 && changed.checked) {
@@ -25965,11 +25965,11 @@
     			destroy_component(selector);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$4.name, type: "else", source: "(260:0) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$4.name, type: "else", source: "(258:0) {:else}", ctx });
     	return block;
     }
 
-    // (219:0) {#if !mobile}
+    // (217:0) {#if !mobile}
     function create_if_block$4(ctx) {
     	var meta, t0, div5, div0, updating_checked, t1, div1, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, t2, div4, div2, updating_OMInterventionAmt, updating_InterventionTime, updating_checked_1, updating_active, t3, div3, current;
 
@@ -26122,28 +26122,28 @@
     			selector.$$.fragment.c();
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=980");
-    			add_location(meta, file$8, 219, 2, 7071);
+    			add_location(meta, file$8, 217, 2, 7051);
     			set_style(div0, "margin-right", "5px");
     			set_style(div0, "grid-area", "left-top");
-    			add_location(div0, file$8, 222, 4, 7162);
+    			add_location(div0, file$8, 220, 4, 7142);
     			set_style(div1, "margin-right", "5px");
     			set_style(div1, "grid-area", "left-bottom");
-    			add_location(div1, file$8, 235, 4, 7500);
+    			add_location(div1, file$8, 233, 4, 7480);
     			set_style(div2, "position", "relative");
     			set_style(div2, "left", "-12px");
-    			add_location(div2, file$8, 247, 6, 7836);
+    			add_location(div2, file$8, 245, 6, 7816);
     			attr_dev(div3, "class", "legendtext svelte-zyymcl");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "21px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "padding", "10px");
-    			add_location(div3, file$8, 251, 6, 8046);
+    			add_location(div3, file$8, 249, 6, 8026);
     			set_style(div4, "position", "relative");
     			set_style(div4, "grid-area", "right");
-    			add_location(div4, file$8, 245, 4, 7779);
+    			add_location(div4, file$8, 243, 4, 7759);
     			attr_dev(div5, "class", "chart svelte-zyymcl");
     			set_style(div5, "width", "980px");
-    			add_location(div5, file$8, 220, 2, 7116);
+    			add_location(div5, file$8, 218, 2, 7096);
     		},
 
     		m: function mount(target, anchor) {
@@ -26250,7 +26250,7 @@
     			destroy_component(selector);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(219:0) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(217:0) {#if !mobile}", ctx });
     	return block;
     }
 
@@ -26285,9 +26285,9 @@
     			if_block_anchor = empty();
     			attr_dev(input, "type", "checkbox");
     			input.checked = true;
-    			add_location(input, file$8, 215, 0, 6975);
+    			add_location(input, file$8, 213, 0, 6955);
     			set_style(div, "padding", "5px");
-    			add_location(div, file$8, 214, 0, 6948);
+    			add_location(div, file$8, 212, 0, 6928);
 
     			dispose = [
     				listen_dev(window, "resize", ctx.onwindowresize),
@@ -26377,12 +26377,11 @@
       var colors = [ "#386cb0", "#8da0cb", "#4daf4a", "#f0027f", "#fdc086"];
 
       const presets = 
-      [{R0: 3.0, D_incbation: 5.5, D_infectious: 9.0, CFR: 0.5/100, Time_to_death: 19},
-       {R0: 1.5, D_incbation: 2.5, D_infectious: 8.9, CFR: 0.02/100, Time_to_death: 12},
-       {R0: 1.3, D_incbation: 2, D_infectious: 7.0, CFR: 0.05/100, Time_to_death: 14},
-       {R0: 2.5, D_incbation: 6.4, D_infectious: 15, CFR: 9.6/100, Time_to_death: 17.4},
-       {R0: 1.7, D_incbation: 10, D_infectious: 7, CFR: 53/100,  Time_to_death: 8}];
-
+      [{R0: 3.0, D_incbation: 5.5, D_infectious: 4.5, CFR: 0.5/100, Time_to_death: 19},
+       {R0: 1.5, D_incbation: 2.5, D_infectious: 5.0, CFR: 0.02/100, Time_to_death: 12},
+       {R0: 1.3, D_incbation: 2,   D_infectious: 4.0, CFR: 0.05/100, Time_to_death: 14},
+       {R0: 2.5, D_incbation: 6.4, D_infectious: 7.0, CFR: 9.6/100, Time_to_death: 17.4},
+       {R0: 1.7, D_incbation: 10,  D_infectious: 7.0, CFR: 53/100,  Time_to_death: 8}];
 
       function presetParameters(event) {
         const i = event.currentTarget.value;
@@ -26619,7 +26618,6 @@
     		if ('D_death' in $$props) $$invalidate('D_death', D_death = $$props.D_death);
     		if ('OMInterventionAmt' in $$props) $$invalidate('OMInterventionAmt', OMInterventionAmt = $$props.OMInterventionAmt);
     		if ('InterventionAmt' in $$props) $$invalidate('InterventionAmt', InterventionAmt = $$props.InterventionAmt);
-    		if ('Time' in $$props) Time = $$props.Time;
     		if ('dt' in $$props) $$invalidate('dt', dt = $$props.dt);
     		if ('P_SEVERE' in $$props) $$invalidate('P_SEVERE', P_SEVERE = $$props.P_SEVERE);
     		if ('duration' in $$props) $$invalidate('duration', duration = $$props.duration);
@@ -26628,7 +26626,7 @@
     		if ('get_d' in $$props) $$invalidate('get_d', get_d = $$props.get_d);
     	};
 
-    	let screenWidth, screenHeight, lock, checked, Time_to_death, logN, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_recovery_severe, D_hospital_lag, D_death, CFR, OMInterventionAmt, InterventionAmt, Time, dt, P_SEVERE, duration, Sol, indexToTime, get_d;
+    	let screenWidth, screenHeight, lock, checked, Time_to_death, logN, N, I0, R0, D_incbation, D_infectious, D_recovery_mild, D_recovery_severe, D_hospital_lag, D_death, CFR, OMInterventionAmt, InterventionAmt, dt, P_SEVERE, duration, Sol, indexToTime, get_d;
 
     	$$self.$$.update = ($$dirty = { logN: 1, Time_to_death: 1, D_infectious: 1, OMInterventionAmt: 1, dt: 1, N: 1, I0: 1, R0: 1, D_incbation: 1, D_recovery_mild: 1, D_hospital_lag: 1, D_recovery_severe: 1, D_death: 1, P_SEVERE: 1, CFR: 1, InterventionTime: 1, InterventionAmt: 1, duration: 1, Sol: 1, indexToTime: 1 }) => {
     		if ($$dirty.logN) { $$invalidate('N', N                 = Math.exp(logN)); }
@@ -26658,8 +26656,7 @@
     	$$invalidate('D_hospital_lag', D_hospital_lag    = 5);
     	$$invalidate('CFR', CFR               = presets[0].CFR);
     	$$invalidate('OMInterventionAmt', OMInterventionAmt = 2/3);
-    	Time              = 220;
-    	$$invalidate('dt', dt                = 2);
+    	$$invalidate('dt', dt                = 3.675);
     	$$invalidate('P_SEVERE', P_SEVERE          = 0.2);
     	$$invalidate('duration', duration          = 7*12*1e10);
 

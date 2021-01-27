@@ -80,7 +80,6 @@ export let Time_to_death = 0;
 
   </div>
 
-
   <div>
     <div class="legendtext"><b>Incubation period</b> - Time between infection and symptom onset</div>
 

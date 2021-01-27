@@ -397,7 +397,7 @@
           background-color:rgb(255, 255, 255, 0.5);
           border-right: 1px dashed rgb(0,0,0, 0.5);
           cursor:col-resize;
-          height:{height-59}px">
+          height:{height-79}px">
           <div style="position:relative; top:-225px; left: -102px;" >
             <div class="caption draggy" style="pointer-events: none; 
                                         width: 180px; 
@@ -442,7 +442,7 @@
                   /*background-color: black;*/
                   top:-65px; 
                   left: -80px; 
-                  height: 90px; 
+                  height: 90px;
                   padding-right: 15px; 
                   cursor:col-resize; 
                   position:absolute;" >
@@ -462,7 +462,7 @@
           background-color:rgb(255, 255, 255, 0.5);
           border-right: 1px dashed rgb(0,0,0, 0.5);
           cursor:col-resize;
-          height:{height-54}px">
+          height:{height-55}px">
           <div style="position:relative; top:-35px; left: {-102+56.5}px;" >
             <div class="caption draggymobile" style="pointer-events: none; 
                                         width: 74px; 
