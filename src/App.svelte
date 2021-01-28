@@ -210,11 +210,11 @@
 
 <svelte:window bind:innerWidth={screenWidth} bind:innerHeight={screenHeight}/>
 
-<div style="padding: 5px">
+<!-- <div style="padding: 5px">
 <input type="checkbox" bind:checked={mobile} checked> Mobile = {mobile}
 </div>
-
-{#if !mobile}
+ -->
+{#if screenWidth > 767}
   <meta name="viewport" content="width=980">
   <div class="chart" style="width: 980px">
 
