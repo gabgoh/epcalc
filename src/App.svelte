@@ -266,7 +266,7 @@
             N={N}
             height={280}
             width={345}
-            bind:mobile
+            mobile={true}
             bind:OMInterventionAmt
             bind:InterventionTime
             bind:checked
