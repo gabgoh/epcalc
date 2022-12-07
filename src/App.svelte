@@ -595,7 +595,7 @@
 
 </style>
 
-<h2>Epidemic Calculator</h2>
+<h2>疫情计算器</h2>
 
 <div class="chart" style="display: flex; max-width: 1120px">
 
@@ -610,7 +610,7 @@
         <Arrow height="41"/>
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Susceptible</div>
+          <div class="legendtitle">易感人数</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][0]))} 
                                   ({ (100*Iters[active_][0]).toFixed(2) }%)</i></div>
@@ -618,7 +618,7 @@
                                  </div>
           </div>
         </div>
-          <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Population not immune to disease.</div>
+          <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">人群对疾病没有免疫力</div>
 
       </div>
 
