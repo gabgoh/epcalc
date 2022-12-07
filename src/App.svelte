@@ -595,7 +595,7 @@
 
 </style>
 
-<h2>疫情计算器</h2>
+<h2>基于SEIR模型的疫情计算器</h2>
 
 <div class="chart" style="display: flex; max-width: 1120px">
 
@@ -610,7 +610,7 @@
         <Arrow height="41"/>
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">易感人数</div>
+          <div class="legendtitle">易感人群</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][0]))} 
                                   ({ (100*Iters[active_][0]).toFixed(2) }%)</i></div>
@@ -629,7 +629,7 @@
         <Arrow height="41"/>
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Exposed</div>
+          <div class="legendtitle">无症状感染者</div>
 
           <div style="padding-top: 5px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][1]))} 
@@ -638,7 +638,7 @@
                                  </div>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Population currently in incubation.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">已接触病毒但不具有传染性(未发病)</div>
 
       </div>
 
@@ -649,7 +649,7 @@
         <Arrow height="41"/>   
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Infectious</div>
+          <div class="legendtitle">感染者</div>
           <div style="padding-top: 5px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][2]))} 
                                   ({ (100*Iters[active_][2]).toFixed(2) }%)</div>
@@ -657,7 +657,7 @@
                                  </div>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;">Number of infections <i>actively</i> circulating.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4px; position:relative;"><i>活跃</i>的感染者</div>
 
 
       </div>
@@ -669,7 +669,7 @@
         <Arrow height="56" arrowhead="" dasharray="3 2"/>
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Removed</div>
+          <div class="legendtitle">康复者</div>
           <div style="padding-top: 10px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N* (1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]) ))} 
                                   ({ ((100*(1-Iters[active_][0]-Iters[active_][1]-Iters[active_][2]))).toFixed(2) }%)</div>
@@ -677,7 +677,7 @@
                                  </div>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4x; position:relative;">Population no longer infectious due to isolation or immunity.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 4x; position:relative;">不再具有传染能力的人(康复/住院/死亡)</div>
 
       </div>
 
@@ -686,14 +686,14 @@
         <Checkbox color="{colors[2]}" bind:checked={checked[2]}/>
         <Arrow height="23" arrowhead="" dasharray="3 2"/>
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Recovered</div>
+          <div class="legendtitle">康复</div>
 
           <div style="padding-top: 3px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][7]+Iters[active_][8]) ))} 
                                   ({ (100*(Iters[active_][7]+Iters[active_][8])).toFixed(2) }%)</div>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 8px; position:relative;">Full recoveries.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 8px; position:relative;">完全康复</div>
 
       </div>
 
@@ -702,7 +702,7 @@
         <Arrow height="43" arrowhead="" dasharray="3 2"/>
         <Checkbox color="{colors[1]}" bind:checked={checked[1]}/>
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Hospitalized</div>
+          <div class="legendtitle">住院人数</div>
           <div style="padding-top: 3px; padding-bottom: 1px">
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*(Iters[active_][5]+Iters[active_][6]) ))} 
                                   ({ (100*(Iters[active_][5]+Iters[active_][6])).toFixed(2) }%)</div>
@@ -710,7 +710,7 @@
           <div class="legendtextnum"><span style="font-size:12px; padding-right:2px; color:#CCC">Δ</span> <i>{formatNumber(Math.round(N*(get_d(active_)[5]+get_d(active_)[6]))) } / day</i>
                                  </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Active hospitalizations.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">入院人数</div>
 
       </div>
 
@@ -720,7 +720,7 @@
         <Checkbox color="{colors[0]}" bind:checked={checked[0]}/>
 
         <div class="legend" style="position:absolute;">
-          <div class="legendtitle">Fatalities</div>
+          <div class="legendtitle">死亡人数</div>
           <div style="padding-top: 3px; padding-bottom: 1px">          
           <div class="legendtextnum"><span style="font-size:12px; padding-right:3px; color:#CCC">∑</span> <i>{formatNumber(Math.round(N*Iters[active_][9]))} 
                                   ({ (100*Iters[active_][9]).toFixed(2) }%)</div>
@@ -728,7 +728,7 @@
                                  </div>
           </div>
         </div>
-        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">Deaths.</div>
+        <div class="legendtext" style="text-align: right; width:105px; left:-111px; top: 10px; position:relative;">死亡人数</div>
       </div>
     </div>
   </div>
